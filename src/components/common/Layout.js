@@ -10,7 +10,6 @@ const Positioner = styled.div`
   padding: 40px 0;
   box-sizing: border-box;
   width: 1300px;
-  height: 1000px;
   box-shadow: 0 0 30px #737373;
   position: relative;
 `;

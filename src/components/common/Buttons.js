@@ -17,6 +17,17 @@ const StyledButton = styled.button`
       &:hover {
         background: ${darken(0.1, selected)};
       }
+      ${(props) =>
+        props.outline &&
+        css`
+          color: ${selected};
+          background: none;
+          border: 2px solid ${selected};
+          &:hover {
+            background: ${selected};
+            color: white;
+          }
+        `}
     `;
   }}
   ${(props) =>
@@ -24,6 +35,9 @@ const StyledButton = styled.button`
     css`
       color: black;
     `}
+    & + & {
+    margin-left: 1rem;
+  }
 `;
 
 function Buttons({ children, ...rest }) {

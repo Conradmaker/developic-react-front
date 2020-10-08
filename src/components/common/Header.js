@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import IMG from "../../assets/img/logo.png";
-import { MdSearch, MdClose } from "react-icons/md";
-import SearchForm from "./SearchForm";
+import { MdSearch } from "react-icons/md";
 
 const Rightmenu = styled.ul`
   display: flex;
@@ -43,7 +42,6 @@ const HeaderBox = styled.div`
 `;
 
 export default function Header({ toggle, open }) {
-  console.log(open);
   return (
     <HeaderContainer>
       <HeaderBox>

@@ -6,7 +6,6 @@ import {
   MdCheckBox,
   MdClose,
 } from "react-icons/md";
-import Buttons from "./Buttons";
 
 const SearchContainer = styled.div`
   position: fixed;

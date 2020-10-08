@@ -1,0 +1,320 @@
+import React from "react";
+import styled from "styled-components";
+
+const Darker = styled.i``;
+
+const ImagesContainer = styled.div`
+  width: 1100px;
+  margin: 0 auto;
+  columns: 3;
+  gap: 50px;
+  figure {
+    margin-bottom: 30px;
+    position: relative;
+    img {
+      width: 100%;
+    }
+    img:hover + i,
+    i:hover {
+      display: initial;
+    }
+    i {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+    }
+  }
+`;
+
+export default function Feed() {
+  return (
+    <>
+      <ImagesContainer>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
+            alt=""
+          ></img>
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/2.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/3.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/4.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/5.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/6.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/7.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/8.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/9.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/10.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/2.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/3.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/4.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/5.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/6.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/7.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/8.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/9.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/10.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/2.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/3.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/4.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/5.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/6.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/7.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/8.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/9.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/10.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/2.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/3.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/4.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/5.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/6.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/7.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/8.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/9.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+        <figure>
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/10.jpg"
+            alt=""
+          />
+          <i></i>
+        </figure>
+      </ImagesContainer>
+    </>
+  );
+}

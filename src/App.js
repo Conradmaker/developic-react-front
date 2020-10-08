@@ -1,12 +1,16 @@
 import React from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import Buttons from "./components/common/Buttons";
 import Layout from "./components/common/Layout";
 import { Route } from "react-router-dom";
+import MainPage from './pages/main/MainPage.js'
 
 const GlobalStyle = createGlobalStyle`
 body{
   background:#FFCA3E;
+}
+h3{
+  font-size:23px;
+  font-weight:bold;
 }
 `;
 
@@ -24,7 +28,7 @@ function App() {
     >
       <GlobalStyle />
       <Layout>
-        <Route path="/" component={null} exact />
+        <Route path="/" component={MainPage} exact />
       </Layout>
     </ThemeProvider>
   );
