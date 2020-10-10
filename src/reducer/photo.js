@@ -14,51 +14,61 @@ function generatePhoto() {
     {
       id: 1,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg",
     },
     {
       id: 2,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/2.jpg",
     },
     {
       id: 3,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/3.jpg",
     },
     {
       id: 4,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/4.jpg",
     },
     {
       id: 5,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/5.jpg",
     },
     {
       id: 6,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/6.jpg",
     },
     {
       id: 7,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/7.jpg",
     },
     {
       id: 8,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/8.jpg",
     },
     {
       id: 9,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/9.jpg",
     },
     {
       id: 10,
       name: "캡틴마블",
+      author: "유원근",
       src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/10.jpg",
     },
   ];

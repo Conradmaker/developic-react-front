@@ -7,7 +7,7 @@ import {
 
 function* loadFeeds(action) {
   try {
-    yield delay(5000);
+    yield delay(2000);
     yield put({ type: LOAD_FEEDS_SUCCESS });
   } catch (e) {
     console.error(e);
