@@ -10,6 +10,9 @@ const StyledButton = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${(props) => {
     const selected = props.theme.pallete[props.color];
     return css`
@@ -27,6 +30,18 @@ const StyledButton = styled.button`
             background: ${selected};
             color: white;
           }
+          ${(props) =>
+            props.inner &&
+            css`
+              color: #fff;
+              border: 2px solid #fff;
+              &:hover {
+                background: none;
+                font-weight: bold;
+                color: #e5e5e5;
+                border: 2px solid #e5e5e5;
+              }
+            `}
         `}
     `;
   }}

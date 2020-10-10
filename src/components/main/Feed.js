@@ -6,8 +6,10 @@ import Preloader from "../../assets/img/preloader.gif";
 import ImageBox from "./ImageBox";
 import { Link } from "react-router-dom";
 import Buttons from "../common/Buttons";
+import { BsArrowRight } from "react-icons/bs";
+import { PreloaderContainer } from "../../pages/main/MainPage";
 
-const ImagesContainer = styled.div`
+export const ImagesContainer = styled.div`
   width: 1100px;
   margin: 0 auto;
   columns: 3;
@@ -16,16 +18,19 @@ const ImagesContainer = styled.div`
 
 export default function Feed() {
   const dispatch = useDispatch();
-  const { PicFeedList, loadFeedsLoading, loadFeedsError } = useSelector(
-    (state) => state.photo
-  );
+  const { PicFeedList, loadFeedsLoading } = useSelector((state) => state.photo);
   useEffect(() => {
     dispatch({ type: LOAD_FEEDS_REQUEST });
   }, [dispatch]);
   const loadMore = useCallback(() => {
     dispatch({ type: LOAD_FEEDS_REQUEST });
   }, [dispatch]);
-  //if (loadFeedsLoading) return <img src={Preloader} alt="" srcset="" />;
+  if (loadFeedsLoading)
+    return (
+      <PreloaderContainer>
+        <img src={Preloader} alt="로딩중" srcset="" />
+      </PreloaderContainer>
+    );
   return (
     <>
       <ImagesContainer>
@@ -35,9 +40,10 @@ export default function Feed() {
           </Link>
         ))}
       </ImagesContainer>
-      <Buttons color="gray" outline onClick={loadMore}>
-        더보기
-      </Buttons>
+      {/* <Buttons color="gray" outline onClick={loadMore}>
+        LOADMORE
+        <BsArrowRight />
+      </Buttons> */}
     </>
   );
 }
