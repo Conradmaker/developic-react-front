@@ -30,7 +30,7 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eeeeee;
+  background: #eceff1;
   position: relative;
   img:hover + i,
   i:hover {
@@ -39,7 +39,7 @@ const ImageBox = styled.div`
   img {
     max-height: 200px;
     max-width: 300px;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 15px black;
   }
   i {
     position: absolute;

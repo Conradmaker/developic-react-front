@@ -49,8 +49,18 @@ const StyledButton = styled.button`
     props.font === "black" &&
     css`
       color: black;
+      font-weight: bold;
     `}
     & + & {
+    margin-left: 1rem;
+  }
+  ${(props) =>
+    props.small &&
+    css`
+      width: 120px;
+      height: 45px;
+    `}
+  & + & {
     margin-left: 1rem;
   }
 `;

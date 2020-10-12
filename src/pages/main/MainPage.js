@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Ad from "../../assets/img/띠배너2.jpg";
 import { useSelector } from "react-redux";
 import Shop from "../../components/main/Shop";
+import { Link } from "react-router-dom";
 
 const CenterPositioner = styled.div`
   display: flex;
@@ -17,6 +18,7 @@ const CenterPositioner = styled.div`
 const AdBanner = styled.div`
   width: 100%;
   position: relative;
+  margin: 50px 0;
   &:hover i,
   i:hover {
     display: flex;
@@ -58,10 +60,12 @@ export default function MainPage() {
       </CenterPositioner>
       <Feed />
       <CenterPositioner>
-        <Buttons color="gray" outline>
-          PICFEED
-          <BsArrowRight />
-        </Buttons>
+        <Link to="/picfeed">
+          <Buttons color="gray" outline>
+            PICFEED
+            <BsArrowRight />
+          </Buttons>
+        </Link>
       </CenterPositioner>
       <AdBanner>
         <img src={Ad} alt="광고" />
@@ -77,10 +81,12 @@ export default function MainPage() {
       </CenterPositioner>
       <Shop />
       <CenterPositioner>
-        <Buttons color="gray" outline>
-          PICSHOP
-          <BsArrowRight />
-        </Buttons>
+        <Link to="/picshop">
+          <Buttons color="gray" outline>
+            PICSHOP
+            <BsArrowRight />
+          </Buttons>
+        </Link>
       </CenterPositioner>
     </>
   );
