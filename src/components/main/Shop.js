@@ -17,7 +17,7 @@ export default function Shop() {
   return (
     <ShopCardContainer>
       {PicFeedList.map(
-        (v, i) => i !== 8 && <ShopImageBox image={v} key={v.id} />
+        (v, i) => i < 9 && <ShopImageBox image={v} key={v.id} />
       )}
     </ShopCardContainer>
   );

@@ -32,11 +32,14 @@ export default function Feed() {
   return (
     <>
       <ImagesContainer>
-        {PicFeedList.map((v) => (
-          <Link to="#">
-            <ImageBox image={v} key={v.id} />
-          </Link>
-        ))}
+        {PicFeedList.map(
+          (v, i) =>
+            i < 10 && (
+              <Link to="#">
+                <ImageBox image={v} key={v.id} />
+              </Link>
+            )
+        )}
       </ImagesContainer>
       {/* <Buttons color="gray" outline onClick={loadMore}>
         LOADMORE
