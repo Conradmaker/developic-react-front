@@ -6,6 +6,7 @@ import Title from "../../components/common/Title";
 import Apply from "../../components/about/Apply";
 import List from "../../components/about/List";
 import Buttons from "../../components/common/Buttons";
+import Layout from "../../components/common/Layout";
 const Qna = styled.div`
   flex: 1.1;
   background: #e5e5e5;
@@ -56,55 +57,57 @@ const LeftSection = styled.div`
 
 export default function AboutPage() {
   return (
-    <AboutContainer>
-      <Title>ABOUT</Title>
-      <HorizentalBox>
-        <RightSection>
-          <SectionGap id="about-service" />
-          <Label>SERVICE</Label>
-          <Apply />
-          <SectionGap id="about-notice" />
-          <Label>NOTICE</Label>
-          <List></List>
-          <List></List>
-          <List></List>
-          <List></List>
-          <SectionGap />
-          <SectionGap id="about-faq" />
-          <FaqQnA>
-            <Faq>
-              <Label>FAQ</Label>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-              <List></List>
-            </Faq>
-            <Qna>
-              <Label>Q&A</Label>
-              <span>
-                원하는 답이 없다면
-                <br />
-                1:1문의를 이용하세요.
-                <p>
-                  Open at AM 10:00 ~ PM 17:00
+    <Layout>
+      <AboutContainer>
+        <Title>ABOUT</Title>
+        <HorizentalBox>
+          <RightSection>
+            <SectionGap id="about-service" />
+            <Label>SERVICE</Label>
+            <Apply />
+            <SectionGap id="about-notice" />
+            <Label>NOTICE</Label>
+            <List></List>
+            <List></List>
+            <List></List>
+            <List></List>
+            <SectionGap />
+            <SectionGap id="about-faq" />
+            <FaqQnA>
+              <Faq>
+                <Label>FAQ</Label>
+                <List></List>
+                <List></List>
+                <List></List>
+                <List></List>
+                <List></List>
+              </Faq>
+              <Qna>
+                <Label>Q&A</Label>
+                <span>
+                  원하는 답이 없다면
                   <br />
-                  Lunch at PM 12:00 ~ 13:00
-                </p>
-                <div>
-                  <Buttons>1:1문의 작성</Buttons>
-                  <Buttons color="black" small>
-                    작성 목록
-                  </Buttons>
-                </div>
-              </span>
-            </Qna>
-          </FaqQnA>
-        </RightSection>
-        <LeftSection>
-          <LeftNavi></LeftNavi>
-        </LeftSection>
-      </HorizentalBox>
-    </AboutContainer>
+                  1:1문의를 이용하세요.
+                  <p>
+                    Open at AM 10:00 ~ PM 17:00
+                    <br />
+                    Lunch at PM 12:00 ~ 13:00
+                  </p>
+                  <div>
+                    <Buttons>1:1문의 작성</Buttons>
+                    <Buttons color="black" small>
+                      작성 목록
+                    </Buttons>
+                  </div>
+                </span>
+              </Qna>
+            </FaqQnA>
+          </RightSection>
+          <LeftSection>
+            <LeftNavi></LeftNavi>
+          </LeftSection>
+        </HorizentalBox>
+      </AboutContainer>
+    </Layout>
   );
 }

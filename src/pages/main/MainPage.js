@@ -8,6 +8,7 @@ import Ad from "../../assets/img/띠배너2.jpg";
 import { useSelector } from "react-redux";
 import Shop from "../../components/main/Shop";
 import { Link } from "react-router-dom";
+import Layout from "../../components/common/Layout";
 
 const CenterPositioner = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ export const PreloaderContainer = styled.div`
 export default function MainPage() {
   const { PicFeedList } = useSelector((state) => state.photo);
   return (
-    <>
+    <Layout>
       <Banner />
       <CenterPositioner>
         <h3>PICFEED</h3>
@@ -88,6 +89,6 @@ export default function MainPage() {
           </Buttons>
         </Link>
       </CenterPositioner>
-    </>
+    </Layout>
   );
 }

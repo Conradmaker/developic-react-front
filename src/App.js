@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import MainPage from "./pages/main/MainPage.js";
 import LoginPage from "./pages/main/LoginPage";
 import AboutPage from "./pages/main/AboutPage";
+import LogIn from "./components/login/LogIn";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -33,11 +34,9 @@ function App() {
       }}
     >
       <GlobalStyle />
-      <Layout>
-        <Route path="/" component={MainPage} exact />
-        <Route path="/about" component={AboutPage} exact />
-      </Layout>
-      <Route path="/login" component={LoginPage} exact />
+      <Route path="/" component={MainPage} exact />
+      <Route path="/about" component={AboutPage} exact />
+      <Route path="/login" component={LogIn} exact />
     </ThemeProvider>
   );
 }
