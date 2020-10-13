@@ -1,17 +1,17 @@
 import React from "react";
 import "./login.css";
-import styled, { keyframes } from "styled-components";
-const show = keyframes`
-from {
-    opacity: 0;
-    z-index: 1;
-  }
+import styled from "styled-components";
+// const show = keyframes`
+// from {
+//     opacity: 0;
+//     z-index: 1;
+//   }
 
-to {
-    opacity: 1;
-    z-index: 5;
-  }
-`;
+// to {
+//     opacity: 1;
+//     z-index: 5;
+//   }
+// `;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;

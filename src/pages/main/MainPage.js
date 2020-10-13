@@ -5,12 +5,12 @@ import Banner from "../../components/main/Banner";
 import Feed from "../../components/main/Feed";
 import styled from "styled-components";
 import Ad from "../../assets/img/띠배너2.jpg";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import Shop from "../../components/main/Shop";
 import { Link } from "react-router-dom";
 import Layout from "../../components/common/Layout";
 
-const CenterPositioner = styled.div`
+export const CenterPositioner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,7 +52,7 @@ export const PreloaderContainer = styled.div`
   justify-content: center;
 `;
 export default function MainPage() {
-  const { PicFeedList } = useSelector((state) => state.photo);
+  // const { PicFeedList } = useSelector((state) => state.photo);
   return (
     <Layout>
       <Banner />

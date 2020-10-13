@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BANNER1 from "../../assets/img/banner1.png";
 import BTN from "../common/Buttons";
 
-const BannerBox = styled.div`
+export const BannerBox = styled.div`
   margin: 30px 0;
   width: 100%;
   height: 350px;

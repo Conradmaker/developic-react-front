@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { LOAD_FEEDS_REQUEST } from "../../reducer/photo";
 import Preloader from "../../assets/img/preloader.gif";
 import ImageBox from "./ImageBox";
 import { Link } from "react-router-dom";
-import Buttons from "../common/Buttons";
-import { BsArrowRight } from "react-icons/bs";
 import { PreloaderContainer } from "../../pages/main/MainPage";
 
 export const ImagesContainer = styled.div`
@@ -22,9 +20,9 @@ export default function Feed() {
   useEffect(() => {
     dispatch({ type: LOAD_FEEDS_REQUEST });
   }, [dispatch]);
-  const loadMore = useCallback(() => {
-    dispatch({ type: LOAD_FEEDS_REQUEST });
-  }, [dispatch]);
+  // const loadMore = useCallback(() => {
+  //   dispatch({ type: LOAD_FEEDS_REQUEST });
+  // }, [dispatch]);
   if (loadFeedsLoading)
     return (
       <PreloaderContainer>
