@@ -49,8 +49,8 @@ export default function Header({ toggle, open }) {
           <img src={IMG} width="250px" alt="" />
         </Link>
         <Rightmenu>
-          <Link to="/">SIGNUP</Link>
-          <Link to="/">LOGIN</Link>
+          <Link to="/login/1">SIGNUP</Link>
+          <Link to="/login/2">LOGIN</Link>
           <i onClick={() => toggle(true)}>
             <MdSearch />
           </i>

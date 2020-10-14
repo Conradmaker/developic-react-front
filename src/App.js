@@ -6,6 +6,7 @@ import AboutPage from "./pages/main/AboutPage";
 import LogIn from "./components/login/LogIn";
 import PicfeedPage from "./pages/main/PicfeedPage.js";
 import PicShopPage from "./pages/main/PicShopPage.js";
+import LoginPage from "./pages/main/LoginPage.js";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -38,7 +39,7 @@ function App() {
       <Route path="/picfeed" component={PicfeedPage} exact />
       <Route path="/picshop" component={PicShopPage} exact />
       <Route path="/about" component={AboutPage} exact />
-      <Route path="/login" component={LogIn} exact />
+      <Route path="/login/:sl" component={LoginPage} exact />
     </ThemeProvider>
   );
 }
