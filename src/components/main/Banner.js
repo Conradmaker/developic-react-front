@@ -6,7 +6,7 @@ import BTN from "../common/Buttons";
 export const BannerBox = styled.div`
   margin: 30px 0;
   width: 100%;
-  height: 350px;
+  height: 400px;
   background-image: url(${BANNER1});
   background-size: contain;
   background-position: 55px 0;

@@ -5,6 +5,7 @@ import MainPage from "./pages/main/MainPage.js";
 import AboutPage from "./pages/main/AboutPage";
 import LogIn from "./components/login/LogIn";
 import PicfeedPage from "./pages/main/PicfeedPage.js";
+import PicShopPage from "./pages/main/PicShopPage.js";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -35,6 +36,7 @@ function App() {
       <GlobalStyle />
       <Route path="/" component={MainPage} exact />
       <Route path="/picfeed" component={PicfeedPage} exact />
+      <Route path="/picshop" component={PicShopPage} exact />
       <Route path="/about" component={AboutPage} exact />
       <Route path="/login" component={LogIn} exact />
     </ThemeProvider>

@@ -48,7 +48,6 @@ const wave = keyframes`
  70%{
   transform: translate(-320px, 100px) scale(2.3);
  }
-
  85%{
   transform: translate(-320px, 00px) scale(3) rotate(200deg);
  }
@@ -57,7 +56,7 @@ const wave = keyframes`
   transform: translate(-320px, 100px) scale(2.3) rotate(360deg);
  }
 `;
-const Button = styled.button`
+export const Button = styled.button`
   background: #001c67;
   color: white;
   font-size: 35px;
@@ -77,7 +76,7 @@ const Button = styled.button`
     display: inline-block;
   }
 `;
-const SmallBtn = styled.div`
+export const SmallBtn = styled.div`
   cursor: pointer;
   background: #006064;
   outline: none;
@@ -100,7 +99,7 @@ const SmallBtn = styled.div`
       }
     `}
 `;
-const BannerContents = styled.div`
+export const BannerContents = styled.div`
   display: flex;
   height: 100%;
   align-items: center;

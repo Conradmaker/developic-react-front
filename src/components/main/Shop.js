@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ShopImageBox from "./ShopImageBox";
 
-const ShopCardContainer = styled.div`
+export const ShopCardContainer = styled.div`
   width: 1100px;
   margin: 0 auto;
   display: flex;
