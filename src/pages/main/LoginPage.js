@@ -1,5 +1,4 @@
 import React from "react";
-import LogIn from "../../components/login/LogIn";
 import styled, { css } from "styled-components";
 import Layout from "../../components/common/Layout";
 import Title from "../../components/common/Title";

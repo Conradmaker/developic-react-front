@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BANNER1 from "../../assets/img/banner1.png";
 import BTN from "../common/Buttons";
@@ -18,6 +19,9 @@ const BtnBox = styled.div`
   position: absolute;
   bottom: 45px;
   right: 100px;
+  a + a {
+    margin-left: 20px;
+  }
 `;
 
 export default function Banner() {
@@ -25,10 +29,14 @@ export default function Banner() {
     <>
       <BannerBox>
         <BtnBox>
-          <BTN color="pink">PROFILE</BTN>
-          <BTN color="pink" outline>
-            PROFILE
-          </BTN>
+          <Link to="/profile/1">
+            <BTN color="pink">PROFILE</BTN>
+          </Link>
+          <Link to="/profile/1">
+            <BTN color="pink" outline>
+              PROFILE
+            </BTN>
+          </Link>
         </BtnBox>
       </BannerBox>
     </>

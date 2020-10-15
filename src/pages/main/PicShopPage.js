@@ -6,7 +6,6 @@ import BANNERIMG from "../../assets/img/picshopbanner.jpg";
 import { CenterPositioner } from "./MainPage";
 import { ShopCardContainer } from "../../components/main/Shop";
 import Catagory from "../../components/main/Catagory";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { LOAD_FEEDS_REQUEST } from "../../reducer/photo";

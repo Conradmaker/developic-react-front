@@ -3,10 +3,10 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { Route } from "react-router-dom";
 import MainPage from "./pages/main/MainPage.js";
 import AboutPage from "./pages/main/AboutPage";
-import LogIn from "./components/login/LogIn";
 import PicfeedPage from "./pages/main/PicfeedPage.js";
 import PicShopPage from "./pages/main/PicShopPage.js";
 import LoginPage from "./pages/main/LoginPage.js";
+import Allpost from "./pages/profile/Allpost.js";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -17,6 +17,7 @@ h3{
   font-weight:bold;
 }
 a{
+  color:black;
   text-decoration:none;
 }
 `;
@@ -40,6 +41,7 @@ function App() {
       <Route path="/picshop" component={PicShopPage} exact />
       <Route path="/about" component={AboutPage} exact />
       <Route path="/login/:sl" component={LoginPage} exact />
+      <Route path="/profile/:id" component={Allpost} exact />
     </ThemeProvider>
   );
 }
