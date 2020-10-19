@@ -4,8 +4,8 @@ import Title from "../../components/common/Title";
 import styled, { css } from "styled-components";
 import UserInfo from "../../components/profile/UserInfo";
 import Feed from "../../components/main/Feed";
-import Shop from "../../components/main/Shop";
 import { useState } from "react";
+import PicstoryList from "../../components/profile/PicstoryList";
 
 const Catagory = styled.div`
   display: flex;
@@ -38,7 +38,6 @@ const ProfileContainer = styled.div`
 `;
 export default function Allpost() {
   const [link, setLink] = useState("allpost");
-  console.log(link, "allpost");
   return (
     <Layout>
       <ProfileContainer>
@@ -50,7 +49,7 @@ export default function Allpost() {
         </Catagory>
       </ProfileContainer>
       {link === "allpost" && <Feed></Feed>}
-      {link === "picstory" && <Shop></Shop>}
+      {link === "picstory" && <PicstoryList></PicstoryList>}
     </Layout>
   );
 }

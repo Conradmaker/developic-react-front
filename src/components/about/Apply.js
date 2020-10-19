@@ -13,6 +13,7 @@ const Summary = styled.div`
     font-size: 15px;
   }
 `;
+
 const InnerBox = styled.div`
   width: 70%;
   height: 80px;

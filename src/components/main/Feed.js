@@ -26,7 +26,7 @@ export default function Feed() {
   if (loadFeedsLoading)
     return (
       <PreloaderContainer>
-        <img src={Preloader} alt="로딩중" srcset="" />
+        <img src={Preloader} alt="로딩중" />
       </PreloaderContainer>
     );
   return (
@@ -35,8 +35,8 @@ export default function Feed() {
         {PicFeedList.map(
           (v, i) =>
             i < 10 && (
-              <Link to="#">
-                <ImageBox image={v} key={v.id} />
+              <Link to="#" key={v.id}>
+                <ImageBox image={v} />
               </Link>
             )
         )}
