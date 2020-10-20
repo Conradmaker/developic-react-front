@@ -42,14 +42,14 @@ export default function Allpost() {
     <Layout>
       <ProfileContainer>
         <Title>Profile</Title>
-        <UserInfo></UserInfo>
+        <UserInfo />
         <Catagory link={link}>
           <span onClick={() => setLink("allpost")}>ALL&nbsp;POST</span>
           <span onClick={() => setLink("picstory")}>PICSTORY</span>
         </Catagory>
       </ProfileContainer>
-      {link === "allpost" && <Feed></Feed>}
-      {link === "picstory" && <PicstoryList></PicstoryList>}
+      {link === "allpost" && <Feed />}
+      {link === "picstory" && <PicstoryList />}
     </Layout>
   );
 }

@@ -37,21 +37,21 @@ const SectionGap = styled.div`
   height: 70px;
 `;
 
-const AboutContainer = styled.div`
+export const AboutContainer = styled.div`
   width: 1100px;
   margin: 0 auto;
 `;
 
-const HorizentalBox = styled.div`
+export const HorizentalBox = styled.div`
   width: 100%;
   display: flex;
   gap: 70px;
 `;
-const RightSection = styled.div`
+export const RightSection = styled.div`
   flex: 5;
 `;
 
-const LeftSection = styled.div`
+export const LeftSection = styled.div`
   flex: 1;
 `;
 

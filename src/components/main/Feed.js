@@ -35,7 +35,7 @@ export default function Feed() {
         {PicFeedList.map(
           (v, i) =>
             i < 10 && (
-              <Link to="#" key={v.id}>
+              <Link to={`/detail/${v.id}`} key={v.id}>
                 <ImageBox image={v} />
               </Link>
             )
