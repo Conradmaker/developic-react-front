@@ -4,7 +4,7 @@ import { BiCart } from "react-icons/bi";
 import Label from "../common/Label";
 import Buttons from "../common/Buttons";
 
-const ButtonBox = styled.div`
+export const ButtonBox = styled.div`
   display: flex;
 `;
 const Artist = styled.div`

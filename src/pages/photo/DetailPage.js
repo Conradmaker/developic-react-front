@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../components/common/Layout";
-import Catagory from "../../components/main/Catagory";
 import LeftMenu from "../../components/Detail/LeftMenu";
+import { RiDeleteBin6Line, RiPencilRuler2Line } from "react-icons/ri";
 import {
   AboutContainer,
   HorizentalBox,
@@ -11,9 +11,22 @@ import {
 } from "../main/AboutPage";
 import Title from "../../components/common/Title";
 import { IoIosArrowBack } from "react-icons/io";
-import Photo from "../../components/Detail/Photo";
+import Photo, { IconButton } from "../../components/Detail/Photo";
 import Summary from "../../components/Detail/Summary";
+import Label from "../../components/common/Label";
+import AboutPhoto from "../../components/Detail/AboutPhoto";
+import CommentForm from "../../components/Detail/CommentForm";
 
+const IconBtnBox = styled(IconButton)`
+  position: static;
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  article {
+    i {
+    }
+  }
+`;
 const LeftVisual = styled.div`
   flex: 14;
 `;
@@ -27,7 +40,7 @@ const Visual = styled.div`
 `;
 const PageTitle = styled.div`
   width: 100%;
-  height: 100px;
+  margin: 50px 0 20px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,6 +74,26 @@ export default function DetailPage() {
                 <Summary />
               </RightVisual>
             </Visual>
+            <PageTitle>
+              <Label>ABOUT&nbsp;THIS&nbsp;PHOTO</Label>
+              <IconBtnBox>
+                <article>
+                  <i>
+                    <RiPencilRuler2Line />
+                  </i>
+                  &nbsp;수정
+                </article>
+                <article>
+                  <i>
+                    <RiDeleteBin6Line />
+                  </i>
+                  &nbsp;삭제
+                </article>
+              </IconBtnBox>
+            </PageTitle>
+            <AboutPhoto />
+            <Label>COMMENTS</Label>
+            <CommentForm />
           </RightSection>
           <LeftSection>
             <LeftMenu />

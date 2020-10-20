@@ -15,20 +15,21 @@ const ImageContainer = styled.div`
     max-width: 100%;
     max-height: 360px;
   }
-  div {
-    position: absolute;
-    bottom: 10px;
-    right: 0;
+`;
+export const IconButton = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 40px;
+  article {
+    cursor: pointer;
+    font-size: 20px;
     display: flex;
-    justify-content: flex-end;
-    gap: 40px;
-    article {
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      i {
-        color: #ed8074;
-      }
+    align-items: center;
+    i {
+      color: #ed8074;
     }
   }
 `;
@@ -40,7 +41,7 @@ export default function Photo() {
         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
         alt="캡아"
       />
-      <div>
+      <IconButton>
         <article>
           <i>
             <AiOutlineHeart />
@@ -54,7 +55,7 @@ export default function Photo() {
           </i>
           <span>신고</span>
         </article>
-      </div>
+      </IconButton>
     </ImageContainer>
   );
 }
