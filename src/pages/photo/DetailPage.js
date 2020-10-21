@@ -39,7 +39,7 @@ const Visual = styled.div`
   display: flex;
   gap: 70px;
 `;
-const PageTitle = styled.div`
+export const PageTitle = styled.div`
   width: 100%;
   margin: 50px 0 20px 0;
   display: flex;

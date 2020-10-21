@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { Route } from "react-router-dom";
+import {ThemeProvider, createGlobalStyle} from "styled-components";
+import {Route} from "react-router-dom";
 import MainPage from "./pages/main/MainPage.js";
 import AboutPage from "./pages/main/AboutPage";
 import PicfeedPage from "./pages/main/PicfeedPage.js";
@@ -8,6 +8,8 @@ import PicShopPage from "./pages/main/PicShopPage.js";
 import LoginPage from "./pages/main/LoginPage.js";
 import Allpost from "./pages/profile/Allpost.js";
 import DetailPage from "./pages/photo/DetailPage";
+import EditPage from "./pages/profile/EditPage.js";
+import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -44,6 +46,7 @@ function App() {
       <Route path="/login/:sl" component={LoginPage} exact />
       <Route path="/profile/:id" component={Allpost} exact />
       <Route path="/detail/:id" component={DetailPage} exact />
+      <Route path="/edit" component={EditPage} exact />
     </ThemeProvider>
   );
 }
