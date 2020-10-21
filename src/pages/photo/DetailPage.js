@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../../components/common/Layout";
 import LeftMenu from "../../components/Detail/LeftMenu";
-import { RiDeleteBin6Line, RiPencilRuler2Line } from "react-icons/ri";
+import {RiDeleteBin6Line, RiPencilRuler2Line} from "react-icons/ri";
 import {
   AboutContainer,
   HorizentalBox,
@@ -10,12 +10,13 @@ import {
   RightSection,
 } from "../main/AboutPage";
 import Title from "../../components/common/Title";
-import { IoIosArrowBack } from "react-icons/io";
-import Photo, { IconButton } from "../../components/Detail/Photo";
+import {IoIosArrowBack} from "react-icons/io";
+import Photo, {IconButton} from "../../components/Detail/Photo";
 import Summary from "../../components/Detail/Summary";
 import Label from "../../components/common/Label";
 import AboutPhoto from "../../components/Detail/AboutPhoto";
 import CommentForm from "../../components/Detail/CommentForm";
+import Comment from "../../components/Detail/Comment";
 
 const IconBtnBox = styled(IconButton)`
   position: static;
@@ -56,9 +57,11 @@ const PageTitle = styled.div`
 export default function DetailPage() {
   return (
     <Layout>
+      <div id="top" />
       <AboutContainer>
         <HorizentalBox>
           <RightSection>
+            <div id="detail" />
             <PageTitle>
               <Title>DETAIL</Title>
               <span>
@@ -74,6 +77,7 @@ export default function DetailPage() {
                 <Summary />
               </RightVisual>
             </Visual>
+            <div id="about" />
             <PageTitle>
               <Label>ABOUT&nbsp;THIS&nbsp;PHOTO</Label>
               <IconBtnBox>
@@ -92,8 +96,12 @@ export default function DetailPage() {
               </IconBtnBox>
             </PageTitle>
             <AboutPhoto />
+            <div id="comment" />
             <Label>COMMENTS</Label>
             <CommentForm />
+            <Comment />
+            <Comment />
+            <Comment />
           </RightSection>
           <LeftSection>
             <LeftMenu />

@@ -39,7 +39,7 @@ export default function CommentForm() {
     <FormContainer>
       <h1>댓글작성</h1>
       <form>
-        <input type="text" />
+        <input type="text" placeholder="댓글을 입력해 주세요." />
         <button type="submit">등록</button>
       </form>
     </FormContainer>

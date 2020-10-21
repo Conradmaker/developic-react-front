@@ -1,6 +1,6 @@
 import React from "react";
 import IMG from "../../assets/img/avatarsample.png";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const ImgBox = styled.div`
   width: 230px;
@@ -10,11 +10,18 @@ const ImgBox = styled.div`
   img {
     width: 100%;
   }
+  ${(props) =>
+    props.small &&
+    css`
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+    `}
 `;
 
-export default function Avatar() {
+export default function Avatar({...rest}) {
   return (
-    <ImgBox>
+    <ImgBox {...rest}>
       <img src={IMG} alt="avatar" />
     </ImgBox>
   );
