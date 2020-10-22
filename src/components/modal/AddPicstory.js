@@ -22,7 +22,7 @@ const PicList = styled.ul`
     }
   }
 `;
-export default function AddPicstory() {
+export default function AddPicstory({close}) {
   return (
     <ModalLayout>
       <Label>PICSTORY</Label>
@@ -45,7 +45,9 @@ export default function AddPicstory() {
       </NewPicstoryForm>
       <Gap />
       <ModalBtnBox>
-        <Buttons color="black">뒤로</Buttons>
+        <Buttons color="black" onClick={close}>
+          뒤로
+        </Buttons>
         <Buttons font="black">확인</Buttons>
       </ModalBtnBox>
     </ModalLayout>

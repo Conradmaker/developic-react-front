@@ -17,6 +17,8 @@ import Label from "../../components/common/Label";
 import AboutPhoto from "../../components/Detail/AboutPhoto";
 import CommentForm from "../../components/Detail/CommentForm";
 import Comment from "../../components/Detail/Comment";
+import {useState} from "react";
+import Addcart from "../../components/modal/Addcart";
 
 const IconBtnBox = styled(IconButton)`
   position: static;
@@ -55,6 +57,10 @@ export const PageTitle = styled.div`
 `;
 
 export default function DetailPage() {
+  const [cartModal, setCartModal] = useState(false);
+  const onCloseCart = () => {
+    setCartModal(false);
+  };
   return (
     <Layout>
       <div id="top" />
@@ -74,7 +80,8 @@ export default function DetailPage() {
                 <Photo />
               </LeftVisual>
               <RightVisual>
-                <Summary />
+                <Summary open={setCartModal} />
+                {cartModal && <Addcart close={onCloseCart} />}
               </RightVisual>
             </Visual>
             <div id="about" />

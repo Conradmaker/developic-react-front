@@ -3,7 +3,7 @@ import Buttons from "../common/Buttons";
 import Label from "../common/Label";
 import ModalLayout, {Gap, Info, ModalBtnBox, ModalInput} from "./ModalLayout";
 
-export default function QnAModal() {
+export default function QnAModal({close}) {
   return (
     <ModalLayout>
       <Label>1:1 Q&A</Label>
@@ -16,7 +16,9 @@ export default function QnAModal() {
       <Info>운영시간: AM 10:00 ~ PM 12:00 / PM 1:00 ~ PM 5:00</Info>
       <Gap />
       <ModalBtnBox>
-        <Buttons color="black">닫기</Buttons>
+        <Buttons color="black" onClick={close}>
+          닫기
+        </Buttons>
         <Buttons font="black">등록</Buttons>
       </ModalBtnBox>
     </ModalLayout>

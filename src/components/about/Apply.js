@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import IMG from "../../assets/img/작가신청.jpg";
 import Buttons from "../common/Buttons";
@@ -35,7 +35,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-export default function Apply() {
+export default function Apply({open}) {
   return (
     <Container>
       <InnerBox>
@@ -43,7 +43,9 @@ export default function Apply() {
           <h5>작가신청</h5>
           <span>will you with me?</span>
         </Summary>
-        <Buttons font="black">작가신청</Buttons>
+        <Buttons font="black" onClick={open}>
+          작가신청
+        </Buttons>
       </InnerBox>
     </Container>
   );

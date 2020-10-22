@@ -6,6 +6,7 @@ import ToggleBtn from "../common/ToggleBtn";
 import {useState} from "react";
 import InfoEditor from "./InfoEditor";
 import Buttons from "../common/Buttons";
+import AddPicstory from "../modal/AddPicstory";
 
 export const PicstoryBox = styled.div`
   display: flex;
@@ -39,6 +40,10 @@ export const SubTitle = styled.span`
   display: block;
 `;
 export default function InformationForm() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const onClose = () => {
+    setModalOpen(false);
+  };
   const [about, setAbout] = useState("");
   console.log(about);
   const [sale, setSale] = useState(false);
@@ -80,9 +85,10 @@ export default function InformationForm() {
           disabled
           placeholder="등록을 원하시면 선택해주세요"
         />
-        <Buttons color="green" small>
+        <Buttons color="green" small onClick={() => setModalOpen(true)}>
           SELECT
         </Buttons>
+        {modalOpen && <AddPicstory close={onClose} />}
       </PicstoryBox>
     </InformationFormBox>
   );

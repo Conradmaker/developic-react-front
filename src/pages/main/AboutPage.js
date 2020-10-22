@@ -7,6 +7,10 @@ import Apply from "../../components/about/Apply";
 import List from "../../components/about/List";
 import Buttons from "../../components/common/Buttons";
 import Layout from "../../components/common/Layout";
+import {useState} from "react";
+import ApplyModal from "../../components/modal/ApplyModal";
+import QnAModal from "../../components/modal/QnAModal";
+
 const Qna = styled.div`
   flex: 1.1;
   background: #e5e5e5;
@@ -36,12 +40,10 @@ const FaqQnA = styled.div`
 const SectionGap = styled.div`
   height: 70px;
 `;
-
 export const AboutContainer = styled.div`
   width: 1100px;
   margin: 0 auto;
 `;
-
 export const HorizentalBox = styled.div`
   width: 100%;
   display: flex;
@@ -50,12 +52,17 @@ export const HorizentalBox = styled.div`
 export const RightSection = styled.div`
   flex: 5;
 `;
-
 export const LeftSection = styled.div`
   flex: 1;
 `;
 
 export default function AboutPage() {
+  const [qnaOpen, setQnaOpen] = useState(false);
+  const closeQna = () => setQnaOpen(false);
+
+  const [applyOpen, setApplyOpen] = useState(false);
+  const toggleApply = () => setApplyOpen(!applyOpen);
+
   return (
     <Layout>
       <AboutContainer>
@@ -64,7 +71,8 @@ export default function AboutPage() {
           <RightSection>
             <SectionGap id="about-service" />
             <Label>SERVICE</Label>
-            <Apply />
+            <Apply open={toggleApply} />
+            {applyOpen && <ApplyModal close={toggleApply} />}
             <SectionGap id="about-notice" />
             <Label>NOTICE</Label>
             <List></List>
@@ -94,7 +102,10 @@ export default function AboutPage() {
                     Lunch at PM 12:00 ~ 13:00
                   </p>
                   <div>
-                    <Buttons>1:1문의 작성</Buttons>
+                    <Buttons onClick={() => setQnaOpen(true)}>
+                      1:1문의 작성
+                    </Buttons>
+                    {qnaOpen && <QnAModal close={closeQna} />}
                     <Buttons color="black" small>
                       작성 목록
                     </Buttons>

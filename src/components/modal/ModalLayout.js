@@ -1,6 +1,23 @@
 import React from "react";
-import styled from "styled-components";
-export const Info = styled.span`
+import styled, {keyframes} from "styled-components";
+
+const fadeIn = keyframes`
+from{
+  opacity:0;
+}
+to{
+  opacity:1;
+}
+`;
+const slideDown = keyframes`
+from{
+  transform: translateY(-300px)
+}
+to{
+  transform: translateY(0)
+}
+`;
+export const Info = styled.b`
   font-size: 14px;
   font-weight: bold;
   color: #006064;
@@ -38,6 +55,7 @@ export const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   z-index: 1000;
+  animation: ${fadeIn} 0.2s;
 `;
 const ModalBox = styled.div`
   padding: 30px 40px;
@@ -46,7 +64,9 @@ const ModalBox = styled.div`
   top: 150px;
   display: flex;
   flex-direction: column;
+  animation: ${slideDown} 0.24s;
   h1 {
+    align-self: flex-start;
     font-size: 25px;
     font-weight: bold;
   }

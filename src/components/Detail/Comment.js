@@ -4,6 +4,10 @@ import Avatar from "../profile/Avatar";
 import {ImCancelCircle} from "react-icons/im";
 import {RiPencilRuler2Line} from "react-icons/ri";
 import {AiOutlineExclamationCircle} from "react-icons/ai";
+import {useState} from "react";
+import Delete from "../modal/Delete";
+import Declare from "../modal/Declare";
+import ChangeComment from "../modal/ChangeComment";
 
 const BottomSection = styled.div`
   border-bottom: 1px solid gray;
@@ -69,7 +73,16 @@ const IconButton = styled.p`
     margin-left: 10px;
   }
 `;
+
 export default function Comment() {
+  const [removeOpen, setRemoveOpen] = useState(false);
+  const closeRemove = () => setRemoveOpen(false);
+
+  const [declareOpen, setDeclareOpen] = useState(false);
+  const closeDeclare = () => setDeclareOpen(false);
+
+  const [changeCommentOpen, setChangeCommentOpen] = useState(false);
+  const closeChangeComment = () => setChangeCommentOpen(false);
   return (
     <CommentBox>
       <TopSection>
@@ -79,28 +92,31 @@ export default function Comment() {
             Conrad <small>2020-01-01</small>
           </span>
         </div>
-        <small>
+        <small onClick={() => setRemoveOpen(true)}>
           REMOVE
           <i>
             <ImCancelCircle />
           </i>
         </small>
+        {removeOpen && <Delete close={closeRemove} />}
       </TopSection>
       <BottomSection>
         <span>가나다라마바사아자차카타파하</span>
         <div>
-          <IconButton>
+          <IconButton onClick={() => setDeclareOpen(true)}>
             <span>신고</span>
             <i>
               <AiOutlineExclamationCircle />
             </i>
           </IconButton>
-          <IconButton>
+          {declareOpen && <Declare close={closeDeclare} />}
+          <IconButton onClick={() => setChangeCommentOpen(true)}>
             <span>수정</span>
             <i>
               <RiPencilRuler2Line />
             </i>
           </IconButton>
+          {changeCommentOpen && <ChangeComment close={closeChangeComment} />}
         </div>
       </BottomSection>
     </CommentBox>

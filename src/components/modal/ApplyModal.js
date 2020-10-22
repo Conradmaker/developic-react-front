@@ -35,12 +35,13 @@ const Notice = styled.div`
       }
     `}
 `;
-export default function ApplyModal() {
+export default function ApplyModal({open, close}) {
   return (
-    <ModalLayout>
+    <ModalLayout open={open}>
       <Label>작가신청</Label>
       <Gap />
       <h1>
+        {/*  eslint-disable-next-line jsx-a11y/accessible-emoji */}
         <strong>🕺🏼</strong> 잠깐!
       </h1>
       <Notice>
@@ -70,8 +71,9 @@ export default function ApplyModal() {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </Term>
+      <Gap />
       <ModalBtnBox>
-        <Buttons color="black" small>
+        <Buttons color="black" small onClick={close}>
           닫기
         </Buttons>
         <Buttons small font="black">

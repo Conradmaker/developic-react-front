@@ -8,7 +8,7 @@ const Text = styled.div`
   font-size: 25px;
   margin-bottom: 20px;
   position: relative;
-  p {
+  em {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -21,7 +21,7 @@ export default function Label({children}) {
   return (
     <Text>
       {children}
-      <p />
+      <em />
     </Text>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BiCart } from "react-icons/bi";
+import {BiCart} from "react-icons/bi";
 import Label from "../common/Label";
 import Buttons from "../common/Buttons";
 
@@ -40,7 +40,7 @@ const SummaryBox = styled.div`
   }
 `;
 
-export default function Summary() {
+export default function Summary({open}) {
   return (
     <SummaryBox>
       <Label>Last&nbsp;Article</Label>
@@ -52,7 +52,7 @@ export default function Summary() {
       <p>9,000,000₩</p>
       <ButtonBox>
         <Buttons small>BUY NOW</Buttons>
-        <Buttons small outline font="black">
+        <Buttons small outline font="black" onClick={() => open(true)}>
           ADD CART&nbsp;
           <BiCart />
         </Buttons>
