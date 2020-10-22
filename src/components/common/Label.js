@@ -2,13 +2,26 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = styled.div`
+  height: 35px;
   font-size: 20px;
   line-height: 1.5;
-  border-bottom: 2px solid #ffca3e;
-  width: 50px;
   font-size: 25px;
   margin-bottom: 20px;
+  position: relative;
+  p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: #ffca3e;
+  }
 `;
-export default function Label({ children }) {
-  return <Text>{children}</Text>;
+export default function Label({children}) {
+  return (
+    <Text>
+      {children}
+      <p />
+    </Text>
+  );
 }

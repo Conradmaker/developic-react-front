@@ -6,7 +6,8 @@ import ToggleBtn from "../common/ToggleBtn";
 import {useState} from "react";
 import InfoEditor from "./InfoEditor";
 import Buttons from "../common/Buttons";
-const PicstoryBox = styled.div`
+
+export const PicstoryBox = styled.div`
   display: flex;
   input {
     width: 270px;
@@ -31,7 +32,7 @@ const SelctInput = styled.select`
 const InformationFormBox = styled.div`
   padding: 30px 0;
 `;
-const SubTitle = styled.span`
+export const SubTitle = styled.span`
   font-size: 19px;
   font-weight: bold;
   margin-top: 20px;
