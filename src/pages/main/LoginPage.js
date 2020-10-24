@@ -1,12 +1,14 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 import Layout from "../../components/common/Layout";
 import Title from "../../components/common/Title";
 import Buttons from "../../components/common/Buttons";
-import { InputBox } from "../../components/common/Input";
-import { useState } from "react";
+import {InputBox} from "../../components/common/Input";
+import {useState} from "react";
 import GIF1 from "../../assets/img/login1.gif";
 import GIF2 from "../../assets/img/login2.gif";
+import LogInForm from "../../components/login/LoginForm";
+import SignupForm from "../../components/login/SignupForm";
 const Hider = styled.div`
   z-index: 20;
   position: absolute;
@@ -73,11 +75,11 @@ const Container = styled.div`
     margin-left: 130px;
   }
 `;
-const ButtonBox = styled.div`
+export const ButtonBox = styled.div`
   display: flex;
 `;
-export default function LoginPage({ match }) {
-  const { sl } = match.params;
+export default function LoginPage({match}) {
+  const {sl} = match.params;
   console.log(sl);
   const [slide, setSlide] = useState(sl === "2");
   return (
@@ -87,58 +89,8 @@ export default function LoginPage({ match }) {
           <img src={GIF1} width="100%" alt="1" />
           <img src={GIF2} width="133%" alt="1" />
         </Hider>
-        <section>
-          <Title>LOGIN</Title>
-          <form>
-            <InputBox>
-              <label>ID &nbsp;</label>
-              <input type="text" />
-            </InputBox>
-            <InputBox>
-              <label>PW</label>
-              <input type="password" />
-            </InputBox>
-            <p>아이디 / 비밀번호 찾기</p>
-          </form>
-          <ButtonBox>
-            <Buttons font="black">LOG IN</Buttons>
-            <Buttons onClick={() => setSlide(false)} outline>
-              SIGN UP
-            </Buttons>
-          </ButtonBox>
-        </section>
-        <section>
-          <Title>SIGNUP</Title>
-          <form>
-            <InputBox>
-              <label>ID &nbsp;</label>
-              <input type="text" />
-            </InputBox>
-            <InputBox>
-              <label>PW</label>
-              <input type="password" />
-            </InputBox>
-            <InputBox>
-              <label>CHECK</label>
-              <input type="text" />
-            </InputBox>
-            <InputBox>
-              <label>EMAIL</label>
-              <input type="password" />
-            </InputBox>
-            <InputBox>
-              <label>NAME</label>
-              <input type="password" />
-            </InputBox>
-            <span>비밀번호가 일치하지 않습니다.</span>
-          </form>
-          <ButtonBox>
-            <Buttons font="black">SIGN UP</Buttons>
-            <Buttons onClick={() => setSlide(true)} outline>
-              LOG IN
-            </Buttons>
-          </ButtonBox>
-        </section>
+        <LogInForm setSlide={setSlide} />
+        <SignupForm setSlide={setSlide} />
       </Container>
     </Layout>
   );
