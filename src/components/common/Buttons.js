@@ -1,6 +1,6 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { darken } from "polished";
+import styled, {css} from "styled-components";
+import {darken} from "polished";
 
 const StyledButton = styled.button`
   width: 150px;
@@ -65,8 +65,12 @@ const StyledButton = styled.button`
   }
 `;
 
-function Buttons({ children, ...rest }) {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+function Buttons({children, type, ...rest}) {
+  return (
+    <StyledButton type={type} {...rest}>
+      {children}
+    </StyledButton>
+  );
 }
 Buttons.defaultProps = {
   color: "yellow",

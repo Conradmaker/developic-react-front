@@ -1,9 +1,6 @@
 import React from "react";
 import styled, {css} from "styled-components";
 import Layout from "../../components/common/Layout";
-import Title from "../../components/common/Title";
-import Buttons from "../../components/common/Buttons";
-import {InputBox} from "../../components/common/Input";
 import {useState} from "react";
 import GIF1 from "../../assets/img/login1.gif";
 import GIF2 from "../../assets/img/login2.gif";
@@ -61,6 +58,8 @@ const Container = styled.div`
     justify-content: space-between;
     form {
       flex: 1;
+      display: flex;
+      flex-direction: column;
       span {
         color: red;
         font-size: 13px;
@@ -77,10 +76,13 @@ const Container = styled.div`
 `;
 export const ButtonBox = styled.div`
   display: flex;
+  flex: 1;
+  margin-bottom: 10px;
+  align-items: flex-end;
+  justify-content: center;
 `;
 export default function LoginPage({match}) {
   const {sl} = match.params;
-  console.log(sl);
   const [slide, setSlide] = useState(sl === "2");
   return (
     <Layout>

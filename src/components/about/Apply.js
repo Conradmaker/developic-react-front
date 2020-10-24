@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import IMG from "../../assets/img/작가신청.jpg";
 import Buttons from "../common/Buttons";
