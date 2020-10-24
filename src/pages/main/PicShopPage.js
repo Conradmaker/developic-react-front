@@ -1,16 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import Layout from "../../components/common/Layout";
-import { BannerBox } from "../../components/main/Banner";
+import {BannerBox} from "../../components/main/Banner";
 import styled from "styled-components";
 import BANNERIMG from "../../assets/img/picshopbanner.jpg";
-import { CenterPositioner } from "./MainPage";
-import { ShopCardContainer } from "../../components/main/Shop";
+import {CenterPositioner} from "./MainPage";
+import {ShopCardContainer} from "../../components/main/Shop";
 import Catagory from "../../components/main/Catagory";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { LOAD_FEEDS_REQUEST } from "../../reducer/photo";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
 import Topbtn from "../../components/common/Topbtn";
-import { BannerContents, Button, SmallBtn } from "./PicfeedPage";
+import {BannerContents, Button, SmallBtn} from "./PicfeedPage";
 import ShopImageBox from "../../components/main/ShopImageBox";
 const Banner = styled(BannerBox)`
   background-image: url(${BANNERIMG});
@@ -18,10 +18,11 @@ const Banner = styled(BannerBox)`
   background-position: 0 0;
 `;
 export default function PicShopPage() {
+  const [catagoryState, setCatagoryState] = useState(0);
   const dispatch = useDispatch();
-  const { PicFeedList } = useSelector((state) => state.photo);
+  const {FeedList} = useSelector((state) => state.photo);
   useEffect(() => {
-    dispatch({ type: LOAD_FEEDS_REQUEST });
+    dispatch({type: LOAD_FEEDS_REQUEST});
   }, [dispatch]);
 
   return (
@@ -34,7 +35,7 @@ export default function PicShopPage() {
             <p>Welcome to PICTURE forest</p>
           </section>
           <section>
-            <Button style={{ opacity: "0" }}>
+            <Button style={{opacity: "0"}}>
               <span></span>
             </Button>
             <div>
@@ -47,9 +48,9 @@ export default function PicShopPage() {
       <CenterPositioner>
         <h3>PICSHOP</h3>
       </CenterPositioner>
-      <Catagory></Catagory>
+      <Catagory changeCata={setCatagoryState} state={catagoryState} />
       <ShopCardContainer>
-        {PicFeedList.map((v) => (
+        {FeedList.map((v) => (
           <ShopImageBox image={v} key={v.id} />
         ))}
       </ShopCardContainer>

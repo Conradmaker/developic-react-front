@@ -1,19 +1,20 @@
 import React from "react";
 import Layout from "../../components/common/Layout";
-import { BannerBox } from "../../components/main/Banner";
-import styled, { css, keyframes } from "styled-components";
+import {BannerBox} from "../../components/main/Banner";
+import styled, {css, keyframes} from "styled-components";
 import BANNERIMG from "../../assets/img/feedbanner.jpg";
-import { CenterPositioner } from "./MainPage";
+import {CenterPositioner} from "./MainPage";
 import Catagory from "../../components/main/Catagory";
-import { ImagesContainer } from "../../components/main/Feed";
+import {ImagesContainer} from "../../components/main/Feed";
 import ImageBox from "../../components/main/ImageBox";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { LOAD_FEEDS_REQUEST } from "../../reducer/photo";
-import { BsArrowRight } from "react-icons/bs";
-import { darken } from "polished";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
+import {BsArrowRight} from "react-icons/bs";
+import {darken} from "polished";
 import Topbtn from "../../components/common/Topbtn";
+import {useState} from "react";
 const wave = keyframes`
  0%{
   transform: translate(00px, 0px) scale(1);
@@ -140,24 +141,19 @@ const Banner = styled(BannerBox)`
 `;
 export default function PicfeedPage() {
   const dispatch = useDispatch();
-  const { PicFeedList, loadFeedsLoading } = useSelector((state) => state.photo);
+  const {FeedList, loadFeedsLoading} = useSelector((state) => state.photo);
   useEffect(() => {
-    dispatch({ type: LOAD_FEEDS_REQUEST });
+    dispatch({type: LOAD_FEEDS_REQUEST});
   }, [dispatch]);
 
   useEffect(() => {
     const onScroll = () => {
-      console.log(
-        window.pageYOffset,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight
-      );
       if (
         !loadFeedsLoading &&
         window.pageYOffset + document.documentElement.clientHeight >
           document.documentElement.scrollHeight - 400
       ) {
-        dispatch({ type: LOAD_FEEDS_REQUEST });
+        dispatch({type: LOAD_FEEDS_REQUEST});
       }
     };
     window.addEventListener("scroll", onScroll);
@@ -165,6 +161,7 @@ export default function PicfeedPage() {
       window.removeEventListener("scroll", onScroll);
     };
   }, [dispatch, loadFeedsLoading]);
+  const [catagoryState, setCatagoryState] = useState(0);
   return (
     <Layout>
       <div id="top"></div>
@@ -194,11 +191,11 @@ export default function PicfeedPage() {
       <CenterPositioner>
         <h3>PICFEED</h3>
       </CenterPositioner>
-      <Catagory></Catagory>
+      <Catagory changeCata={setCatagoryState} state={catagoryState} />
       <ImagesContainer>
-        {PicFeedList.map((v) => (
-          <Link to="#">
-            <ImageBox image={v} key={v.id} />
+        {FeedList.map((v) => (
+          <Link to="#" key={v.id}>
+            <ImageBox image={v} />
           </Link>
         ))}
       </ImagesContainer>

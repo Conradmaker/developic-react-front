@@ -1,15 +1,25 @@
-export const LOAD_FEEDS_REQUEST = "photo/LOAD_FEEDS_REQUEST";
-export const LOAD_FEEDS_SUCCESS = "photo/LOAD_FEEDS_SUCCESS";
-export const LOAD_FEEDS_ERROR = "photo/LOAD_FEEDS_ERROR";
+import {
+  LOAD_FEEDS_ERROR,
+  LOAD_FEEDS_REQUEST,
+  LOAD_FEEDS_SUCCESS,
+  LOAD_MAIN_ERROR,
+  LOAD_MAIN_REQUEST,
+  LOAD_MAIN_SUCCESS,
+  LOAD_SHOP_ERROR,
+  LOAD_SHOP_REQUEST,
+  LOAD_SHOP_SUCCESS,
+} from "./actions";
 
 const initialState = {
-  loadFeedsLoading: false,
-  loadFeedsSuccess: false,
-  loadFeedsError: false,
+  loadPhotoListLoading: false,
+  loadPhotoListSuccess: false,
+  loadPhotoListError: false,
 
-  PicFeedList: [],
+  MainList: [],
+  FeedList: [],
+  ShopList: [],
 };
-function generatePhoto() {
+export function generatePhoto() {
   return [
     {
       id: 1,
@@ -85,27 +95,47 @@ function generatePhoto() {
 }
 export default function photo(state = initialState, action) {
   switch (action.type) {
+    case LOAD_SHOP_REQUEST:
+    case LOAD_MAIN_REQUEST:
     case LOAD_FEEDS_REQUEST:
       return {
         ...state,
-        loadFeedsLoading: true,
-        loadFeedsSuccess: false,
-        loadFeedsError: false,
+        loadPhotoListLoading: true,
+        loadPhotoListSuccess: false,
+        loadPhotoListError: false,
       };
     case LOAD_FEEDS_SUCCESS:
       return {
         ...state,
-        loadFeedsLoading: false,
-        loadFeedsSuccess: true,
-        loadFeedsError: false,
-        PicFeedList: state.PicFeedList.concat(generatePhoto()),
+        loadPhotoListLoading: false,
+        loadPhotoListSuccess: true,
+        loadPhotoListError: false,
+        FeedList: state.FeedList.concat(generatePhoto()),
       };
+    case LOAD_MAIN_SUCCESS:
+      return {
+        ...state,
+        loadPhotoListLoading: false,
+        loadPhotoListSuccess: true,
+        loadPhotoListError: false,
+        MainList: action.payload,
+      };
+    case LOAD_SHOP_SUCCESS:
+      return {
+        ...state,
+        loadPhotoListLoading: false,
+        loadPhotoListSuccess: true,
+        loadPhotoListError: false,
+        ShopList: action.payload,
+      };
+    case LOAD_SHOP_ERROR:
+    case LOAD_MAIN_ERROR:
     case LOAD_FEEDS_ERROR:
       return {
         ...state,
-        loadFeedsLoading: false,
-        loadFeedsSuccess: false,
-        loadFeedsError: true,
+        loadPhotoListLoading: false,
+        loadPhotoListSuccess: false,
+        loadPhotoListError: true,
       };
 
     default:

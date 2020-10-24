@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
-import { LOAD_FEEDS_REQUEST } from "../../reducer/photo";
+import {LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
 import Preloader from "../../assets/img/preloader.gif";
 import ImageBox from "./ImageBox";
-import { Link } from "react-router-dom";
-import { PreloaderContainer } from "../../pages/main/MainPage";
+import {Link} from "react-router-dom";
+import {PreloaderContainer} from "../../pages/main/MainPage";
 
 export const ImagesContainer = styled.div`
   width: 1100px;
@@ -16,9 +16,9 @@ export const ImagesContainer = styled.div`
 
 export default function Feed() {
   const dispatch = useDispatch();
-  const { PicFeedList, loadFeedsLoading } = useSelector((state) => state.photo);
+  const {FeedList, loadFeedsLoading} = useSelector((state) => state.photo);
   useEffect(() => {
-    dispatch({ type: LOAD_FEEDS_REQUEST });
+    dispatch({type: LOAD_FEEDS_REQUEST});
   }, [dispatch]);
   // const loadMore = useCallback(() => {
   //   dispatch({ type: LOAD_FEEDS_REQUEST });
@@ -32,7 +32,7 @@ export default function Feed() {
   return (
     <>
       <ImagesContainer>
-        {PicFeedList.map(
+        {FeedList.map(
           (v, i) =>
             i < 10 && (
               <Link to={`/detail/${v.id}`} key={v.id}>

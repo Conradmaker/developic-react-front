@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 // import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ShopImageBox from "./ShopImageBox";
@@ -13,12 +13,10 @@ export const ShopCardContainer = styled.div`
 `;
 
 export default function Shop() {
-  const { PicFeedList } = useSelector((state) => state.photo);
+  const {FeedList} = useSelector((state) => state.photo);
   return (
     <ShopCardContainer>
-      {PicFeedList.map(
-        (v, i) => i < 9 && <ShopImageBox image={v} key={v.id} />
-      )}
+      {FeedList.map((v, i) => i < 9 && <ShopImageBox image={v} key={v.id} />)}
     </ShopCardContainer>
   );
 }
