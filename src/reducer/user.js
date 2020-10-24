@@ -46,6 +46,12 @@ export default function user(state = initialState, action) {
         logInLoading: true,
         logInSuccess: false,
         logInError: false,
+        //모의로그인
+        me: {
+          id: action.data.id,
+          password: action.data.password,
+          nickname: "conrad",
+        },
       };
     case LOG_IN_SUCCESS:
       return {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Navigation from "./Navigation";
@@ -14,7 +14,7 @@ const Positioner = styled.div`
   position: relative;
 `;
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
   const [searchOpen, setSearchOpen] = useState(false);
   return (
     <>

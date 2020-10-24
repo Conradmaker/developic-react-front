@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React, {useState} from "react";
+import styled, {css} from "styled-components";
 import {
   MdSearch,
   MdCheckBoxOutlineBlank,
   MdCheckBox,
   MdClose,
 } from "react-icons/md";
+import useInput from "../../hooks/useInput";
 
 const SearchContainer = styled.div`
   position: fixed;
@@ -71,7 +72,8 @@ const SaleCheck = styled.div`
   }
 `;
 
-export default function SearchForm({ open, toggle }) {
+export default function SearchForm({open, toggle}) {
+  const [text, onChangeText] = useInput("");
   const [check, setCheck] = useState(false);
   return (
     <SearchContainer open={open}>
@@ -82,7 +84,12 @@ export default function SearchForm({ open, toggle }) {
           </i>
           <span>판매가능상품</span>
         </SaleCheck>
-        <input type="text" placeholder="SEARCH" />
+        <input
+          type="text"
+          placeholder="SEARCH"
+          value={text}
+          onChange={onChangeText}
+        />
         <i>
           <MdSearch />
         </i>

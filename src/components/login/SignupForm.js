@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import {useCallback} from "react";
+import React, {useState, useCallback} from "react";
 import useInput from "../../hooks/useInput";
 import {ButtonBox} from "../../pages/main/LoginPage";
 import Buttons from "../common/Buttons";

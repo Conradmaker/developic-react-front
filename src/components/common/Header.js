@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import IMG from "../../assets/img/logo.png";
-import { MdSearch } from "react-icons/md";
+import {MdSearch} from "react-icons/md";
+import {useSelector} from "react-redux";
 
 const Rightmenu = styled.ul`
   display: flex;
@@ -41,7 +42,8 @@ const HeaderBox = styled.div`
   }
 `;
 
-export default function Header({ toggle, open }) {
+export default function Header({toggle, open}) {
+  const {me} = useSelector((state) => state.user);
   return (
     <HeaderContainer>
       <HeaderBox>
@@ -49,8 +51,17 @@ export default function Header({ toggle, open }) {
           <img src={IMG} width="250px" alt="" />
         </Link>
         <Rightmenu>
-          <Link to="/login/1">SIGNUP</Link>
-          <Link to="/login/2">LOGIN</Link>
+          {me ? (
+            <>
+              <Link to={`/profile/${me.id}`}>PROFILE</Link>
+              <Link to="/login/2">LOGOUT</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login/1">SIGNUP</Link>
+              <Link to="/login/2">LOGIN</Link>
+            </>
+          )}
           <i onClick={() => toggle(true)}>
             <MdSearch />
           </i>

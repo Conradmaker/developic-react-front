@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled, {css} from "styled-components";
 import Layout from "../../components/common/Layout";
 import {useState} from "react";
@@ -6,6 +6,7 @@ import GIF1 from "../../assets/img/login1.gif";
 import GIF2 from "../../assets/img/login2.gif";
 import LogInForm from "../../components/login/LoginForm";
 import SignupForm from "../../components/login/SignupForm";
+import {useSelector} from "react-redux";
 const Hider = styled.div`
   z-index: 20;
   position: absolute;
@@ -81,9 +82,27 @@ export const ButtonBox = styled.div`
   align-items: flex-end;
   justify-content: center;
 `;
-export default function LoginPage({match}) {
+export default function LoginPage({match, history}) {
+  const {me, signUpSuccess, signUpError} = useSelector((state) => state.user);
   const {sl} = match.params;
   const [slide, setSlide] = useState(sl === "2");
+  useEffect(() => {
+    if (me) {
+      history.replace("/");
+    }
+  }, [history, me]);
+  useEffect(() => {
+    if (signUpSuccess) {
+      alert("회원가입이 완료되었습니다.");
+      history.replace("/login/2");
+      //만약 안되면 slide 를 true로 바꿔주자. setSlide(true)
+    }
+  }, [history, signUpSuccess]);
+  useEffect(() => {
+    if (signUpError) {
+      alert(signUpError);
+    }
+  }, [signUpError]);
   return (
     <Layout>
       <Container>
