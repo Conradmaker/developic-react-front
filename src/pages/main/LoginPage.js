@@ -93,8 +93,8 @@ export default function LoginPage({match, history}) {
   }, [history, me]);
   useEffect(() => {
     if (signUpSuccess) {
-      alert("회원가입이 완료되었습니다.");
-      history.replace("/login/2");
+      alert(signUpSuccess);
+      setSlide(true);
       //만약 안되면 slide 를 true로 바꿔주자. setSlide(true)
     }
   }, [history, signUpSuccess]);

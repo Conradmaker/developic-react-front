@@ -1,11 +1,14 @@
 import React, {useState, useCallback} from "react";
+import {useDispatch} from "react-redux";
 import useInput from "../../hooks/useInput";
 import {ButtonBox} from "../../pages/main/LoginPage";
+import {SIGN_UP_REQUEST} from "../../reducer/user";
 import Buttons from "../common/Buttons";
 import {InputBox} from "../common/Input";
 import Title from "../common/Title";
 
 export default function SignupForm({setSlide}) {
+  const dispatch = useDispatch();
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [check, , setCheck] = useInput("");
@@ -26,6 +29,7 @@ export default function SignupForm({setSlide}) {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(id, "/", password, "/", check, "/", email, "/", name);
+    dispatch({type: SIGN_UP_REQUEST, data: {id, password, email, name}});
   };
   return (
     <>
