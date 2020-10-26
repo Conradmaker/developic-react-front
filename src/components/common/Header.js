@@ -53,7 +53,7 @@ export default function Header({toggle, open}) {
         <Rightmenu>
           {me ? (
             <>
-              <Link to={`/profile/${me.id}`}>PROFILE</Link>
+              <Link to={`/profile/${me.id}`}>{me.nickname} 님</Link>
               <Link to="/login/2">LOGOUT</Link>
             </>
           ) : (

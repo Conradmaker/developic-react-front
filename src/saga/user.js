@@ -10,7 +10,7 @@ import {
 } from "../reducer/user";
 
 async function logInAPI(data) {
-  const response = await axios.post("", data);
+  const response = await axios.post("http://localhost:3030/user/login", data);
   return response.data;
 }
 function* logIn(action) {
