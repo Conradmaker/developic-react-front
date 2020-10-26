@@ -3,7 +3,9 @@ import styled from "styled-components";
 import {Link} from "react-router-dom";
 import IMG from "../../assets/img/logo.png";
 import {MdSearch} from "react-icons/md";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {LOG_OUT_REQUEST} from "../../reducer/user";
+import {useEffect} from "react";
 
 const Rightmenu = styled.ul`
   display: flex;
@@ -44,6 +46,10 @@ const HeaderBox = styled.div`
 
 export default function Header({toggle, open}) {
   const {me} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const onLogOut = () => {
+    dispatch({type: LOG_OUT_REQUEST});
+  };
   return (
     <HeaderContainer>
       <HeaderBox>
@@ -54,7 +60,7 @@ export default function Header({toggle, open}) {
           {me ? (
             <>
               <Link to={`/profile/${me.id}`}>{me.nickname} 님</Link>
-              <Link to="/login/2">LOGOUT</Link>
+              <Link onClick={onLogOut}>LOGOUT</Link>
             </>
           ) : (
             <>
