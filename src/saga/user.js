@@ -1,6 +1,9 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 import {
+  LOAD_MY_INFO_ERROR,
+  LOAD_MY_INFO_REQUEST,
+  LOAD_MY_INFO_SUCCESS,
   LOG_IN_ERROR,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
@@ -28,6 +31,24 @@ function* logIn(action) {
 }
 function* watchLogIn() {
   yield takeEvery(LOG_IN_REQUEST, logIn);
+}
+
+//로그인유지
+async function loadMyInfoAPI() {
+  const response = await axios.get("/user/");
+  return response.data;
+}
+function* loadMyInfo() {
+  try {
+    const data = yield call(loadMyInfoAPI);
+    yield put({type: LOAD_MY_INFO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_MY_INFO_ERROR, error: e});
+  }
+}
+function* watchLoadMyInfo() {
+  yield takeEvery(LOAD_MY_INFO_REQUEST, loadMyInfo);
 }
 
 //로그아웃
@@ -66,5 +87,10 @@ function* watchSignUp() {
   yield takeEvery(SIGN_UP_REQUEST, signUp);
 }
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchSignUp), fork(watchLogOut)]);
+  yield all([
+    fork(watchLogIn),
+    fork(watchSignUp),
+    fork(watchLogOut),
+    fork(watchLoadMyInfo),
+  ]);
 }

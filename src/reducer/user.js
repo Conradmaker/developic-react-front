@@ -10,6 +10,10 @@ export const LOG_OUT_REQUEST = "user/LOG_OUT_REQUEST";
 export const LOG_OUT_SUCCESS = "user/LOG_OUT_SUCCESS";
 export const LOG_OUT_ERROR = "user/LOG_OUT_ERROR";
 
+export const LOAD_MY_INFO_REQUEST = "user/LOAD_MY_INFO_REQUEST";
+export const LOAD_MY_INFO_SUCCESS = "user/LOAD_MY_INFO_SUCCESS";
+export const LOAD_MY_INFO_ERROR = "user/LOAD_MY_INFO_ERROR";
+
 const initialState = {
   signUpLoading: false,
   signUpSuccess: false,
@@ -47,6 +51,7 @@ export default function user(state = initialState, action) {
         signUpSuccess: false,
         signUpError: action.error,
       };
+    case LOAD_MY_INFO_REQUEST:
     case LOG_IN_REQUEST:
       return {
         ...state,
@@ -54,6 +59,7 @@ export default function user(state = initialState, action) {
         logInSuccess: false,
         logInError: false,
       };
+    case LOAD_MY_INFO_SUCCESS:
     case LOG_IN_SUCCESS:
       return {
         ...state,
@@ -62,6 +68,7 @@ export default function user(state = initialState, action) {
         logInError: false,
         me: action.payload,
       };
+    case LOAD_MY_INFO_ERROR:
     case LOG_IN_ERROR:
       return {
         ...state,

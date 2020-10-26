@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import IMG from "../../assets/img/logo.png";
 import {MdSearch} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
-import {LOG_OUT_REQUEST} from "../../reducer/user";
+import {LOAD_MY_INFO_REQUEST, LOG_OUT_REQUEST} from "../../reducer/user";
 import {useEffect} from "react";
 
 const Rightmenu = styled.ul`
@@ -50,6 +50,12 @@ export default function Header({toggle, open}) {
   const onLogOut = () => {
     dispatch({type: LOG_OUT_REQUEST});
   };
+  useEffect(() => {
+    if (!me) {
+      dispatch({type: LOAD_MY_INFO_REQUEST});
+    }
+  }, [dispatch, me]);
+
   return (
     <HeaderContainer>
       <HeaderBox>
