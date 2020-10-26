@@ -10,6 +10,8 @@ import Layout from "../../components/common/Layout";
 import {useState} from "react";
 import ApplyModal from "../../components/modal/ApplyModal";
 import QnAModal from "../../components/modal/QnAModal";
+import {useSelector} from "react-redux";
+import {useEffect} from "react";
 
 const Qna = styled.div`
   flex: 1.1;
@@ -57,12 +59,13 @@ export const LeftSection = styled.div`
 `;
 
 export default function AboutPage() {
+  const {me} = useSelector((state) => state.user);
   const [qnaOpen, setQnaOpen] = useState(false);
   const closeQna = () => setQnaOpen(false);
 
   const [applyOpen, setApplyOpen] = useState(false);
   const toggleApply = () => setApplyOpen(!applyOpen);
-
+  const onBlock = () => alert("로그인해주세요");
   return (
     <Layout>
       <AboutContainer>
@@ -71,8 +74,8 @@ export default function AboutPage() {
           <RightSection>
             <SectionGap id="about-service" />
             <Label>SERVICE</Label>
-            <Apply open={toggleApply} />
-            {applyOpen && <ApplyModal close={toggleApply} />}
+            {me ? <Apply open={toggleApply} /> : <Apply open={onBlock} />}
+            {applyOpen && <ApplyModal me={me} close={toggleApply} />}
             <SectionGap id="about-notice" />
             <Label>NOTICE</Label>
             <List></List>
@@ -102,10 +105,14 @@ export default function AboutPage() {
                     Lunch at PM 12:00 ~ 13:00
                   </p>
                   <div>
-                    <Buttons onClick={() => setQnaOpen(true)}>
+                    <Buttons
+                      onClick={() =>
+                        me ? setQnaOpen(true) : alert("로그인해주세요")
+                      }
+                    >
                       1:1문의 작성
                     </Buttons>
-                    {qnaOpen && <QnAModal close={closeQna} />}
+                    {qnaOpen && <QnAModal me={me} close={closeQna} />}
                     <Buttons color="black" small>
                       작성 목록
                     </Buttons>

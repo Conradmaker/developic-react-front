@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import {BrowserRouter} from "react-router-dom";
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from "react-redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducer";
 import rootSaga from "./saga";
@@ -19,9 +19,7 @@ const store = createStore(
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <App />
     </Provider>
   </BrowserRouter>,
   document.getElementById("root")

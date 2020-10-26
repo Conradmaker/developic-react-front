@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Label from "../common/Label";
 import ModalLayout, {Gap, ModalBtnBox} from "./ModalLayout";
 import styled, {css} from "styled-components";
 import {FiCircle, FiCheckCircle} from "react-icons/fi";
 import Buttons from "../common/Buttons";
+import {useDispatch, useSelector} from "react-redux";
+import {APPLY_WRITTER_REQUEST} from "../../reducer/about";
 const Term = styled.p`
   margin: 10px 0 20px 0;
   width: 400px;
@@ -35,7 +37,26 @@ const Notice = styled.div`
       }
     `}
 `;
-export default function ApplyModal({open, close}) {
+export default function ApplyModal({open, close, me}) {
+  const {applyWritterError, applyWritterSuccess} = useSelector(
+    (state) => state.about
+  );
+  const dispatch = useDispatch();
+  const onApply = () => {
+    dispatch({type: APPLY_WRITTER_REQUEST, data: {id: me.id}});
+  };
+
+  useEffect(() => {
+    if (applyWritterError) {
+      return alert(applyWritterError);
+    }
+  }, [applyWritterError]);
+  useEffect(() => {
+    if (applyWritterSuccess) {
+      alert(applyWritterSuccess);
+      close();
+    }
+  }, [applyWritterSuccess, close]);
   return (
     <ModalLayout open={open}>
       <Label>작가신청</Label>
@@ -76,7 +97,7 @@ export default function ApplyModal({open, close}) {
         <Buttons color="black" small onClick={close}>
           닫기
         </Buttons>
-        <Buttons small font="black">
+        <Buttons onClick={onApply} small font="black">
           신청
         </Buttons>
       </ModalBtnBox>

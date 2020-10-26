@@ -5,13 +5,13 @@ import {
   ADD_QUESTION_REQUEST,
   ADD_QUESTION_SUCCESS,
   APPLY_WRITTER_ERROR,
+  APPLY_WRITTER_REQUEST,
   APPLY_WRITTER_SUCCESS,
 } from "../reducer/about";
-import {LOAD_SHOP_REQUEST} from "../reducer/photo/actions";
 
 //작가신청
 async function applyWritterAPI(data) {
-  const response = await axios.post("", data);
+  const response = await axios.post("/about/apply", data);
   return response.data;
 }
 function* applyWritter(action) {
@@ -20,16 +20,16 @@ function* applyWritter(action) {
     yield put({type: APPLY_WRITTER_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: APPLY_WRITTER_ERROR, error: e});
+    yield put({type: APPLY_WRITTER_ERROR, error: e.response.data});
   }
 }
 function* watchApplyWritter() {
-  yield takeEvery(LOAD_SHOP_REQUEST, applyWritter);
+  yield takeEvery(APPLY_WRITTER_REQUEST, applyWritter);
 }
 
 //Q&A 질문 등록
 async function addQuestionAPI(data) {
-  const response = await axios.post("", data);
+  const response = await axios.post("/about/addqna", data);
   return response.data;
 }
 function* addQuestion(action) {
@@ -38,7 +38,7 @@ function* addQuestion(action) {
     yield put({type: ADD_QUESTION_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: ADD_QUESTION_ERROR, error: e});
+    yield put({type: ADD_QUESTION_ERROR, error: e.response.data});
   }
 }
 function* watchAddQuestion() {

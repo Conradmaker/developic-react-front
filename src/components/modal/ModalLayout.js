@@ -54,14 +54,13 @@ export const ModalContainer = styled.div`
   right: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 1000;
   animation: ${fadeIn} 0.2s;
 `;
 const ModalBox = styled.div`
   padding: 30px 40px;
   background: #fff;
-  position: absolute;
-  top: 150px;
   display: flex;
   flex-direction: column;
   animation: ${slideDown} 0.24s;
