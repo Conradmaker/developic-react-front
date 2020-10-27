@@ -10,6 +10,9 @@ import {
   LOAD_SHOP_ERROR,
   LOAD_SHOP_REQUEST,
   LOAD_SHOP_SUCCESS,
+  UPLOAD_IMG_ERROR,
+  UPLOAD_IMG_REQUEST,
+  UPLOAD_IMG_SUCCESS,
 } from "../reducer/photo/actions";
 //메인페이지 게시글 로드
 async function loadMainAPI() {
@@ -65,6 +68,28 @@ function* watchLoadShop() {
   yield takeEvery(LOAD_SHOP_REQUEST, loadShop);
 }
 
+//이미지업로드
+async function uploadImgAPI(data) {
+  const response = await axios.post("/photo/upload/photo", data);
+  return response.data;
+}
+function* uploadImg(action) {
+  try {
+    const data = yield call(uploadImgAPI, action.data);
+    yield put({type: UPLOAD_IMG_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: UPLOAD_IMG_ERROR, error: e});
+  }
+}
+function* watchUploadImg() {
+  yield takeEvery(UPLOAD_IMG_REQUEST, uploadImg);
+}
 export default function* photoSaga() {
-  yield all([fork(watchLoadFeeds), fork(watchLoadMain), fork(watchLoadShop)]);
+  yield all([
+    fork(watchLoadFeeds),
+    fork(watchLoadMain),
+    fork(watchLoadShop),
+    fork(watchUploadImg),
+  ]);
 }

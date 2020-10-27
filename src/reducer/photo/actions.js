@@ -9,3 +9,7 @@ export const LOAD_FEEDS_ERROR = "photo/LOAD_FEEDS_ERROR";
 export const LOAD_SHOP_REQUEST = "photo/LOAD_SHOP_REQUEST";
 export const LOAD_SHOP_SUCCESS = "photo/LOAD_SHOP_SUCCESS";
 export const LOAD_SHOP_ERROR = "photo/LOAD_SHOP_ERROR";
+
+export const UPLOAD_IMG_REQUEST = "photo/UPLOAD_IMG_REQUEST";
+export const UPLOAD_IMG_SUCCESS = "photo/UPLOAD_IMG_SUCCESS";
+export const UPLOAD_IMG_ERROR = "photo/UPLOAD_IMG_ERROR";

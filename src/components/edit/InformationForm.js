@@ -7,6 +7,7 @@ import {useState} from "react";
 import InfoEditor from "./InfoEditor";
 import Buttons from "../common/Buttons";
 import AddPicstory from "../modal/AddPicstory";
+import useInput from "../../hooks/useInput";
 
 export const PicstoryBox = styled.div`
   display: flex;
@@ -20,7 +21,9 @@ export const PicstoryBox = styled.div`
   }
 `;
 const Positioner = styled.div`
-  height: 20px;
+  min-height: 20px;
+  display: flex;
+  justify-content: flex-end;
 `;
 const SelctInput = styled.select`
   width: 300px;
@@ -30,7 +33,7 @@ const SelctInput = styled.select`
   outline: none;
   display: flex;
 `;
-const InformationFormBox = styled.div`
+const InformationFormBox = styled.form`
   padding: 30px 0;
 `;
 export const SubTitle = styled.span`
@@ -44,6 +47,7 @@ export default function InformationForm() {
   const onClose = () => {
     setModalOpen(false);
   };
+
   const [about, setAbout] = useState("");
   console.log(about);
   const [sale, setSale] = useState(false);
@@ -51,7 +55,8 @@ export default function InformationForm() {
     setSale(!sale);
     console.log(sale);
   };
-
+  const [cata, onChangeCata] = useInput(4);
+  console.log(cata);
   return (
     <InformationFormBox>
       <Label>INFORMATION</Label>
@@ -62,12 +67,12 @@ export default function InformationForm() {
       <Positioner />
       <InputBox>
         <label>카테고리</label>
-        <SelctInput>
-          <option value="">ANIMALS</option>
-          <option value="">PEOPLE</option>
-          <option value="">URBAN</option>
-          <option value="">NATURE</option>
-          <option value="">ETC</option>
+        <SelctInput onChange={onChangeCata}>
+          <option value="0">ANIMALS</option>
+          <option value="1">PEOPLE</option>
+          <option value="2">URBAN</option>
+          <option value="3">NATURE</option>
+          <option value="4">ETC</option>
         </SelctInput>
       </InputBox>
       <Positioner />
@@ -85,11 +90,20 @@ export default function InformationForm() {
           disabled
           placeholder="등록을 원하시면 선택해주세요"
         />
-        <Buttons color="green" small onClick={() => setModalOpen(true)}>
+        <Buttons
+          type="button"
+          color="green"
+          small
+          onClick={() => setModalOpen(true)}
+        >
           SELECT
         </Buttons>
         {modalOpen && <AddPicstory close={onClose} />}
       </PicstoryBox>
+      <Positioner />
+      <Positioner>
+        <Buttons type="submit">등록</Buttons>
+      </Positioner>
     </InformationFormBox>
   );
 }

@@ -8,12 +8,18 @@ import {
   LOAD_SHOP_ERROR,
   LOAD_SHOP_REQUEST,
   LOAD_SHOP_SUCCESS,
+  UPLOAD_IMG_ERROR,
+  UPLOAD_IMG_REQUEST,
+  UPLOAD_IMG_SUCCESS,
 } from "./actions";
 
 const initialState = {
   loadPhotoListLoading: false,
   loadPhotoListSuccess: false,
   loadPhotoListError: false,
+  uploadImgLoading: false,
+  uploadImgSuccess: false,
+  uploadUmgError: false,
 
   MainList: [],
   FeedList: [],
@@ -137,7 +143,27 @@ export default function photo(state = initialState, action) {
         loadPhotoListSuccess: false,
         loadPhotoListError: true,
       };
-
+    case UPLOAD_IMG_REQUEST:
+      return {
+        ...state,
+        uploadImgLoading: false,
+        uploadImgSuccess: false,
+        uploadUmgError: false,
+      };
+    case UPLOAD_IMG_SUCCESS:
+      return {
+        ...state,
+        uploadImgLoading: false,
+        uploadImgSuccess: action.payload,
+        uploadUmgError: false,
+      };
+    case UPLOAD_IMG_ERROR:
+      return {
+        ...state,
+        uploadImgLoading: false,
+        uploadImgSuccess: false,
+        uploadUmgError: action.error,
+      };
     default:
       return state;
   }
