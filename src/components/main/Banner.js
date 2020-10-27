@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import BANNER1 from "../../assets/img/banner1.png";
 import BTN from "../common/Buttons";
@@ -32,9 +32,9 @@ export default function Banner() {
           <Link to="/profile/1">
             <BTN color="pink">PROFILE</BTN>
           </Link>
-          <Link to="/profile/1">
+          <Link to="/edit">
             <BTN color="pink" outline>
-              PROFILE
+              EDIT
             </BTN>
           </Link>
         </BtnBox>

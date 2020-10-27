@@ -1,10 +1,16 @@
 import {
+  ADD_PICSTORY_ERROR,
+  ADD_PICSTORY_REQUEST,
+  ADD_PICSTORY_SUCCESS,
   LOAD_FEEDS_ERROR,
   LOAD_FEEDS_REQUEST,
   LOAD_FEEDS_SUCCESS,
   LOAD_MAIN_ERROR,
   LOAD_MAIN_REQUEST,
   LOAD_MAIN_SUCCESS,
+  LOAD_PICSTORY_ERROR,
+  LOAD_PICSTORY_REQUEST,
+  LOAD_PICSTORY_SUCCESS,
   LOAD_SHOP_ERROR,
   LOAD_SHOP_REQUEST,
   LOAD_SHOP_SUCCESS,
@@ -19,11 +25,18 @@ const initialState = {
   loadPhotoListError: false,
   uploadImgLoading: false,
   uploadImgSuccess: false,
-  uploadUmgError: false,
+  uploadImgError: false,
+  addPicstoryLoading: false,
+  addPicstorySuccess: false,
+  addPicstoryError: false,
+  loadPicstoryLoading: false,
+  loadPicstorySuccess: false,
+  loadPicstoryError: false,
 
   MainList: [],
   FeedList: [],
   ShopList: [],
+  PicstoryList: [],
 };
 export function generatePhoto() {
   return [
@@ -148,21 +161,65 @@ export default function photo(state = initialState, action) {
         ...state,
         uploadImgLoading: false,
         uploadImgSuccess: false,
-        uploadUmgError: false,
+        uploadImgError: false,
       };
     case UPLOAD_IMG_SUCCESS:
       return {
         ...state,
         uploadImgLoading: false,
         uploadImgSuccess: action.payload,
-        uploadUmgError: false,
+        uploadImgError: false,
       };
     case UPLOAD_IMG_ERROR:
       return {
         ...state,
         uploadImgLoading: false,
         uploadImgSuccess: false,
-        uploadUmgError: action.error,
+        uploadImgError: action.error,
+      };
+    case ADD_PICSTORY_REQUEST:
+      return {
+        ...state,
+        addPicstoryLoading: false,
+        addPicstorySuccess: false,
+        addPicstoryError: false,
+      };
+    case ADD_PICSTORY_SUCCESS:
+      return {
+        ...state,
+        addPicstoryLoading: false,
+        addPicstorySuccess: true,
+        addPicstoryError: false,
+        PicstoryList: state.PicstoryList.concat(action.payload),
+      };
+    case ADD_PICSTORY_ERROR:
+      return {
+        ...state,
+        loadPicstoryLoading: false,
+        loadPicstorySuccess: false,
+        loadPicstoryError: action.error,
+      };
+    case LOAD_PICSTORY_REQUEST:
+      return {
+        ...state,
+        loadPicstoryLoading: false,
+        loadPicstorySuccess: false,
+        loadPicstoryError: false,
+      };
+    case LOAD_PICSTORY_SUCCESS:
+      return {
+        ...state,
+        loadPicstoryLoading: false,
+        loadPicstorySuccess: true,
+        loadPicstoryError: false,
+        PicstoryList: action.payload,
+      };
+    case LOAD_PICSTORY_ERROR:
+      return {
+        ...state,
+        addPicstoryLoading: false,
+        addPicstorySuccess: false,
+        addPicstoryError: action.error,
       };
     default:
       return state;

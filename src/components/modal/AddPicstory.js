@@ -4,6 +4,13 @@ import ModalLayout, {Gap, ModalBtnBox} from "./ModalLayout";
 import styled from "styled-components";
 import {PicstoryBox, SubTitle} from "../edit/InformationForm";
 import Buttons from "../common/Buttons";
+import useInput from "../../hooks/useInput";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {
+  ADD_PICSTORY_REQUEST,
+  LOAD_PICSTORY_REQUEST,
+} from "../../reducer/photo/actions";
 
 const NewPicstoryForm = styled.form`
   h2 {
@@ -23,22 +30,38 @@ const PicList = styled.ul`
   }
 `;
 export default function AddPicstory({close}) {
+  const dispatch = useDispatch();
+  const {PicstoryList} = useSelector((state) => state.photo);
+  const [picstoryName, onChangePicstoryName, setName] = useInput("");
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({type: ADD_PICSTORY_REQUEST, data: {name: picstoryName}});
+    setName("");
+  };
+  useEffect(() => {
+    dispatch({type: LOAD_PICSTORY_REQUEST});
+  }, [dispatch]);
   return (
     <ModalLayout>
       <Label>PICSTORY</Label>
       <PicList>
-        <li>Accrdion</li>
-        <li>Picstory2</li>
-        <li>33333</li>
+        {PicstoryList.map((v) => (
+          <li key={v.id}>{v.name}</li>
+        ))}
       </PicList>
       <Gap />
       <Gap />
-      <NewPicstoryForm>
+      <NewPicstoryForm onSubmit={onSubmit}>
         <h2>NEW PICSTORY</h2>
         <PicstoryBox>
-          <SubTitle>제목</SubTitle>
-          <input type="text" placeholder="제목을 입력해주세요" />
-          <Buttons color="green" small>
+          <SubTitle>이름</SubTitle>
+          <input
+            type="text"
+            placeholder="픽스토리 이름을 입력해주세요"
+            value={picstoryName}
+            onChange={onChangePicstoryName}
+          />
+          <Buttons type="submit" color="green" small>
             ADD
           </Buttons>
         </PicstoryBox>

@@ -47,22 +47,26 @@ export default function InformationForm() {
   const onClose = () => {
     setModalOpen(false);
   };
-
+  const [title, onChangeTitle] = useInput("");
+  const [cata, onChangeCata] = useInput(4);
   const [about, setAbout] = useState("");
-  console.log(about);
+  const [picstory, setPicstory] = useState(null);
   const [sale, setSale] = useState(false);
   const onToggle = () => {
     setSale(!sale);
-    console.log(sale);
   };
-  const [cata, onChangeCata] = useInput(4);
-  console.log(cata);
+
   return (
     <InformationFormBox>
       <Label>INFORMATION</Label>
       <InputBox>
         <label>제목</label>
-        <input type="text" name="title" />
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={onChangeTitle}
+        />
       </InputBox>
       <Positioner />
       <InputBox>
