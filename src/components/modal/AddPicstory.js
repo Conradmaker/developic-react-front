@@ -29,7 +29,7 @@ const PicList = styled.ul`
     }
   }
 `;
-export default function AddPicstory({close}) {
+export default function AddPicstory({close, setPicstory}) {
   const dispatch = useDispatch();
   const {PicstoryList} = useSelector((state) => state.photo);
   const [picstoryName, onChangePicstoryName, setName] = useInput("");
@@ -46,7 +46,9 @@ export default function AddPicstory({close}) {
       <Label>PICSTORY</Label>
       <PicList>
         {PicstoryList.map((v) => (
-          <li key={v.id}>{v.name}</li>
+          <li onClick={() => setPicstory(v.id)} key={v.id}>
+            {v.name}
+          </li>
         ))}
       </PicList>
       <Gap />
@@ -71,7 +73,9 @@ export default function AddPicstory({close}) {
         <Buttons color="black" onClick={close}>
           뒤로
         </Buttons>
-        <Buttons font="black">확인</Buttons>
+        <Buttons type="button" font="black">
+          확인
+        </Buttons>
       </ModalBtnBox>
     </ModalLayout>
   );

@@ -1,6 +1,9 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 import {
+  ADD_PHOTO_ERROR,
+  ADD_PHOTO_REQUEST,
+  ADD_PHOTO_SUCCESS,
   ADD_PICSTORY_ERROR,
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
@@ -73,7 +76,23 @@ function* loadShop(action) {
 function* watchLoadShop() {
   yield takeEvery(LOAD_SHOP_REQUEST, loadShop);
 }
-
+//작품추가
+async function addPhotoAPI(data) {
+  const response = await axios.post("/photo/upload/post", data);
+  return response.data;
+}
+function* addPhoto(action) {
+  try {
+    const data = yield call(addPhotoAPI, action.data);
+    yield put({type: ADD_PHOTO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: ADD_PHOTO_ERROR, error: e});
+  }
+}
+function* watchAddPhoto() {
+  yield takeEvery(ADD_PHOTO_REQUEST, addPhoto);
+}
 //이미지업로드
 async function uploadImgAPI(data) {
   const response = await axios.post("/photo/upload/photo", data);
@@ -133,5 +152,6 @@ export default function* photoSaga() {
     fork(watchUploadImg),
     fork(watchAddPicstory),
     fork(watchLoadPicstory),
+    fork(watchAddPhoto),
   ]);
 }

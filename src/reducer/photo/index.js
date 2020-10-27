@@ -1,4 +1,7 @@
 import {
+  ADD_PHOTO_ERROR,
+  ADD_PHOTO_REQUEST,
+  ADD_PHOTO_SUCCESS,
   ADD_PICSTORY_ERROR,
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
@@ -26,6 +29,9 @@ const initialState = {
   uploadImgLoading: false,
   uploadImgSuccess: false,
   uploadImgError: false,
+  addPhotoLoading: false,
+  addPhotoSuccess: false,
+  addPhotoError: false,
   addPicstoryLoading: false,
   addPicstorySuccess: false,
   addPicstoryError: false,
@@ -176,6 +182,27 @@ export default function photo(state = initialState, action) {
         uploadImgLoading: false,
         uploadImgSuccess: false,
         uploadImgError: action.error,
+      };
+    case ADD_PHOTO_REQUEST:
+      return {
+        ...state,
+        addPhotoLoading: false,
+        addPhotoSuccess: false,
+        addPhotoError: false,
+      };
+    case ADD_PHOTO_SUCCESS:
+      return {
+        ...state,
+        addPhotoLoading: false,
+        addPhotoSuccess: action.payload,
+        addPhotoError: false,
+      };
+    case ADD_PHOTO_ERROR:
+      return {
+        ...state,
+        loadPhotoLoading: false,
+        loadPhotoSuccess: false,
+        loadPhotoError: action.error,
       };
     case ADD_PICSTORY_REQUEST:
       return {

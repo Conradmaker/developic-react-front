@@ -8,6 +8,8 @@ import InfoEditor from "./InfoEditor";
 import Buttons from "../common/Buttons";
 import AddPicstory from "../modal/AddPicstory";
 import useInput from "../../hooks/useInput";
+import {useDispatch, useSelector} from "react-redux";
+import {ADD_PHOTO_REQUEST} from "../../reducer/photo/actions";
 
 export const PicstoryBox = styled.div`
   display: flex;
@@ -43,19 +45,36 @@ export const SubTitle = styled.span`
   display: block;
 `;
 export default function InformationForm() {
+  const dispatch = useDispatch();
+  const {uploadImgSuccess} = useSelector((state) => state.photo);
   const [modalOpen, setModalOpen] = useState(false);
   const onClose = () => {
     setModalOpen(false);
   };
   const [title, onChangeTitle] = useInput("");
   const [cata, onChangeCata] = useInput(4);
+  const [price, onChangePrice] = useInput(null);
   const [about, setAbout] = useState("");
   const [picstory, setPicstory] = useState(null);
   const [sale, setSale] = useState(false);
   const onToggle = () => {
     setSale(!sale);
   };
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: ADD_PHOTO_REQUEST,
+      data: {
+        name: title,
+        sale,
+        price,
+        src: uploadImgSuccess,
+        info: about,
+        catagory: cata,
+        picstory,
+      },
+    });
+  };
   return (
     <InformationFormBox>
       <Label>INFORMATION</Label>
@@ -84,6 +103,18 @@ export default function InformationForm() {
         <label>판매여부</label>
         <ToggleBtn vital={sale} />
       </InputBox>
+      <Positioner />
+      {!sale && (
+        <InputBox>
+          <label>가격</label>
+          <input
+            type="number"
+            name="price"
+            value={price}
+            onChange={onChangePrice}
+          />
+        </InputBox>
+      )}
       <SubTitle>소개</SubTitle>
       <InfoEditor setAbout={setAbout} />
       <Positioner />
@@ -102,11 +133,13 @@ export default function InformationForm() {
         >
           SELECT
         </Buttons>
-        {modalOpen && <AddPicstory close={onClose} />}
+        {modalOpen && <AddPicstory setPicstory={setPicstory} close={onClose} />}
       </PicstoryBox>
       <Positioner />
       <Positioner>
-        <Buttons type="submit">등록</Buttons>
+        <Buttons type="button" onClick={onSubmit}>
+          등록
+        </Buttons>
       </Positioner>
     </InformationFormBox>
   );
