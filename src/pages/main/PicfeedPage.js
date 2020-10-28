@@ -142,7 +142,7 @@ const Banner = styled(BannerBox)`
 export default function PicfeedPage() {
   const [catagoryState, setCatagoryState] = useState(5);
   const dispatch = useDispatch();
-  const {FeedList, loadFeedsLoading} = useSelector((state) => state.photo);
+  const {FeedList, loadPhotoListLoading} = useSelector((state) => state.photo);
   const lastId = FeedList[FeedList.length - 1]?.id;
   useEffect(() => {
     dispatch({type: DELETE_LIST});
@@ -152,9 +152,9 @@ export default function PicfeedPage() {
   useEffect(() => {
     const onScroll = () => {
       if (
-        !loadFeedsLoading &&
+        !loadPhotoListLoading &&
         window.pageYOffset + document.documentElement.clientHeight >
-          document.documentElement.scrollHeight - 400
+          document.documentElement.scrollHeight - 300
       ) {
         dispatch({
           type: LOAD_FEEDS_REQUEST,
@@ -166,7 +166,7 @@ export default function PicfeedPage() {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [catagoryState, dispatch, lastId, loadFeedsLoading]);
+  }, [catagoryState, dispatch, lastId, loadPhotoListLoading]);
 
   return (
     <Layout>

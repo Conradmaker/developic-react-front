@@ -28,8 +28,13 @@ export default function SignupForm({setSlide}) {
   );
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(id, "/", password, "/", check, "/", email, "/", name);
-    dispatch({type: SIGN_UP_REQUEST, data: {id, password, email, name}});
+    if (!id || !password || !email || !name) {
+      alert("빠짐없이 입력하세요");
+    } else if (passwordError) {
+      alert("비밀번호가 일치하지 않습니다.");
+    } else {
+      dispatch({type: SIGN_UP_REQUEST, data: {id, password, email, name}});
+    }
   };
   return (
     <>

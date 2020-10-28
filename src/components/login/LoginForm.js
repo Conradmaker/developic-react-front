@@ -12,6 +12,7 @@ const initialInput = {id: "", password: ""};
 export default function LogInForm({setSlide}) {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState(initialInput);
+  const {id, password} = inputs;
   const onChange = useCallback(
     (e) => {
       const {name, value} = e.target;
@@ -24,9 +25,13 @@ export default function LogInForm({setSlide}) {
   );
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch({type: LOG_IN_REQUEST, data: {id, password}});
+    if (!id || !password) {
+      alert("빠짐없이 입력해주세요");
+    } else {
+      dispatch({type: LOG_IN_REQUEST, data: {id, password}});
+    }
   };
-  const {id, password} = inputs;
+
   return (
     <>
       <section>

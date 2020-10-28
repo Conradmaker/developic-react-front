@@ -1,5 +1,5 @@
 import axios from "axios";
-import {all, call, fork, put, takeEvery} from "redux-saga/effects";
+import {all, call, fork, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
@@ -58,7 +58,7 @@ function* loadFeeds(action) {
   }
 }
 function* watchLoadFeeds() {
-  yield takeEvery(LOAD_FEEDS_REQUEST, loadFeeds);
+  yield takeLatest(LOAD_FEEDS_REQUEST, loadFeeds);
 }
 
 //픽샵페이지 게시글 로드
