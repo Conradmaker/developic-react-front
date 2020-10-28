@@ -10,46 +10,48 @@ import {
   LOAD_FEEDS_ERROR,
   LOAD_FEEDS_REQUEST,
   LOAD_FEEDS_SUCCESS,
-  LOAD_MAIN_ERROR,
-  LOAD_MAIN_REQUEST,
-  LOAD_MAIN_SUCCESS,
+  LOAD_MAINS_ERROR,
+  LOAD_MAINS_REQUEST,
+  LOAD_MAINS_SUCCESS,
   LOAD_PICSTORY_ERROR,
   LOAD_PICSTORY_REQUEST,
   LOAD_PICSTORY_SUCCESS,
-  LOAD_SHOP_ERROR,
-  LOAD_SHOP_REQUEST,
-  LOAD_SHOP_SUCCESS,
+  LOAD_SHOPS_ERROR,
+  LOAD_SHOPS_REQUEST,
+  LOAD_SHOPS_SUCCESS,
   UPLOAD_IMG_ERROR,
   UPLOAD_IMG_REQUEST,
   UPLOAD_IMG_SUCCESS,
 } from "../reducer/photo/actions";
 //메인페이지 게시글 로드
 async function loadMainAPI() {
-  const response = await axios.get();
+  const response = await axios.get("/load/main");
   return response.data;
 }
 function* loadMain() {
   try {
     const data = yield call(loadMainAPI);
-    yield put({type: LOAD_MAIN_SUCCESS, payload: data});
+    yield put({type: LOAD_MAINS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_MAIN_ERROR, error: e});
+    yield put({type: LOAD_MAINS_ERROR, error: e});
   }
 }
 function* watchLoadMain() {
-  yield takeEvery(LOAD_MAIN_REQUEST, loadMain);
+  yield takeEvery(LOAD_MAINS_REQUEST, loadMain);
 }
 
 //피드페이지 게시글 로드
 async function loadFeedsAPI(data) {
-  const response = await axios.get(`/${data.cata}?lastId=${data.lastId}`);
+  const response = await axios.get(
+    `/load/feed/${data.cata}?lastId=${data.lastId || 0}`
+  );
   return response.data;
 }
 function* loadFeeds(action) {
   try {
     const data = yield call(loadFeedsAPI, action.data);
-    yield put({type: LOAD_FEEDS_SUCCESS});
+    yield put({type: LOAD_FEEDS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
     yield put({type: LOAD_FEEDS_ERROR, error: e});
@@ -67,14 +69,14 @@ async function loadShopAPI(data) {
 function* loadShop(action) {
   try {
     const data = yield call(loadShopAPI, action.data);
-    yield put({type: LOAD_SHOP_SUCCESS, payload: data});
+    yield put({type: LOAD_SHOPS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_SHOP_ERROR, error: e});
+    yield put({type: LOAD_SHOPS_ERROR, error: e});
   }
 }
 function* watchLoadShop() {
-  yield takeEvery(LOAD_SHOP_REQUEST, loadShop);
+  yield takeEvery(LOAD_SHOPS_REQUEST, loadShop);
 }
 //작품추가
 async function addPhotoAPI(data) {

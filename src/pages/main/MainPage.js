@@ -1,14 +1,16 @@
 import React from "react";
-import { BsArrowRight } from "react-icons/bs";
+import {BsArrowRight} from "react-icons/bs";
 import Buttons from "../../components/common/Buttons";
 import Banner from "../../components/main/Banner";
 import Feed from "../../components/main/Feed";
 import styled from "styled-components";
 import Ad from "../../assets/img/띠배너2.jpg";
-// import { useSelector } from "react-redux";
 import Shop from "../../components/main/Shop";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Layout from "../../components/common/Layout";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_MAINS_REQUEST} from "../../reducer/photo/actions";
 
 export const CenterPositioner = styled.div`
   display: flex;
@@ -52,14 +54,19 @@ export const PreloaderContainer = styled.div`
   justify-content: center;
 `;
 export default function MainPage() {
-  // const { PicFeedList } = useSelector((state) => state.photo);
+  const dispatch = useDispatch();
+  const {MainList} = useSelector((state) => state.photo);
+  useEffect(() => {
+    dispatch({type: LOAD_MAINS_REQUEST});
+  }, [dispatch]);
+  const {feed, shop} = MainList;
   return (
     <Layout>
       <Banner />
       <CenterPositioner>
         <h3>PICFEED</h3>
       </CenterPositioner>
-      <Feed />
+      <Feed feed={feed} />
       <CenterPositioner>
         <Link to="/picfeed">
           <Buttons color="gray" outline>
@@ -80,7 +87,7 @@ export default function MainPage() {
       <CenterPositioner>
         <h3>PICSHOP</h3>
       </CenterPositioner>
-      <Shop />
+      <Shop shop={shop} />
       <CenterPositioner>
         <Link to="/picshop">
           <Buttons color="gray" outline>

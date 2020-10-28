@@ -10,7 +10,7 @@ import ImageBox from "../../components/main/ImageBox";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
+import {DELETE_LIST, LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
 import {BsArrowRight} from "react-icons/bs";
 import {darken} from "polished";
 import Topbtn from "../../components/common/Topbtn";
@@ -140,11 +140,14 @@ const Banner = styled(BannerBox)`
   background-position: 0 0;
 `;
 export default function PicfeedPage() {
+  const [catagoryState, setCatagoryState] = useState(5);
   const dispatch = useDispatch();
   const {FeedList, loadFeedsLoading} = useSelector((state) => state.photo);
+  const lastId = FeedList[FeedList.length - 1]?.id;
   useEffect(() => {
-    dispatch({type: LOAD_FEEDS_REQUEST});
-  }, [dispatch]);
+    dispatch({type: DELETE_LIST});
+    dispatch({type: LOAD_FEEDS_REQUEST, data: {cata: catagoryState}});
+  }, [dispatch, catagoryState]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -153,15 +156,18 @@ export default function PicfeedPage() {
         window.pageYOffset + document.documentElement.clientHeight >
           document.documentElement.scrollHeight - 400
       ) {
-        dispatch({type: LOAD_FEEDS_REQUEST});
+        dispatch({
+          type: LOAD_FEEDS_REQUEST,
+          data: {cata: catagoryState, lastId},
+        });
       }
     };
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [dispatch, loadFeedsLoading]);
-  const [catagoryState, setCatagoryState] = useState(0);
+  }, [catagoryState, dispatch, lastId, loadFeedsLoading]);
+
   return (
     <Layout>
       <div id="top"></div>

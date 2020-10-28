@@ -1,14 +1,14 @@
-export const LOAD_MAIN_REQUEST = "photo/LOAD_MAIN_REQUEST";
-export const LOAD_MAIN_SUCCESS = "photo/LOAD_MAIN_SUCCESS";
-export const LOAD_MAIN_ERROR = "photo/LOAD_MAIN_ERROR";
+export const LOAD_MAINS_REQUEST = "photo/LOAD_MAINS_REQUEST";
+export const LOAD_MAINS_SUCCESS = "photo/LOAD_MAINS_SUCCESS";
+export const LOAD_MAINS_ERROR = "photo/LOAD_MAINS_ERROR";
 
 export const LOAD_FEEDS_REQUEST = "photo/LOAD_FEEDS_REQUEST";
 export const LOAD_FEEDS_SUCCESS = "photo/LOAD_FEEDS_SUCCESS";
 export const LOAD_FEEDS_ERROR = "photo/LOAD_FEEDS_ERROR";
 
-export const LOAD_SHOP_REQUEST = "photo/LOAD_SHOP_REQUEST";
-export const LOAD_SHOP_SUCCESS = "photo/LOAD_SHOP_SUCCESS";
-export const LOAD_SHOP_ERROR = "photo/LOAD_SHOP_ERROR";
+export const LOAD_SHOPS_REQUEST = "photo/LOAD_SHOPS_REQUEST";
+export const LOAD_SHOPS_SUCCESS = "photo/LOAD_SHOPS_SUCCESS";
+export const LOAD_SHOPS_ERROR = "photo/LOAD_SHOPS_ERROR";
 
 export const UPLOAD_IMG_REQUEST = "photo/UPLOAD_IMG_REQUEST";
 export const UPLOAD_IMG_SUCCESS = "photo/UPLOAD_IMG_SUCCESS";
@@ -25,3 +25,5 @@ export const LOAD_PICSTORY_ERROR = "photo/LOAD_PICSTORY_ERROR";
 export const ADD_PHOTO_REQUEST = "photo/ADD_PHOTO_REQUEST";
 export const ADD_PHOTO_SUCCESS = "photo/ADD_PHOTO_SUCCESS";
 export const ADD_PHOTO_ERROR = "photo/ADD_PHOTO_ERROR";
+
+export const DELETE_LIST = "photo/DELETE_LIST";

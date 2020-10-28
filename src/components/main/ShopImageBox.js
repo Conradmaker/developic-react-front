@@ -1,9 +1,9 @@
 import React from "react";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { Link } from "react-router-dom";
+import {IoMdHeartEmpty} from "react-icons/io";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import Buttons from "../common/Buttons";
-import { ImageCover } from "./ImageBox";
+import {ImageCover} from "./ImageBox";
 
 const Summary = styled.div`
   display: flex;
@@ -60,11 +60,14 @@ const Card = styled.div`
   flex-direction: column;
 `;
 
-export default function ShopImageBox({ image }) {
+export default function ShopImageBox({image}) {
   return (
     <Card>
       <ImageBox>
-        <img src={image.src} alt="" />
+        <img
+          src={`http://localhost:3030/${image.image_src}`}
+          alt={image.name}
+        />
         <ImageCover>
           <span>
             <IoMdHeartEmpty />
@@ -79,7 +82,7 @@ export default function ShopImageBox({ image }) {
       </ImageBox>
       <Summary>
         <h3>{image.name}</h3>
-        <p>{image.price}</p>
+        <p>{image.price}₩</p>
       </Summary>
     </Card>
   );

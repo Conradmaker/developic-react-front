@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IoMdHeartEmpty } from "react-icons/io";
+import {IoMdHeartEmpty} from "react-icons/io";
 
 const Description = styled.div`
   display: flex;
@@ -60,10 +60,13 @@ const Image = styled.div`
     display: flex;
   }
 `;
-export default function ImageBox({ image }) {
+export default function ImageBox({image}) {
   return (
     <Image>
-      <img src={image.src} alt={image.name}></img>
+      <img
+        src={`http://localhost:3030/${image.image_src}`}
+        alt={image.name}
+      ></img>
       <ImageCover>
         <span>
           <IoMdHeartEmpty />
@@ -71,7 +74,7 @@ export default function ImageBox({ image }) {
         </span>
         <Description>
           <h3>{image.name}</h3>
-          <p>{image.author}</p>
+          <p>{image.User.nickname}</p>
         </Description>
       </ImageCover>
     </Image>

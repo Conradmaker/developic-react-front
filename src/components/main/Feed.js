@@ -14,16 +14,9 @@ export const ImagesContainer = styled.div`
   gap: 50px;
 `;
 
-export default function Feed() {
-  const dispatch = useDispatch();
-  const {FeedList, loadFeedsLoading} = useSelector((state) => state.photo);
-  useEffect(() => {
-    dispatch({type: LOAD_FEEDS_REQUEST});
-  }, [dispatch]);
-  // const loadMore = useCallback(() => {
-  //   dispatch({ type: LOAD_FEEDS_REQUEST });
-  // }, [dispatch]);
-  if (loadFeedsLoading)
+export default function Feed({feed}) {
+  const {loadPhotoListLoading} = useSelector((state) => state.photo);
+  if (loadPhotoListLoading)
     return (
       <PreloaderContainer>
         <img src={Preloader} alt="로딩중" />
@@ -32,14 +25,15 @@ export default function Feed() {
   return (
     <>
       <ImagesContainer>
-        {FeedList.map(
-          (v, i) =>
-            i < 10 && (
-              <Link to={`/detail/${v.id}`} key={v.id}>
-                <ImageBox image={v} />
-              </Link>
-            )
-        )}
+        {feed &&
+          feed.map(
+            (v, i) =>
+              i < 10 && (
+                <Link to={`/detail/${v.id}`} key={v.id}>
+                  <ImageBox image={v} />
+                </Link>
+              )
+          )}
       </ImagesContainer>
       {/* <Buttons color="gray" outline onClick={loadMore}>
         LOADMORE
