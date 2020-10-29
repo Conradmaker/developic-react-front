@@ -1,12 +1,18 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
+  ADD_COMMENT_ERROR,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
   ADD_PHOTO_SUCCESS,
   ADD_PICSTORY_ERROR,
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
+  LOAD_DETAIL_ERROR,
+  LOAD_DETAIL_REQUEST,
+  LOAD_DETAIL_SUCCESS,
   LOAD_FEEDS_ERROR,
   LOAD_FEEDS_REQUEST,
   LOAD_FEEDS_SUCCESS,
@@ -34,7 +40,7 @@ function* loadMain() {
     yield put({type: LOAD_MAINS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_MAINS_ERROR, error: e});
+    yield put({type: LOAD_MAINS_ERROR, error: e.response.data});
   }
 }
 function* watchLoadMain() {
@@ -54,7 +60,7 @@ function* loadFeeds(action) {
     yield put({type: LOAD_FEEDS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_FEEDS_ERROR, error: e});
+    yield put({type: LOAD_FEEDS_ERROR, error: e.response.data});
   }
 }
 function* watchLoadFeeds() {
@@ -63,7 +69,9 @@ function* watchLoadFeeds() {
 
 //픽샵페이지 게시글 로드
 async function loadShopAPI(data) {
-  const response = await axios.get(`/${data.cata}?lastId=${data.lastId}`);
+  const response = await axios.get(
+    `load/shop/${data.cata}?lastId=${data.lastId || 0}`
+  );
   return response.data;
 }
 function* loadShop(action) {
@@ -72,7 +80,7 @@ function* loadShop(action) {
     yield put({type: LOAD_SHOPS_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_SHOPS_ERROR, error: e});
+    yield put({type: LOAD_SHOPS_ERROR, error: e.response.data});
   }
 }
 function* watchLoadShop() {
@@ -89,7 +97,7 @@ function* addPhoto(action) {
     yield put({type: ADD_PHOTO_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: ADD_PHOTO_ERROR, error: e});
+    yield put({type: ADD_PHOTO_ERROR, error: e.response.data});
   }
 }
 function* watchAddPhoto() {
@@ -106,7 +114,7 @@ function* uploadImg(action) {
     yield put({type: UPLOAD_IMG_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: UPLOAD_IMG_ERROR, error: e});
+    yield put({type: UPLOAD_IMG_ERROR, error: e.response.data});
   }
 }
 function* watchUploadImg() {
@@ -123,7 +131,7 @@ function* loadPicstory() {
     yield put({type: LOAD_PICSTORY_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: LOAD_PICSTORY_ERROR, error: e});
+    yield put({type: LOAD_PICSTORY_ERROR, error: e.response.data});
   }
 }
 function* watchLoadPicstory() {
@@ -140,11 +148,45 @@ function* addPicstory(action) {
     yield put({type: ADD_PICSTORY_SUCCESS, payload: data});
   } catch (e) {
     console.error(e);
-    yield put({type: ADD_PICSTORY_ERROR, error: e});
+    yield put({type: ADD_PICSTORY_ERROR, error: e.response.data});
   }
 }
 function* watchAddPicstory() {
   yield takeEvery(ADD_PICSTORY_REQUEST, addPicstory);
+}
+//디테일불러오기
+async function loadDetailAPI(data) {
+  const response = await axios.get(`/load/detail/${data.id}`);
+  return response.data;
+}
+function* loadDetail(action) {
+  try {
+    const data = yield call(loadDetailAPI, action.data);
+    yield put({type: LOAD_DETAIL_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_DETAIL_ERROR, error: e.response.data});
+  }
+}
+function* watchLoadDetail() {
+  yield takeEvery(LOAD_DETAIL_REQUEST, loadDetail);
+}
+//댓글달기
+async function addCommentAPI(data) {
+  const response = await axios.post("/photo/comment", data);
+  return response.data;
+}
+function* addComment(action) {
+  try {
+    const data = yield call(addCommentAPI, action.data);
+    yield put({type: ADD_COMMENT_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: ADD_COMMENT_ERROR, error: e.response.data});
+  }
+}
+function* watchAddComment() {
+  yield takeEvery(ADD_COMMENT_REQUEST, addComment);
 }
 export default function* photoSaga() {
   yield all([
@@ -155,5 +197,7 @@ export default function* photoSaga() {
     fork(watchAddPicstory),
     fork(watchLoadPicstory),
     fork(watchAddPhoto),
+    fork(watchLoadDetail),
+    fork(watchAddComment),
   ]);
 }

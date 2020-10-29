@@ -19,6 +19,9 @@ import CommentForm from "../../components/Detail/CommentForm";
 import Comment from "../../components/Detail/Comment";
 import {useState} from "react";
 import Addcart from "../../components/modal/Addcart";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_DETAIL_REQUEST} from "../../reducer/photo/actions";
 
 const IconBtnBox = styled(IconButton)`
   position: static;
@@ -56,11 +59,18 @@ export const PageTitle = styled.div`
   }
 `;
 
-export default function DetailPage() {
+export default function DetailPage({match}) {
+  const {id} = match.params;
+  const dispatch = useDispatch();
+  const {me} = useSelector((state) => state.user);
+  const {Detail} = useSelector((state) => state.photo);
   const [cartModal, setCartModal] = useState(false);
   const onCloseCart = () => {
     setCartModal(false);
   };
+  useEffect(() => {
+    dispatch({type: LOAD_DETAIL_REQUEST, data: {id: id || 0}});
+  }, [dispatch, id]);
   return (
     <Layout>
       <div id="top" />
@@ -77,38 +87,41 @@ export default function DetailPage() {
             </PageTitle>
             <Visual>
               <LeftVisual>
-                <Photo />
+                <Photo img={Detail} />
               </LeftVisual>
               <RightVisual>
-                <Summary open={setCartModal} />
+                <Summary open={setCartModal} detail={Detail} />
                 {cartModal && <Addcart close={onCloseCart} />}
               </RightVisual>
             </Visual>
             <div id="about" />
             <PageTitle>
-              <Label>ABOUT&nbsp;THIS&nbsp;PHOTO</Label>
-              <IconBtnBox>
-                <article>
-                  <i>
-                    <RiPencilRuler2Line />
-                  </i>
-                  &nbsp;수정
-                </article>
-                <article>
-                  <i>
-                    <RiDeleteBin6Line />
-                  </i>
-                  &nbsp;삭제
-                </article>
-              </IconBtnBox>
+              <Label>ABOUT THIS PHOTO</Label>
+              {me && me.id === Detail.UserId && (
+                <IconBtnBox>
+                  <article>
+                    <i>
+                      <RiPencilRuler2Line />
+                    </i>
+                    &nbsp;수정
+                  </article>
+                  <article>
+                    <i>
+                      <RiDeleteBin6Line />
+                    </i>
+                    &nbsp;삭제
+                  </article>
+                </IconBtnBox>
+              )}
             </PageTitle>
-            <AboutPhoto />
+            <AboutPhoto info={Detail.info} />
             <div id="comment" />
             <Label>COMMENTS</Label>
-            <CommentForm />
-            <Comment />
-            <Comment />
-            <Comment />
+            <CommentForm photoId={id} />
+            {Detail.Comments &&
+              Detail.Comments.map((v) => (
+                <Comment key={v.id} comment={v} me={me && me.id} />
+              ))}
           </RightSection>
           <LeftSection>
             <LeftMenu />

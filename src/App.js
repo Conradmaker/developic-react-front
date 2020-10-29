@@ -12,6 +12,9 @@ import EditPage from "./pages/profile/EditPage.js";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const GlobalStyle = createGlobalStyle`
+html{
+  scroll-behavior:smooth;
+}
 body{
   background:#FFCA3E;
 }

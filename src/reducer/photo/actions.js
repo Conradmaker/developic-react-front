@@ -10,6 +10,10 @@ export const LOAD_SHOPS_REQUEST = "photo/LOAD_SHOPS_REQUEST";
 export const LOAD_SHOPS_SUCCESS = "photo/LOAD_SHOPS_SUCCESS";
 export const LOAD_SHOPS_ERROR = "photo/LOAD_SHOPS_ERROR";
 
+export const LOAD_DETAIL_REQUEST = "photo/LOAD_DETAIL_REQUEST";
+export const LOAD_DETAIL_SUCCESS = "photo/LOAD_DETAIL_SUCCESS";
+export const LOAD_DETAIL_ERROR = "photo/LOAD_DETAIL_ERROR";
+
 export const UPLOAD_IMG_REQUEST = "photo/UPLOAD_IMG_REQUEST";
 export const UPLOAD_IMG_SUCCESS = "photo/UPLOAD_IMG_SUCCESS";
 export const UPLOAD_IMG_ERROR = "photo/UPLOAD_IMG_ERROR";
@@ -25,5 +29,9 @@ export const LOAD_PICSTORY_ERROR = "photo/LOAD_PICSTORY_ERROR";
 export const ADD_PHOTO_REQUEST = "photo/ADD_PHOTO_REQUEST";
 export const ADD_PHOTO_SUCCESS = "photo/ADD_PHOTO_SUCCESS";
 export const ADD_PHOTO_ERROR = "photo/ADD_PHOTO_ERROR";
+
+export const ADD_COMMENT_REQUEST = "photo/ADD_COMMENT_REQUEST";
+export const ADD_COMMENT_SUCCESS = "photo/ADD_COMMENT_SUCCESS";
+export const ADD_COMMENT_ERROR = "photo/ADD_COMMENT_ERROR";
 
 export const DELETE_LIST = "photo/DELETE_LIST";

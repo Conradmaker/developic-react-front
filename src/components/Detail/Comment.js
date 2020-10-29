@@ -8,6 +8,7 @@ import {useState} from "react";
 import Delete from "../modal/Delete";
 import Declare from "../modal/Declare";
 import ChangeComment from "../modal/ChangeComment";
+import {Link} from "react-router-dom";
 
 const BottomSection = styled.div`
   border-bottom: 1px solid gray;
@@ -74,7 +75,7 @@ const IconButton = styled.p`
   }
 `;
 
-export default function Comment() {
+export default function Comment({comment, me}) {
   const [removeOpen, setRemoveOpen] = useState(false);
   const closeRemove = () => setRemoveOpen(false);
 
@@ -86,22 +87,26 @@ export default function Comment() {
   return (
     <CommentBox>
       <TopSection>
-        <div>
-          <Avatar small />
-          <span>
-            Conrad <small>2020-01-01</small>
-          </span>
-        </div>
-        <small onClick={() => setRemoveOpen(true)}>
-          REMOVE
-          <i>
-            <ImCancelCircle />
-          </i>
-        </small>
+        <Link to={`/profile/${comment.UserId}`}>
+          <div>
+            <Avatar small />
+            <span>
+              {comment.User.nickname} <small>{comment.updatedAt}</small>
+            </span>
+          </div>
+        </Link>
+        {me === comment.UserId && (
+          <small onClick={() => setRemoveOpen(true)}>
+            REMOVE
+            <i>
+              <ImCancelCircle />
+            </i>
+          </small>
+        )}
         {removeOpen && <Delete close={closeRemove} />}
       </TopSection>
       <BottomSection>
-        <span>가나다라마바사아자차카타파하</span>
+        <span>{comment.content}</span>
         <div>
           <IconButton onClick={() => setDeclareOpen(true)}>
             <span>신고</span>
@@ -110,12 +115,14 @@ export default function Comment() {
             </i>
           </IconButton>
           {declareOpen && <Declare close={closeDeclare} />}
-          <IconButton onClick={() => setChangeCommentOpen(true)}>
-            <span>수정</span>
-            <i>
-              <RiPencilRuler2Line />
-            </i>
-          </IconButton>
+          {me === comment.UserId && (
+            <IconButton onClick={() => setChangeCommentOpen(true)}>
+              <span>수정</span>
+              <i>
+                <RiPencilRuler2Line />
+              </i>
+            </IconButton>
+          )}
           {changeCommentOpen && <ChangeComment close={closeChangeComment} />}
         </div>
       </BottomSection>

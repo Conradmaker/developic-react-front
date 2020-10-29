@@ -1,4 +1,7 @@
 import {
+  ADD_COMMENT_ERROR,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
   ADD_PHOTO_SUCCESS,
@@ -6,6 +9,9 @@ import {
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
   DELETE_LIST,
+  LOAD_DETAIL_ERROR,
+  LOAD_DETAIL_REQUEST,
+  LOAD_DETAIL_SUCCESS,
   LOAD_FEEDS_ERROR,
   LOAD_FEEDS_REQUEST,
   LOAD_FEEDS_SUCCESS,
@@ -39,7 +45,14 @@ const initialState = {
   loadPicstoryLoading: false,
   loadPicstorySuccess: false,
   loadPicstoryError: false,
+  loadDetailLoading: false,
+  loadDetailSuccess: false,
+  loadDetailError: false,
+  addCommentLoading: false,
+  addCommentSuccess: false,
+  addCommentError: false,
 
+  Detail: {},
   MainList: {},
   FeedList: [],
   ShopList: [],
@@ -63,7 +76,7 @@ export default function photo(state = initialState, action) {
         loadPhotoListLoading: false,
         loadPhotoListSuccess: true,
         loadPhotoListError: false,
-        FeedList: state.FeedList.concat(action.payload),
+        FeedList: action.payload.concat(state.FeedList),
       };
     case LOAD_MAINS_SUCCESS:
       return {
@@ -79,7 +92,7 @@ export default function photo(state = initialState, action) {
         loadPhotoListLoading: false,
         loadPhotoListSuccess: true,
         loadPhotoListError: false,
-        ShopList: action.payload,
+        ShopList: action.payload.concat(state.ShopList),
       };
     case LOAD_SHOPS_ERROR:
     case LOAD_MAINS_ERROR:
@@ -88,7 +101,7 @@ export default function photo(state = initialState, action) {
         ...state,
         loadPhotoListLoading: false,
         loadPhotoListSuccess: false,
-        loadPhotoListError: true,
+        loadPhotoListError: action.error,
       };
     case UPLOAD_IMG_REQUEST:
       return {
@@ -176,12 +189,60 @@ export default function photo(state = initialState, action) {
         addPicstorySuccess: false,
         addPicstoryError: action.error,
       };
+    case LOAD_DETAIL_REQUEST:
+      return {
+        ...state,
+        loadDetailLoading: true,
+        loadDetailSuccess: false,
+        loadDetailError: false,
+      };
+    case LOAD_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loadDetailLoading: false,
+        loadDetailSuccess: true,
+        loadDetailError: false,
+        Detail: action.payload,
+      };
+    case LOAD_DETAIL_ERROR:
+      return {
+        ...state,
+        loadDetailLoading: false,
+        loadDetailSuccess: false,
+        loadDetailError: action.error,
+      };
+    case ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        addCommentLoading: true,
+        addCommentSuccess: false,
+        addCommentError: false,
+      };
+    case ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        addCommentLoading: false,
+        addCommentSuccess: true,
+        addCommentError: false,
+        Detail: {
+          ...state.Detail,
+          Comments: state.Detail.Comments.concat(action.payload),
+        },
+      };
+    case ADD_COMMENT_ERROR:
+      return {
+        ...state,
+        addCommentLoading: false,
+        addCommentSuccess: false,
+        addCommentError: action.error,
+      };
     case DELETE_LIST:
       return {
         ...state,
         MainList: {},
         FeedList: [],
         ShopList: [],
+        Detail: {},
       };
     default:
       return state;

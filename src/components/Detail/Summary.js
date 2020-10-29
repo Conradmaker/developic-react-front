@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {BiCart} from "react-icons/bi";
 import Label from "../common/Label";
 import Buttons from "../common/Buttons";
+import {Link} from "react-router-dom";
 
 export const ButtonBox = styled.div`
   display: flex;
@@ -40,23 +41,34 @@ const SummaryBox = styled.div`
   }
 `;
 
-export default function Summary({open}) {
+export default function Summary({open, detail}) {
+  console.log(detail);
+  const {User} = detail;
+
   return (
     <SummaryBox>
-      <Label>Last&nbsp;Article</Label>
+      <Label>{detail.name}</Label>
       <Artist>
-        <strong>Yoo Won Geun</strong>
-        <small>More Picture > </small>
+        <strong>{User && User.nickname}</strong>
+        <Link to={`/profile/${User && User.nickname}`}>
+          <small>More Picture > </small>
+        </Link>
       </Artist>
-      <span>2020-09-10</span>
-      <p>9,000,000₩</p>
-      <ButtonBox>
-        <Buttons small>BUY NOW</Buttons>
-        <Buttons small outline font="black" onClick={() => open(true)}>
-          ADD CART&nbsp;
-          <BiCart />
-        </Buttons>
-      </ButtonBox>
+      <span>{detail.createdAt}</span>
+      {detail.price && <p>{detail.price}₩</p>}
+      {!detail.sale ? (
+        <ButtonBox>
+          <Buttons small>BUY NOW</Buttons>
+          <Buttons small outline font="black" onClick={() => open(true)}>
+            ADD CART&nbsp;
+            <BiCart />
+          </Buttons>
+        </ButtonBox>
+      ) : (
+        <ButtonBox>
+          <Buttons color="green">NOT FOR SALE</Buttons>
+        </ButtonBox>
+      )}
     </SummaryBox>
   );
 }

@@ -34,19 +34,16 @@ export const IconButton = styled.div`
   }
 `;
 
-export default function Photo() {
+export default function Photo({img}) {
   return (
     <ImageContainer>
-      <img
-        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3794/1.jpg"
-        alt="캡아"
-      />
+      <img src={`http://localhost:3030/${img.image_src}`} alt={img.image_src} />
       <IconButton>
         <article>
           <i>
             <AiOutlineHeart />
           </i>
-          <span>303</span>
+          <span>{img.Likers && img.Likers.length}</span>
         </article>
 
         <article>

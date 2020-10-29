@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import draftToHtml from "draftjs-to-html";
 
 const InfoBox = styled.article`
   padding-bottom: 80px;
@@ -12,34 +13,13 @@ const InfoBox = styled.article`
     line-height: 1.5;
   }
 `;
-export default function AboutPhoto() {
+export default function AboutPhoto({info}) {
+  console.log(info);
+
   return (
     <InfoBox>
+      <span dangerouslySetInnerHTML={{__html: info}}></span>
       <span>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit
-        massa a dolor commodo, ut ultricies enim placerat. Praesent suscipit
-        urna id odio tincidunt convallis. Nunc viverra volutpat magna a gravida.
-        Suspendisse tincidunt auctor quam eu sodales. Duis consectetur laoreet
-        odio in malesuada. Nullam sollicitudin ligula lectus, nec tincidunt elit
-        bibendum ornare. Nunc pharetra, nunc fringilla pharetra semper, tellus
-        mi imperdiet arcu, a porta risus nulla vitae mi. Vestibulum at varius
-        lacus. Nunc ante lectus, eleifend sit amet ultrices vel, viverra ac
-        justo. Vivamus pulvinar dolor elementum enim vulputate, at egestas risus
-        fringilla. Class aptent taciti sociosqu ad litora torquent per conubia
-        nostra, per inceptos himenaeos. In non lacus ultrices, egestas nulla
-        quis, dignissim augue. Pellentesque vitae scelerisque eros. Suspendisse
-        nunc ligula, convallis at enim sed, placerat euismod justo. Pellentesque
-        egestas tincidunt ex, sit amet facilisis magna tristique at.
-        <br /> Morbi lacinia lectus lorem, sed accumsan risus malesuada eu.
-        Donec sed condimentum risus. In vel pulvinar magna. Vestibulum non
-        ultricies tortor, quis imperdiet tellus. Nullam eu bibendum metus. Morbi
-        commodo eget nulla at sollicitudin. Etiam placerat libero quis odio
-        pulvinar accumsan. Curabitur scelerisque sapien vel felis viverra
-        pretium. Phasellus nec mi diam. In erat quam, porttitor ac augue vitae,
-        congue interdum eros. Ut neque lacus, dictum a magna vitae,
-        <br /> dignissim gravida eros. Mauris aliquet tempor eros sed ultrices.
-        <br /> Ut commodo vel lectus vel dignissim. Aliquam feugiat felis sed
-        dui laoreet, sit amet eleifend arcu faucibus. Fusce pulvinar, ipsum sit
         amet luctus volutpat, mi nunc lacinia lectus, interdum efficitur nisi
         sapien eget elit. Maecenas molestie sapien id ipsum dictum, et imperdiet
         diam pulvinar. Proin massa urna, egestas in orci vel, pulvinar iaculis
