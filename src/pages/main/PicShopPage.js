@@ -8,14 +8,11 @@ import {ShopCardContainer} from "../../components/main/Shop";
 import Catagory from "../../components/main/Catagory";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {
-  DELETE_LIST,
-  LOAD_FEEDS_REQUEST,
-  LOAD_SHOPS_REQUEST,
-} from "../../reducer/photo/actions";
+import {DELETE_LIST, LOAD_SHOPS_REQUEST} from "../../reducer/photo/actions";
 import Topbtn from "../../components/common/Topbtn";
 import {BannerContents, Button, SmallBtn} from "./PicfeedPage";
 import ShopImageBox from "../../components/main/ShopImageBox";
+import {Link} from "react-router-dom";
 const Banner = styled(BannerBox)`
   background-image: url(${BANNERIMG});
   background-size: cover;
@@ -24,6 +21,7 @@ const Banner = styled(BannerBox)`
 export default function PicShopPage() {
   const [catagoryState, setCatagoryState] = useState(5);
   const dispatch = useDispatch();
+  const {me} = useSelector((state) => state.user);
   const {ShopList, loadPhotoListLoading} = useSelector((state) => state.photo);
   useEffect(() => {
     dispatch({type: DELETE_LIST});
@@ -61,10 +59,25 @@ export default function PicShopPage() {
             <Button style={{opacity: "0"}}>
               <span></span>
             </Button>
-            <div>
-              <SmallBtn outline>PROFILE</SmallBtn>
-              <SmallBtn>MYPAGE</SmallBtn>
-            </div>
+            {me ? (
+              <div>
+                <Link to={`/profile/${me.id}`}>
+                  <SmallBtn outline>PROFILE</SmallBtn>
+                </Link>
+                <Link to={``}>
+                  <SmallBtn>MYPAGE</SmallBtn>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to={`/login/1`}>
+                  <SmallBtn outline>SIGNUP</SmallBtn>
+                </Link>
+                <Link to={`/login/2`}>
+                  <SmallBtn>LOGIN</SmallBtn>
+                </Link>
+              </div>
+            )}
           </section>
         </BannerContents>
       </Banner>

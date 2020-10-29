@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {Link} from "react-router-dom";
 import IMG from "../../assets/img/logo.png";
 import {MdSearch} from "react-icons/md";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_MY_INFO_REQUEST, LOG_OUT_REQUEST} from "../../reducer/user";
 import {useEffect} from "react";
+import {useState} from "react";
 
 const Rightmenu = styled.ul`
   display: flex;
@@ -38,13 +39,20 @@ const HeaderBox = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
+  transition: all 0.3s;
   a {
     display: flex;
     align-items: center;
   }
+  ${(props) =>
+    props.changeColor &&
+    css`
+      background: #fff;
+    `}
 `;
 
 export default function Header({toggle, open}) {
+  const [changeColor, setChangeColor] = useState(false);
   const {me} = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const onLogOut = () => {
@@ -55,10 +63,22 @@ export default function Header({toggle, open}) {
       dispatch({type: LOAD_MY_INFO_REQUEST});
     }
   }, [dispatch, me]);
-
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.pageYOffset >= 40) {
+        setChangeColor(true);
+      } else {
+        setChangeColor(false);
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   return (
     <HeaderContainer>
-      <HeaderBox>
+      <HeaderBox changeColor={changeColor}>
         <Link to="/">
           <img src={IMG} width="250px" alt="" />
         </Link>

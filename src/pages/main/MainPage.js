@@ -55,6 +55,7 @@ export const PreloaderContainer = styled.div`
 `;
 export default function MainPage() {
   const dispatch = useDispatch();
+  const {me} = useSelector((state) => state.user);
   const {MainList} = useSelector((state) => state.photo);
   useEffect(() => {
     dispatch({type: LOAD_MAINS_REQUEST});
@@ -62,7 +63,7 @@ export default function MainPage() {
   const {feed, shop} = MainList;
   return (
     <Layout>
-      <Banner />
+      <Banner me={me} />
       <CenterPositioner>
         <h3>PICFEED</h3>
       </CenterPositioner>

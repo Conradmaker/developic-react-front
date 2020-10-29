@@ -24,19 +24,34 @@ const BtnBox = styled.div`
   }
 `;
 
-export default function Banner() {
+export default function Banner({me}) {
   return (
     <>
       <BannerBox>
         <BtnBox>
-          <Link to="/profile/1">
-            <BTN color="pink">PROFILE</BTN>
-          </Link>
-          <Link to="/edit">
-            <BTN color="pink" outline>
-              EDIT
-            </BTN>
-          </Link>
+          {me ? (
+            <>
+              <Link to="/profile/1">
+                <BTN color="pink">PROFILE</BTN>
+              </Link>
+              <Link to="/edit">
+                <BTN color="pink" outline>
+                  EDIT
+                </BTN>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login/2">
+                <BTN color="pink">LOGIN</BTN>
+              </Link>
+              <Link to="/login/1">
+                <BTN color="pink" outline>
+                  SIGNUP
+                </BTN>
+              </Link>
+            </>
+          )}
         </BtnBox>
       </BannerBox>
     </>

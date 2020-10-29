@@ -86,6 +86,9 @@ export const SmallBtn = styled.div`
   color: white;
   font-size: 18px;
   padding: 8px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     background: ${darken(0.1, "#006064")};
   }
@@ -114,6 +117,10 @@ export const BannerContents = styled.div`
       display: flex;
       gap: 30px;
       width: 100%;
+      a {
+        display: flex;
+        width: 50%;
+      }
     }
     h1 {
       display: flex;
@@ -142,6 +149,7 @@ const Banner = styled(BannerBox)`
 export default function PicfeedPage() {
   const [catagoryState, setCatagoryState] = useState(5);
   const dispatch = useDispatch();
+  const {me} = useSelector((state) => state.user);
   const {FeedList, loadPhotoListLoading} = useSelector((state) => state.photo);
   const lastId = FeedList[FeedList.length - 1]?.id;
   useEffect(() => {
@@ -187,10 +195,25 @@ export default function PicfeedPage() {
               {/* eslint-disable-next-line */}
               <span role="img">🏄🏻‍♀️</span>SHAKE PIC
             </Button>
-            <div>
-              <SmallBtn outline>PROFILE</SmallBtn>
-              <SmallBtn>MYPAGE</SmallBtn>
-            </div>
+            {me ? (
+              <div>
+                <Link to={`/profile/${me.id}`}>
+                  <SmallBtn outline>PROFILE</SmallBtn>
+                </Link>
+                <Link to={``}>
+                  <SmallBtn>MYPAGE</SmallBtn>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to={`/login/1`}>
+                  <SmallBtn outline>SIGNUP</SmallBtn>
+                </Link>
+                <Link to={`/login/2`}>
+                  <SmallBtn>LOGIN</SmallBtn>
+                </Link>
+              </div>
+            )}
           </section>
         </BannerContents>
       </Banner>
@@ -200,7 +223,7 @@ export default function PicfeedPage() {
       <Catagory changeCata={setCatagoryState} state={catagoryState} />
       <ImagesContainer>
         {FeedList.map((v) => (
-          <Link to="#" key={v.id}>
+          <Link to={`/detail/${v.id}`} key={v.id}>
             <ImageBox image={v} />
           </Link>
         ))}
