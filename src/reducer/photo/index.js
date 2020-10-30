@@ -1,7 +1,6 @@
 import {
   ADD_COMMENT_SUCCESS,
   CHANGE_COMMENT_SUCCESS,
-  DECLARE_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
 } from "../comment";
 import {
@@ -11,7 +10,13 @@ import {
   ADD_PICSTORY_ERROR,
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
+  DECLARE_PHOTO_ERROR,
+  DECLARE_PHOTO_REQUEST,
+  DECLARE_PHOTO_SUCCESS,
   DELETE_LIST,
+  LIKE_PHOTO_ERROR,
+  LIKE_PHOTO_REQUEST,
+  LIKE_PHOTO_SUCCESS,
   LOAD_DETAIL_ERROR,
   LOAD_DETAIL_REQUEST,
   LOAD_DETAIL_SUCCESS,
@@ -27,6 +32,9 @@ import {
   LOAD_SHOPS_ERROR,
   LOAD_SHOPS_REQUEST,
   LOAD_SHOPS_SUCCESS,
+  UNLIKE_PHOTO_ERROR,
+  UNLIKE_PHOTO_REQUEST,
+  UNLIKE_PHOTO_SUCCESS,
   UPLOAD_IMG_ERROR,
   UPLOAD_IMG_REQUEST,
   UPLOAD_IMG_SUCCESS,
@@ -51,6 +59,12 @@ const initialState = {
   loadDetailLoading: false,
   loadDetailSuccess: false,
   loadDetailError: false,
+  declarePhotoRequest: false,
+  declarePhotoSuccess: false,
+  declarePhotoError: false,
+  likePhotoRequest: false,
+  likePhotoSuccess: false,
+  likePhotoError: false,
 
   Detail: {},
   MainList: {},
@@ -210,6 +224,65 @@ export default function photo(state = initialState, action) {
         loadDetailLoading: false,
         loadDetailSuccess: false,
         loadDetailError: action.error,
+      };
+    case DECLARE_PHOTO_REQUEST:
+      return {
+        ...state,
+        declarePhotoRequest: false,
+        declarePhotoSuccess: false,
+        declarePhotoError: false,
+      };
+    case DECLARE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        declarePhotoRequest: false,
+        declarePhotoSuccess: action.payload,
+        declarePhotoError: false,
+      };
+    case DECLARE_PHOTO_ERROR:
+      return {
+        ...state,
+        declarePhotoRequest: false,
+        declarePhotoSuccess: false,
+        declarePhotoError: action.error,
+      };
+    case LIKE_PHOTO_REQUEST:
+    case UNLIKE_PHOTO_REQUEST:
+      return {
+        ...state,
+        likePhotoRequest: true,
+        likePhotoSuccess: false,
+        likePhotoError: false,
+      };
+    case LIKE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        likePhotoRequest: false,
+        likePhotoSuccess: true,
+        likePhotoError: false,
+        Detail: {
+          ...state.Detail,
+          Likers: state.Detail.Likers.concat(action.payload),
+        },
+      };
+    case UNLIKE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        likePhotoRequest: false,
+        likePhotoSuccess: true,
+        likePhotoError: false,
+        Detail: {
+          ...state.Detail,
+          Likers: state.Detail.Likers.filter((v) => v.id !== action.payload.id),
+        },
+      };
+    case LIKE_PHOTO_ERROR:
+    case UNLIKE_PHOTO_ERROR:
+      return {
+        ...state,
+        likePhotoRequest: false,
+        likePhotoSuccess: true,
+        likePhotoError: action.error,
       };
     case ADD_COMMENT_SUCCESS:
       return {

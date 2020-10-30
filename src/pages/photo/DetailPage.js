@@ -91,7 +91,7 @@ export default function DetailPage({match}) {
             </PageTitle>
             <Visual>
               <LeftVisual>
-                <Photo img={Detail} />
+                <Photo img={Detail} userId={me && me.id} />
               </LeftVisual>
               <RightVisual>
                 <Summary open={setCartModal} detail={Detail} />

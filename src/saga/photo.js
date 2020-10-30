@@ -7,6 +7,12 @@ import {
   ADD_PICSTORY_ERROR,
   ADD_PICSTORY_REQUEST,
   ADD_PICSTORY_SUCCESS,
+  DECLARE_PHOTO_ERROR,
+  DECLARE_PHOTO_REQUEST,
+  DECLARE_PHOTO_SUCCESS,
+  LIKE_PHOTO_ERROR,
+  LIKE_PHOTO_REQUEST,
+  LIKE_PHOTO_SUCCESS,
   LOAD_DETAIL_ERROR,
   LOAD_DETAIL_REQUEST,
   LOAD_DETAIL_SUCCESS,
@@ -22,6 +28,9 @@ import {
   LOAD_SHOPS_ERROR,
   LOAD_SHOPS_REQUEST,
   LOAD_SHOPS_SUCCESS,
+  UNLIKE_PHOTO_ERROR,
+  UNLIKE_PHOTO_REQUEST,
+  UNLIKE_PHOTO_SUCCESS,
   UPLOAD_IMG_ERROR,
   UPLOAD_IMG_REQUEST,
   UPLOAD_IMG_SUCCESS,
@@ -168,6 +177,57 @@ function* loadDetail(action) {
 function* watchLoadDetail() {
   yield takeEvery(LOAD_DETAIL_REQUEST, loadDetail);
 }
+//작품신고
+async function declarePhotoAPI(data) {
+  const response = await axios.post(`/photo/declare`, data);
+  return response.data;
+}
+function* declarePhoto(action) {
+  try {
+    const data = yield call(declarePhotoAPI, action.data);
+    yield put({type: DECLARE_PHOTO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: DECLARE_PHOTO_ERROR, error: e.response.data});
+  }
+}
+function* watchDeclarePhoto() {
+  yield takeEvery(DECLARE_PHOTO_REQUEST, declarePhoto);
+}
+//작품좋아요
+async function likePhotoAPI(data) {
+  const response = await axios.post(`/photo/like`, data);
+  return response.data;
+}
+function* likePhoto(action) {
+  try {
+    const data = yield call(likePhotoAPI, action.data);
+    yield put({type: LIKE_PHOTO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LIKE_PHOTO_ERROR, error: e.response.data});
+  }
+}
+function* watchLikePhoto() {
+  yield takeEvery(LIKE_PHOTO_REQUEST, likePhoto);
+}
+//작품좋아요취소
+async function unlikePhotoAPI(data) {
+  const response = await axios.post(`/photo/unlike`, data);
+  return response.data;
+}
+function* unlikePhoto(action) {
+  try {
+    const data = yield call(unlikePhotoAPI, action.data);
+    yield put({type: UNLIKE_PHOTO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: UNLIKE_PHOTO_ERROR, error: e.response.data});
+  }
+}
+function* watchunLikePhoto() {
+  yield takeEvery(UNLIKE_PHOTO_REQUEST, unlikePhoto);
+}
 export default function* photoSaga() {
   yield all([
     fork(watchLoadFeeds),
@@ -178,5 +238,8 @@ export default function* photoSaga() {
     fork(watchLoadPicstory),
     fork(watchAddPhoto),
     fork(watchLoadDetail),
+    fork(watchDeclarePhoto),
+    fork(watchLikePhoto),
+    fork(watchunLikePhoto),
   ]);
 }

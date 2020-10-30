@@ -89,7 +89,6 @@ export default function Comment({comment, me}) {
   const {
     CommentError,
     deleteCommentSuccess,
-    changeCommentSuccess,
     declareCommentSuccess,
   } = useSelector((state) => state.comment);
   useEffect(() => {

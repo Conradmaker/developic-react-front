@@ -2,6 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import useInput from "../../hooks/useInput";
 import {DECLARE_COMMENT_REQUEST} from "../../reducer/comment";
+import {DECLARE_PHOTO_REQUEST} from "../../reducer/photo/actions";
 import Buttons from "../common/Buttons";
 import ModalLayout, {Gap, ModalBtnBox, ModalInput} from "./ModalLayout";
 
@@ -11,6 +12,8 @@ export default function Declare({
   userId,
   commentId,
   alreadyDeclare,
+  header,
+  photoId,
 }) {
   const dispatch = useDispatch();
   const [reason, onChangeReason] = useInput("");
@@ -22,10 +25,14 @@ export default function Declare({
     if (reason === "") {
       return alert("사유를 적어주세요.");
     }
-    dispatch({
-      type: DECLARE_COMMENT_REQUEST,
-      data: {userId, commentId, reason},
-    });
+    if (header === "p") {
+      dispatch({type: DECLARE_PHOTO_REQUEST, data: {userId, photoId, reason}});
+    } else {
+      dispatch({
+        type: DECLARE_COMMENT_REQUEST,
+        data: {userId, commentId, reason},
+      });
+    }
   };
   return (
     <ModalLayout open={open}>

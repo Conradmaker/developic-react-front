@@ -30,4 +30,16 @@ export const ADD_PHOTO_REQUEST = "photo/ADD_PHOTO_REQUEST";
 export const ADD_PHOTO_SUCCESS = "photo/ADD_PHOTO_SUCCESS";
 export const ADD_PHOTO_ERROR = "photo/ADD_PHOTO_ERROR";
 
+export const DECLARE_PHOTO_REQUEST = "photo/DECLARE_PHOTO_REQUEST";
+export const DECLARE_PHOTO_SUCCESS = "photo/DECLARE_PHOTO_SUCCESS";
+export const DECLARE_PHOTO_ERROR = "photo/DECLARE_PHOTO_ERROR";
+
+export const LIKE_PHOTO_REQUEST = "photo/LIKE_PHOTO_REQUEST";
+export const LIKE_PHOTO_SUCCESS = "photo/LIKE_PHOTO_SUCCESS";
+export const LIKE_PHOTO_ERROR = "photo/LIKE_PHOTO_ERROR";
+
+export const UNLIKE_PHOTO_REQUEST = "photo/UNLIKE_PHOTO_REQUEST";
+export const UNLIKE_PHOTO_SUCCESS = "photo/UNLIKE_PHOTO_SUCCESS";
+export const UNLIKE_PHOTO_ERROR = "photo/UNLIKE_PHOTO_ERROR";
+
 export const DELETE_LIST = "photo/DELETE_LIST";
