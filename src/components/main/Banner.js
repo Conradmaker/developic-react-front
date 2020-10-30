@@ -31,7 +31,7 @@ export default function Banner({me}) {
         <BtnBox>
           {me ? (
             <>
-              <Link to="/profile/1">
+              <Link to={`/profile/${me.id}`}>
                 <BTN color="pink">PROFILE</BTN>
               </Link>
               <Link to="/edit">

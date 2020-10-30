@@ -14,6 +14,10 @@ export const LOAD_MY_INFO_REQUEST = "user/LOAD_MY_INFO_REQUEST";
 export const LOAD_MY_INFO_SUCCESS = "user/LOAD_MY_INFO_SUCCESS";
 export const LOAD_MY_INFO_ERROR = "user/LOAD_MY_INFO_ERROR";
 
+export const LOAD_PROFILE_REQUEST = "user/LOAD_PROFILE_REQUEST";
+export const LOAD_PROFILE_SUCCESS = "user/LOAD_PROFILE_SUCCESS";
+export const LOAD_PROFILE_ERROR = "user/LOAD_PROFILE_ERROR";
+
 const initialState = {
   signUpLoading: false,
   signUpSuccess: false,
@@ -24,8 +28,12 @@ const initialState = {
   logOutLoading: false,
   logOutSuccess: false,
   logOutError: false,
+  loadProfileLoading: false,
+  loadProfileSuccess: false,
+  loadProfileError: false,
 
   me: null,
+  Profile: {},
 };
 
 export default function user(state = initialState, action) {
@@ -97,6 +105,29 @@ export default function user(state = initialState, action) {
         logOutLoading: false,
         logOutSuccess: false,
         logOutError: action.error,
+      };
+    case LOAD_PROFILE_REQUEST:
+      return {
+        ...state,
+        loadProfileLoading: true,
+        loadProdileSuccess: false,
+        loadProdileError: false,
+        profile: {},
+      };
+    case LOAD_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loadProfileLoading: false,
+        loadProdileSuccess: true,
+        loadProdileError: false,
+        profile: action.payload,
+      };
+    case LOAD_PROFILE_ERROR:
+      return {
+        ...state,
+        loadProfileLoading: false,
+        loadProdileSuccess: false,
+        loadProdileError: action.error,
       };
     default:
       return state;

@@ -4,6 +4,9 @@ import {
   LOAD_MY_INFO_ERROR,
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
+  LOAD_PROFILE_ERROR,
+  LOAD_PROFILE_REQUEST,
+  LOAD_PROFILE_SUCCESS,
   LOG_IN_ERROR,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
@@ -86,11 +89,30 @@ function* signUp(action) {
 function* watchSignUp() {
   yield takeEvery(SIGN_UP_REQUEST, signUp);
 }
+
+//프로필조회
+async function loadProfileAPI(data) {
+  const response = await axios.get(`/load/profile/${data.userId}`);
+  return response.data;
+}
+function* loadProfile(action) {
+  try {
+    const data = yield call(loadProfileAPI, action.data);
+    yield put({type: LOAD_PROFILE_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_PROFILE_ERROR, error: e});
+  }
+}
+function* watchLoadProfile() {
+  yield takeEvery(LOAD_PROFILE_REQUEST, loadProfile);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
     fork(watchSignUp),
     fork(watchLogOut),
     fork(watchLoadMyInfo),
+    fork(watchLoadProfile),
   ]);
 }

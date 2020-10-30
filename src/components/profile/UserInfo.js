@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import user from "../../reducer/user";
 import Avatar from "./Avatar";
 import SnsBtn from "./SnsBtn";
 import UserSummary from "./UserSummary";
@@ -26,17 +27,17 @@ const ProfileBox = styled.div`
   margin: 30px auto;
   height: 400px;
 `;
-export default function UserInfo() {
+export default function UserInfo({profile, photos}) {
   return (
     <ProfileBox>
       <LeftInfo>
         <Avatar />
-        <h1>Conrad</h1>
-        <p>yhg0337@gmail.com</p>
+        <h1>{profile && profile.nickname}</h1>
+        <p>{profile && profile.email}</p>
         <SnsBtn />
       </LeftInfo>
       <RightInfo>
-        <UserSummary />
+        <UserSummary profile={profile} photos={photos} />
       </RightInfo>
     </ProfileBox>
   );

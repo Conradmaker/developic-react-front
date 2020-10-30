@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { HiOutlineArrowLeft } from "react-icons/hi";
+import {HiOutlineArrowLeft} from "react-icons/hi";
 const Desc = styled.div`
   max-width: 450px;
   height: 300px;
@@ -66,26 +66,29 @@ const SummaryBox = styled.div`
   }
 `;
 
-export default function UserSummary() {
+let liker = 0;
+export default function UserSummary({profile, photos}) {
+  photos && photos.map((v) => (liker += v.Likers.length));
   return (
     <SummaryBox>
       <h1>ABOUT ARTIST</h1>
       <Counter>
         <li>
-          <strong>344</strong>
+          <strong>{photos && photos.length}</strong>
           <small>Pictures</small>
         </li>
         <li>
-          <strong>24</strong>
+          <strong>{profile && profile.Picstories.length}</strong>
           <small>PicStory</small>
         </li>
         <li>
-          <strong>423</strong>
+          <strong>{liker}</strong>
           <small>Liked</small>
         </li>
       </Counter>
       <Desc>
         <span>
+          {profile && profile.info}
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

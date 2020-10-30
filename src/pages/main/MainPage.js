@@ -67,7 +67,7 @@ export default function MainPage() {
       <CenterPositioner>
         <h3>PICFEED</h3>
       </CenterPositioner>
-      <Feed feed={feed} />
+      <Feed feed={feed} me={me} />
       <CenterPositioner>
         <Link to="/picfeed">
           <Buttons color="gray" outline>

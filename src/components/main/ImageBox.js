@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import {IoMdHeartEmpty} from "react-icons/io";
+import {AiOutlineHeart, AiFillHeart} from "react-icons/ai";
+import {useDispatch} from "react-redux";
+import {
+  LIKE_PHOTO_REQUEST,
+  UNLIKE_PHOTO_REQUEST,
+} from "../../reducer/photo/actions";
 
 const Description = styled.div`
   display: flex;
@@ -64,7 +69,8 @@ const Image = styled.div`
     display: flex;
   }
 `;
-export default function ImageBox({image}) {
+export default function ImageBox({image, me}) {
+  const liked = me && image.Likers.find((v) => v.id === me.id);
   return (
     <Image>
       <img
@@ -73,8 +79,14 @@ export default function ImageBox({image}) {
       ></img>
       <ImageCover>
         <span>
-          <IoMdHeartEmpty />
-          <small>255</small>
+          {!me ? (
+            <AiOutlineHeart />
+          ) : liked ? (
+            <AiFillHeart />
+          ) : (
+            <AiOutlineHeart />
+          )}
+          <small>{image.Likers.length}</small>
         </span>
         <Description>
           <h3>{image.name}</h3>

@@ -50,7 +50,7 @@ export default function Summary({open, detail}) {
       <Label>{detail.name}</Label>
       <Artist>
         <strong>{User && User.nickname}</strong>
-        <Link to={`/profile/${User && User.nickname}`}>
+        <Link to={`/profile/${User && User.id}`}>
           <small>More Picture > </small>
         </Link>
       </Artist>

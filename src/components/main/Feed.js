@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
 import styled from "styled-components";
-import {LOAD_FEEDS_REQUEST} from "../../reducer/photo/actions";
 import Preloader from "../../assets/img/preloader.gif";
 import ImageBox from "./ImageBox";
 import {Link} from "react-router-dom";
@@ -14,7 +13,7 @@ export const ImagesContainer = styled.div`
   gap: 50px;
 `;
 
-export default function Feed({feed}) {
+export default function Feed({feed, me}) {
   const {loadPhotoListLoading} = useSelector((state) => state.photo);
   if (loadPhotoListLoading)
     return (
@@ -30,7 +29,7 @@ export default function Feed({feed}) {
             (v, i) =>
               i < 10 && (
                 <Link to={`/detail/${v.id}`} key={v.id}>
-                  <ImageBox image={v} />
+                  <ImageBox image={v} me={me} />
                 </Link>
               )
           )}
