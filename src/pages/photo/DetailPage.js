@@ -22,6 +22,7 @@ import Addcart from "../../components/modal/Addcart";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_DETAIL_REQUEST} from "../../reducer/photo/actions";
+import {RESET_STATE} from "../../reducer/comment";
 
 const IconBtnBox = styled(IconButton)`
   position: static;
@@ -71,6 +72,9 @@ export default function DetailPage({match}) {
   useEffect(() => {
     dispatch({type: LOAD_DETAIL_REQUEST, data: {id: id || 0}});
   }, [dispatch, id]);
+  useEffect(() => {
+    dispatch({type: RESET_STATE});
+  }, [dispatch]);
   return (
     <Layout>
       <div id="top" />

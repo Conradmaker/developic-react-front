@@ -7,6 +7,9 @@ import {
   CHANGE_COMMENT_ERROR,
   CHANGE_COMMENT_REQUEST,
   CHANGE_COMMENT_SUCCESS,
+  DECLARE_COMMENT_ERROR,
+  DECLARE_COMMENT_REQUEST,
+  DECLARE_COMMENT_SUCCESS,
   DELETE_COMMENT_ERROR,
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
@@ -65,10 +68,28 @@ function* changeComment(action) {
 function* watchChangeComment() {
   yield takeEvery(CHANGE_COMMENT_REQUEST, changeComment);
 }
+//댓글신고
+async function declareCommentAPI(data) {
+  const response = await axios.post("/comment/declare", data);
+  return response.data;
+}
+function* declareComment(action) {
+  try {
+    const data = yield call(declareCommentAPI, action.data);
+    yield put({type: DECLARE_COMMENT_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: DECLARE_COMMENT_ERROR, error: e.response.data});
+  }
+}
+function* watchDeclareComment() {
+  yield takeEvery(DECLARE_COMMENT_REQUEST, declareComment);
+}
 export default function* commentSaga() {
   yield all([
     fork(watchAddComment),
     fork(watchDeleteComment),
     fork(watchChangeComment),
+    fork(watchDeclareComment),
   ]);
 }

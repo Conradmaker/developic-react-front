@@ -1,6 +1,7 @@
 import {
   ADD_COMMENT_SUCCESS,
   CHANGE_COMMENT_SUCCESS,
+  DECLARE_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
 } from "../comment";
 import {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import Avatar from "../profile/Avatar";
 import {ImCancelCircle} from "react-icons/im";
@@ -9,6 +9,7 @@ import Delete from "../modal/Delete";
 import Declare from "../modal/Declare";
 import ChangeComment from "../modal/ChangeComment";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const BottomSection = styled.div`
   border-bottom: 1px solid gray;
@@ -84,6 +85,30 @@ export default function Comment({comment, me}) {
 
   const [changeCommentOpen, setChangeCommentOpen] = useState(false);
   const closeChangeComment = () => setChangeCommentOpen(false);
+
+  const {
+    CommentError,
+    deleteCommentSuccess,
+    changeCommentSuccess,
+    declareCommentSuccess,
+  } = useSelector((state) => state.comment);
+  useEffect(() => {
+    if (deleteCommentSuccess) {
+      alert("댓글이 삭제 되었습니다.");
+      return closeRemove();
+    }
+  }, [deleteCommentSuccess]);
+  useEffect(() => {
+    if (declareCommentSuccess) {
+      alert("성공적으로 접수되었습니다.");
+      closeDeclare();
+    }
+  }, [declareCommentSuccess]);
+  useEffect(() => {
+    if (CommentError) {
+      alert(CommentError);
+    }
+  }, [CommentError]);
   return (
     <CommentBox>
       <TopSection>
@@ -116,7 +141,14 @@ export default function Comment({comment, me}) {
               <AiOutlineExclamationCircle />
             </i>
           </IconButton>
-          {declareOpen && <Declare me={me} close={closeDeclare} />}
+          {declareOpen && (
+            <Declare
+              alreadyDeclare={declareCommentSuccess}
+              userId={comment.UserId}
+              commentId={comment.id}
+              close={closeDeclare}
+            />
+          )}
           {me === comment.UserId && (
             <IconButton onClick={() => setChangeCommentOpen(true)}>
               <span>수정</span>

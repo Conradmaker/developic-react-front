@@ -13,6 +13,7 @@ export default function ChangeComment({open, close, userId, commentId}) {
       type: CHANGE_COMMENT_REQUEST,
       data: {userId, commentId, content},
     });
+    close();
   };
   return (
     <ModalLayout open={open}>

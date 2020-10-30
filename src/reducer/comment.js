@@ -7,50 +7,75 @@ export const DELETE_COMMENT_ERROR = "comment/DELETE_COMMENT_ERROR";
 export const CHANGE_COMMENT_REQUEST = "comment/CHANGE_COMMENT_REQUEST";
 export const CHANGE_COMMENT_SUCCESS = "comment/CHANGE_COMMENT_SUCCESS";
 export const CHANGE_COMMENT_ERROR = "comment/CHANGE_COMMENT_ERROR";
+export const DECLARE_COMMENT_REQUEST = "comment/DECLARE_COMMENT_REQUEST";
+export const DECLARE_COMMENT_SUCCESS = "comment/DECLARE_COMMENT_SUCCESS";
+export const DECLARE_COMMENT_ERROR = "comment/DECLARE_COMMENT_ERROR";
+export const RESET_STATE = "comment/RESET_STATE";
 
 const initialState = {
-  addCommentLoading: false,
+  CommentLoading: false,
+  CommentError: false,
+
   addCommentSuccess: false,
-  addCommentError: false,
   deleteCommentSuccess: false,
   changeCommentSuccess: false,
+  declareCommentSuccess: false,
 };
 export default function comment(state = initialState, action) {
   switch (action.type) {
+    case DECLARE_COMMENT_REQUEST:
     case CHANGE_COMMENT_REQUEST:
     case DELETE_COMMENT_REQUEST:
     case ADD_COMMENT_REQUEST:
       return {
         ...state,
-        addCommentLoading: true,
-        addCommentSuccess: false,
-        addCommentError: false,
+        CommentLoading: true,
+        CommentError: false,
       };
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
-        addCommentLoading: false,
+        CommentLoading: false,
         addCommentSuccess: true,
-        addCommentError: false,
+        CommentError: false,
       };
     case DELETE_COMMENT_SUCCESS:
       return {
         ...state,
+        CommentLoading: false,
         deleteCommentSuccess: true,
+        CommentError: false,
       };
     case CHANGE_COMMENT_SUCCESS:
       return {
         ...state,
+        CommentLoading: false,
         changeCommentSuccess: true,
+        CommentError: false,
       };
+    case DECLARE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        CommentLoading: false,
+        declareCommentSuccess: true,
+        CommentError: false,
+      };
+    case DECLARE_COMMENT_ERROR:
     case CHANGE_COMMENT_ERROR:
     case DELETE_COMMENT_ERROR:
     case ADD_COMMENT_ERROR:
       return {
         ...state,
-        addCommentLoading: false,
+        CommentLoading: false,
+        CommentError: action.error,
+      };
+    case RESET_STATE:
+      return {
+        ...state,
         addCommentSuccess: false,
-        addCommentError: action.error,
+        deleteCommentSuccess: false,
+        changeCommentSuccess: false,
+        declareCommentSuccess: false,
       };
     default:
       return state;
