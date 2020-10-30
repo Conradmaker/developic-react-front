@@ -117,7 +117,7 @@ export default function DetailPage({match}) {
             <AboutPhoto info={Detail.info} />
             <div id="comment" />
             <Label>COMMENTS</Label>
-            <CommentForm photoId={id} />
+            <CommentForm photoId={id} me={me} />
             {Detail.Comments &&
               Detail.Comments.map((v) => (
                 <Comment key={v.id} comment={v} me={me && me.id} />

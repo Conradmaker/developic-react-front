@@ -126,7 +126,11 @@ export default function Comment({comment, me}) {
             </IconButton>
           )}
           {changeCommentOpen && (
-            <ChangeComment me={me} close={closeChangeComment} />
+            <ChangeComment
+              userId={me}
+              commentId={comment.id}
+              close={closeChangeComment}
+            />
           )}
         </div>
       </BottomSection>

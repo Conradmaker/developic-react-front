@@ -1,4 +1,8 @@
-import {ADD_COMMENT_SUCCESS} from "../comment";
+import {
+  ADD_COMMENT_SUCCESS,
+  CHANGE_COMMENT_SUCCESS,
+  DELETE_COMMENT_SUCCESS,
+} from "../comment";
 import {
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
@@ -212,6 +216,32 @@ export default function photo(state = initialState, action) {
         Detail: {
           ...state.Detail,
           Comments: state.Detail.Comments.concat(action.payload),
+        },
+      };
+    case DELETE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        Detail: {
+          ...state.Detail,
+          Comments: state.Detail.Comments.filter(
+            (v) => v.id !== action.payload.id
+          ),
+        },
+      };
+    case CHANGE_COMMENT_SUCCESS:
+      const comment = state.Detail.Comments.filter(
+        (v) => v.id === action.payload.id
+      );
+      console.log(comment);
+      const cIndex = state.Detail.Comments.indexOf(comment[0]);
+      console.log(cIndex);
+      return {
+        ...state,
+        Detail: {
+          ...state.Detail,
+          Comments: state.Detail.Comments.map((v, i) =>
+            i === cIndex ? {...v, content: action.payload.content} : v
+          ),
         },
       };
     case DELETE_LIST:

@@ -37,7 +37,7 @@ const FormContainer = styled.div`
     }
   }
 `;
-export default function CommentForm({photoId}) {
+export default function CommentForm({photoId, me}) {
   const dispatch = useDispatch();
   const [text, onChangeText, setText] = useInput("");
   const onSubmit = (e) => {
@@ -53,9 +53,12 @@ export default function CommentForm({photoId}) {
           type="text"
           value={text}
           onChange={onChangeText}
-          placeholder="댓글을 입력해 주세요."
+          disabled={!me}
+          placeholder={
+            me ? "댓글을 입력해 주세요." : "로그인이 필요한 서비스입니다."
+          }
         />
-        <button type="submit">등록</button>
+        <button type={me ? "submit" : "button"}>등록</button>
       </form>
     </FormContainer>
   );
