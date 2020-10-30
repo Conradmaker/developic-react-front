@@ -1,9 +1,6 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
-  ADD_COMMENT_ERROR,
-  ADD_COMMENT_REQUEST,
-  ADD_COMMENT_SUCCESS,
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
   ADD_PHOTO_SUCCESS,
@@ -171,23 +168,6 @@ function* loadDetail(action) {
 function* watchLoadDetail() {
   yield takeEvery(LOAD_DETAIL_REQUEST, loadDetail);
 }
-//댓글달기
-async function addCommentAPI(data) {
-  const response = await axios.post("/photo/comment", data);
-  return response.data;
-}
-function* addComment(action) {
-  try {
-    const data = yield call(addCommentAPI, action.data);
-    yield put({type: ADD_COMMENT_SUCCESS, payload: data});
-  } catch (e) {
-    console.error(e);
-    yield put({type: ADD_COMMENT_ERROR, error: e.response.data});
-  }
-}
-function* watchAddComment() {
-  yield takeEvery(ADD_COMMENT_REQUEST, addComment);
-}
 export default function* photoSaga() {
   yield all([
     fork(watchLoadFeeds),
@@ -198,6 +178,5 @@ export default function* photoSaga() {
     fork(watchLoadPicstory),
     fork(watchAddPhoto),
     fork(watchLoadDetail),
-    fork(watchAddComment),
   ]);
 }

@@ -38,6 +38,10 @@ export const ImageCover = styled.i`
       font-size: 18px;
     }
   }
+  a {
+    display: flex;
+    justify-content: center;
+  }
 `;
 const Image = styled.div`
   margin-bottom: 30px;

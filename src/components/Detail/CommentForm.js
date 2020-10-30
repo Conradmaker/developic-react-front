@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
 import useInput from "../../hooks/useInput";
-import {ADD_COMMENT_REQUEST} from "../../reducer/photo/actions";
+import {ADD_COMMENT_REQUEST} from "../../reducer/comment";
 
 const FormContainer = styled.div`
   display: flex;

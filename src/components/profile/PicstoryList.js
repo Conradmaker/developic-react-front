@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import PicstoryItem from "./PicstoryItem";
-import { useSelector } from "react-redux";
-import { IoIosArrowBack } from "react-icons/io";
+import {useSelector} from "react-redux";
+import {IoIosArrowBack} from "react-icons/io";
 import Feed from "../main/Feed";
 const ListMenu = styled.div`
   height: 40px;
@@ -33,7 +33,7 @@ const ListContainer = styled.div`
 `;
 
 const PicstoryList = () => {
-  const { PicFeedList } = useSelector((state) => state.photo);
+  const {FeedList} = useSelector((state) => state.photo);
   const [detail, setDetail] = useState(false);
   const onDetail = (id) => {
     console.log(id);
@@ -45,7 +45,7 @@ const PicstoryList = () => {
   return (
     <ListContainer>
       {!detail ? (
-        PicFeedList.map((v) => (
+        FeedList.map((v) => (
           <section onClick={() => onDetail(v.id)}>
             <PicstoryItem key={v.id} v={v} />
           </section>

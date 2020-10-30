@@ -1,7 +1,5 @@
+import {ADD_COMMENT_SUCCESS} from "../comment";
 import {
-  ADD_COMMENT_ERROR,
-  ADD_COMMENT_REQUEST,
-  ADD_COMMENT_SUCCESS,
   ADD_PHOTO_ERROR,
   ADD_PHOTO_REQUEST,
   ADD_PHOTO_SUCCESS,
@@ -48,9 +46,6 @@ const initialState = {
   loadDetailLoading: false,
   loadDetailSuccess: false,
   loadDetailError: false,
-  addCommentLoading: false,
-  addCommentSuccess: false,
-  addCommentError: false,
 
   Detail: {},
   MainList: {},
@@ -211,30 +206,13 @@ export default function photo(state = initialState, action) {
         loadDetailSuccess: false,
         loadDetailError: action.error,
       };
-    case ADD_COMMENT_REQUEST:
-      return {
-        ...state,
-        addCommentLoading: true,
-        addCommentSuccess: false,
-        addCommentError: false,
-      };
     case ADD_COMMENT_SUCCESS:
       return {
         ...state,
-        addCommentLoading: false,
-        addCommentSuccess: true,
-        addCommentError: false,
         Detail: {
           ...state.Detail,
           Comments: state.Detail.Comments.concat(action.payload),
         },
-      };
-    case ADD_COMMENT_ERROR:
-      return {
-        ...state,
-        addCommentLoading: false,
-        addCommentSuccess: false,
-        addCommentError: action.error,
       };
     case DELETE_LIST:
       return {

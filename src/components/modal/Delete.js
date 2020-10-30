@@ -2,7 +2,7 @@ import React from "react";
 import Buttons from "../common/Buttons";
 import ModalLayout, {Gap, ModalBtnBox} from "./ModalLayout";
 
-export default function Delete({open, close}) {
+export default function Delete({open, close, userId, commentId}) {
   return (
     <ModalLayout open={open}>
       <h1>삭제하시겠습니까?</h1>

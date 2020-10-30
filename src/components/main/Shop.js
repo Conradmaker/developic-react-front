@@ -12,6 +12,9 @@ export const ShopCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  a {
+    width: 30%;
+  }
 `;
 
 export default function Shop({shop}) {

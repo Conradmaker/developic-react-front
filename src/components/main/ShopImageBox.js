@@ -73,7 +73,7 @@ export default function ShopImageBox({image}) {
             <IoMdHeartEmpty />
             <small>255</small>
           </span>
-          <Link to="/">
+          <Link to={`/detail/${image.id}`}>
             <Buttons outline inner>
               Detail
             </Buttons>

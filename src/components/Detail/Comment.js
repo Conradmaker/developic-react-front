@@ -103,7 +103,9 @@ export default function Comment({comment, me}) {
             </i>
           </small>
         )}
-        {removeOpen && <Delete close={closeRemove} />}
+        {removeOpen && (
+          <Delete userId={me} commentId={comment.id} close={closeRemove} />
+        )}
       </TopSection>
       <BottomSection>
         <span>{comment.content}</span>
@@ -114,7 +116,7 @@ export default function Comment({comment, me}) {
               <AiOutlineExclamationCircle />
             </i>
           </IconButton>
-          {declareOpen && <Declare close={closeDeclare} />}
+          {declareOpen && <Declare me={me} close={closeDeclare} />}
           {me === comment.UserId && (
             <IconButton onClick={() => setChangeCommentOpen(true)}>
               <span>수정</span>
@@ -123,7 +125,9 @@ export default function Comment({comment, me}) {
               </i>
             </IconButton>
           )}
-          {changeCommentOpen && <ChangeComment close={closeChangeComment} />}
+          {changeCommentOpen && (
+            <ChangeComment me={me} close={closeChangeComment} />
+          )}
         </div>
       </BottomSection>
     </CommentBox>
