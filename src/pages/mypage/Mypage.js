@@ -1,6 +1,5 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import Apply from "../../components/about/Apply";
 import Layout from "../../components/common/Layout";
 import Title from "../../components/common/Title";
 import MyPageNavi from "../../components/mypage/MyPageNavi";

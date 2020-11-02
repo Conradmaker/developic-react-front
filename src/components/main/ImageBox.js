@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import {AiOutlineHeart, AiFillHeart} from "react-icons/ai";
-import {useDispatch} from "react-redux";
-import {
-  LIKE_PHOTO_REQUEST,
-  UNLIKE_PHOTO_REQUEST,
-} from "../../reducer/photo/actions";
 
 const Description = styled.div`
   display: flex;

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import user from "../../reducer/user";
 import Avatar from "./Avatar";
 import SnsBtn from "./SnsBtn";
 import UserSummary from "./UserSummary";

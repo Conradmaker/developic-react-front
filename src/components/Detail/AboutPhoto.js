@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import draftToHtml from "draftjs-to-html";
 
 const InfoBox = styled.article`
   padding-bottom: 80px;

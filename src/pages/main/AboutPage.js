@@ -11,7 +11,6 @@ import {useState} from "react";
 import ApplyModal from "../../components/modal/ApplyModal";
 import QnAModal from "../../components/modal/QnAModal";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
 
 const Qna = styled.div`
   flex: 1.1;
