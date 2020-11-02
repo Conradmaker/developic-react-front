@@ -9,6 +9,9 @@ export default function LikeList() {
       <Label>좋아요 목록</Label>
       <ItemContainer>
         <LikeItem></LikeItem>
+        <LikeItem></LikeItem>
+        <LikeItem></LikeItem>
+        <LikeItem></LikeItem>
       </ItemContainer>
     </InfoContainer>
   );
