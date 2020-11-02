@@ -10,6 +10,7 @@ import Allpost from "./pages/profile/Allpost.js";
 import DetailPage from "./pages/photo/DetailPage";
 import EditPage from "./pages/profile/EditPage.js";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import MyPage from "./pages/mypage/Mypage.js";
 
 const GlobalStyle = createGlobalStyle`
 html{
@@ -50,6 +51,7 @@ function App() {
       <Route path="/profile/:id" component={Allpost} exact />
       <Route path="/detail/:id" component={DetailPage} exact />
       <Route path="/edit" component={EditPage} exact />
+      <Route path="/mypage" component={MyPage} />
     </ThemeProvider>
   );
 }

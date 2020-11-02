@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, {css} from "styled-components";
 
 export const InputBox = styled.div`
   height: 45px;
@@ -27,14 +27,17 @@ export const InputBox = styled.div`
   ${(props) =>
     props.long &&
     css`
-      input:focus & {
-        width: 350px;
-      }
+      width: 600px;  
+      input {
+    flex: 5;
+    &:focus {
+      flex: 7;
+    }
     `}
 `;
-export default function Input() {
+export default function Input({long}) {
   return (
-    <InputBox>
+    <InputBox long={long}>
       <label>ID</label>
       <input type="text" />
     </InputBox>

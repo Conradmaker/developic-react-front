@@ -77,7 +77,6 @@ export default function DetailPage({match}) {
   }, [dispatch]);
   return (
     <Layout>
-      <div id="top" />
       <AboutContainer>
         <HorizentalBox>
           <RightSection>

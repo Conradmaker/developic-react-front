@@ -18,6 +18,7 @@ export default function Layout({children}) {
   const [searchOpen, setSearchOpen] = useState(false);
   return (
     <>
+      <div id="top"></div>
       <SearchForm toggle={setSearchOpen} open={searchOpen} />
       <Header toggle={setSearchOpen} open={searchOpen}></Header>
       <Positioner>

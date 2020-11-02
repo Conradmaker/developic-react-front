@@ -48,7 +48,6 @@ export default function PicShopPage() {
   }, [catagoryState, dispatch, lastId, loadPhotoListLoading]);
   return (
     <Layout>
-      <div id="top"></div>
       <Banner>
         <BannerContents>
           <section>

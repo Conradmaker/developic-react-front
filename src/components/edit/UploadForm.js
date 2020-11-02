@@ -7,7 +7,7 @@ import {UPLOAD_IMG_REQUEST} from "../../reducer/photo/actions";
 import Buttons from "../common/Buttons";
 import Label from "../common/Label";
 
-const UploadBox = styled.div`
+export const UploadBox = styled.div`
   padding: 20px 0;
   form {
     display: flex;

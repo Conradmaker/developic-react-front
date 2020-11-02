@@ -177,60 +177,61 @@ export default function PicfeedPage() {
   }, [catagoryState, dispatch, lastId, loadPhotoListLoading]);
 
   return (
-    <Layout>
-      <div id="top"></div>
-      <Banner>
-        <BannerContents>
-          <section>
-            <h1>
-              Let's WAVE
-              <i>
-                <BsArrowRight />
-              </i>
-            </h1>
-            <p>랜덤한 작가의 페이지로 이동합니다.</p>
-          </section>
-          <section>
-            <Button>
-              {/* eslint-disable-next-line */}
-              <span role="img">🏄🏻‍♀️</span>SHAKE PIC
-            </Button>
-            {me ? (
-              <div>
-                <Link to={`/profile/${me.id}`}>
-                  <SmallBtn outline>PROFILE</SmallBtn>
-                </Link>
-                <Link to={``}>
-                  <SmallBtn>MYPAGE</SmallBtn>
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link to={`/login/1`}>
-                  <SmallBtn outline>SIGNUP</SmallBtn>
-                </Link>
-                <Link to={`/login/2`}>
-                  <SmallBtn>LOGIN</SmallBtn>
-                </Link>
-              </div>
-            )}
-          </section>
-        </BannerContents>
-      </Banner>
-      <CenterPositioner>
-        <h3>PICFEED</h3>
-      </CenterPositioner>
-      <Catagory changeCata={setCatagoryState} state={catagoryState} />
-      <ImagesContainer>
-        {FeedList.map((v) => (
-          <Link to={`/detail/${v.id}`} key={v.id}>
-            <ImageBox image={v} />
-          </Link>
-        ))}
-      </ImagesContainer>
-      <a href="#top">
-        <Topbtn>TOP</Topbtn>
-      </a>
-    </Layout>
+    <>
+      <Layout>
+        <Banner>
+          <BannerContents>
+            <section>
+              <h1>
+                Let's WAVE
+                <i>
+                  <BsArrowRight />
+                </i>
+              </h1>
+              <p>랜덤한 작가의 페이지로 이동합니다.</p>
+            </section>
+            <section>
+              <Button>
+                {/* eslint-disable-next-line */}
+                <span role="img">🏄🏻‍♀️</span>SHAKE PIC
+              </Button>
+              {me ? (
+                <div>
+                  <Link to={`/profile/${me.id}`}>
+                    <SmallBtn outline>PROFILE</SmallBtn>
+                  </Link>
+                  <Link to={``}>
+                    <SmallBtn>MYPAGE</SmallBtn>
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <Link to={`/login/1`}>
+                    <SmallBtn outline>SIGNUP</SmallBtn>
+                  </Link>
+                  <Link to={`/login/2`}>
+                    <SmallBtn>LOGIN</SmallBtn>
+                  </Link>
+                </div>
+              )}
+            </section>
+          </BannerContents>
+        </Banner>
+        <CenterPositioner>
+          <h3>PICFEED</h3>
+        </CenterPositioner>
+        <Catagory changeCata={setCatagoryState} state={catagoryState} />
+        <ImagesContainer>
+          {FeedList.map((v) => (
+            <Link to={`/detail/${v.id}`} key={v.id}>
+              <ImageBox image={v} />
+            </Link>
+          ))}
+        </ImagesContainer>
+        <a href="#top">
+          <Topbtn>TOP</Topbtn>
+        </a>
+      </Layout>
+    </>
   );
 }
