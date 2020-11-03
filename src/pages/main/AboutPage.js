@@ -12,8 +12,9 @@ import ApplyModal from "../../components/modal/ApplyModal";
 import QnAModal from "../../components/modal/QnAModal";
 import {useSelector} from "react-redux";
 
-const Qna = styled.div`
+export const Qna = styled.div`
   flex: 1.1;
+  height: 270px;
   background: #e5e5e5;
   padding: 10px 15px;
   display: flex;
@@ -31,10 +32,16 @@ const Qna = styled.div`
     display: flex;
   }
 `;
-const Faq = styled.div`
+export const Faq = styled.div`
   flex: 2;
+  span {
+    display: block;
+    margin: 10px 0 10px 0;
+    font-size: 25px;
+    font-weight: bold;
+  }
 `;
-const FaqQnA = styled.div`
+export const FaqQnA = styled.div`
   display: flex;
   gap: 20px;
 `;
