@@ -64,6 +64,9 @@ const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
   animation: ${slideDown} 0.24s;
+  label {
+    margin-bottom: 10px;
+  }
   h1 {
     align-self: flex-start;
     font-size: 25px;

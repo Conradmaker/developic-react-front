@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import IMG from "../../assets/img/avatarsample.png";
 import {FaRegTimesCircle} from "react-icons/fa";
+import {useState} from "react";
+import DeleteLike from "../modal/mypage/DeleteLike";
 const Summary = styled.div`
   flex: 1;
   padding: 10px 0;
@@ -21,6 +23,7 @@ const Summary = styled.div`
     i {
       font-size: 19px;
       color: orangered;
+      cursor: pointer;
     }
   }
 `;
@@ -56,7 +59,12 @@ export const ItemContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
+
 export default function LikeItem() {
+  const [open, setOpen] = useState(false);
+  const close = () => {
+    setOpen(false);
+  };
   return (
     <>
       <ItemBox>
@@ -67,12 +75,13 @@ export default function LikeItem() {
           <h2>STEELHEAD AND SPINES IN</h2>
           <div>
             <span>CONRAD</span>
-            <i>
+            <i onClick={() => setOpen(true)}>
               <FaRegTimesCircle />
             </i>
           </div>
         </Summary>
       </ItemBox>
+      {open && <DeleteLike close={close} open={open} />}
     </>
   );
 }

@@ -44,12 +44,12 @@ export const ImageCover = styled.i`
   }
 `;
 const Image = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   position: relative;
   transition: all 0.3s;
   overflow: hidden;
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
     box-shadow: 0 10px 10px gray;
     img {
       transform: scale(1.2);

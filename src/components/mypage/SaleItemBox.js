@@ -1,10 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import Buttons from "../common/Buttons";
 import {BuyImgBox, BuyItemBox, Summary} from "./BuyItem";
 import IMG from "../../assets/img/avatarsample.png";
-
-const SaleSummary = styled(Summary)``;
 
 export default function SaleItemBox() {
   return (
@@ -12,7 +9,7 @@ export default function SaleItemBox() {
       <BuyImgBox>
         <img src={IMG} alt="" />
       </BuyImgBox>
-      <SaleSummary>
+      <Summary>
         <h2>STEELHEAD AND SPINES IN ALASKA</h2>
         <div>
           <Buttons color="yellow">상태수정</Buttons>
@@ -22,7 +19,7 @@ export default function SaleItemBox() {
           <span>9,000,000</span>
           <small>2020-10-04</small>
         </p>
-      </SaleSummary>
+      </Summary>
     </BuyItemBox>
   );
 }

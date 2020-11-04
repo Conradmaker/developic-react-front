@@ -86,6 +86,7 @@ export default function Header({toggle, open}) {
           {me ? (
             <>
               <Link to={`/profile/${me.id}`}>{me.nickname} 님</Link>
+              <Link to={`/mypage/userinfo`}>MYPAGE</Link>
               <Link onClick={onLogOut}>LOGOUT</Link>
             </>
           ) : (

@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import styled, {css} from "styled-components";
 import Buttons from "../common/Buttons";
 import IMG from "../../assets/img/avatarsample.png";
+import PayCancel from "../modal/mypage/PayCancel";
 export const Summary = styled.div`
   width: 50%;
   border-left: 4px solid #999;
@@ -84,22 +85,31 @@ export const BuyItemContainer = styled.div`
 `;
 
 export default function BuyItem() {
+  const [open, setOpen] = useState(false);
+  const close = () => {
+    setOpen(false);
+  };
   return (
-    <BuyItemBox>
-      <BuyImgBox>
-        <img src={IMG} alt="" />
-      </BuyImgBox>
-      <Summary>
-        <h2>STEELHEAD AND SPINES IN ALASKA</h2>
-        <div>
-          <Buttons color="pink">구매취소</Buttons>
-          <span>배송중</span>
-        </div>
-        <p>
-          <span>9,000,000</span>
-          <small>2020-10-04</small>
-        </p>
-      </Summary>
-    </BuyItemBox>
+    <>
+      <BuyItemBox>
+        <BuyImgBox>
+          <img src={IMG} alt="" />
+        </BuyImgBox>
+        <Summary>
+          <h2>STEELHEAD AND SPINES IN ALASKA</h2>
+          <div>
+            <Buttons color="pink" onClick={() => setOpen(true)}>
+              구매취소
+            </Buttons>
+            <span>배송중</span>
+          </div>
+          <p>
+            <span>9,000,000</span>
+            <small>2020-10-04</small>
+          </p>
+        </Summary>
+      </BuyItemBox>
+      {open && <PayCancel open={open} close={close} />}
+    </>
   );
 }

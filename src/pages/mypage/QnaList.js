@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import List from "../../components/about/List";
 import Buttons from "../../components/common/Buttons";
 import Label from "../../components/common/Label";
@@ -36,7 +37,9 @@ export default function QnaList() {
               Lunch at PM 12:00 ~ 13:00
             </p>
             <div>
-              <Buttons>1:1문의 작성</Buttons>
+              <Link to="/about#about-faq">
+                <Buttons>1:1문의 작성</Buttons>
+              </Link>
             </div>
           </span>
         </Qna>

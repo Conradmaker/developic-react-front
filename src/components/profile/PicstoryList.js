@@ -32,12 +32,10 @@ const ListContainer = styled.div`
   }
 `;
 
-const PicstoryList = () => {
-  const {FeedList} = useSelector((state) => state.photo);
+const PicstoryList = ({picstory}) => {
   const [detail, setDetail] = useState(false);
-  const onDetail = (id) => {
-    console.log(id);
-    setDetail(id);
+  const onDetail = (index) => {
+    setDetail(index);
   };
   const onBackList = () => {
     setDetail(false);
@@ -45,21 +43,21 @@ const PicstoryList = () => {
   return (
     <ListContainer>
       {!detail ? (
-        FeedList.map((v) => (
-          <section onClick={() => onDetail(v.id)}>
+        picstory.map((v, i) => (
+          <section onClick={() => onDetail(i)}>
             <PicstoryItem key={v.id} v={v} />
           </section>
         ))
       ) : (
         <>
           <ListMenu>
-            <h1>픽스토리제목</h1>
+            <h1>{picstory[detail].name}</h1>
             <span onClick={onBackList}>
               <IoIosArrowBack />
               BACK
             </span>
           </ListMenu>
-          <Feed />
+          <Feed feed={picstory[detail].Photos} />
         </>
       )}
     </ListContainer>

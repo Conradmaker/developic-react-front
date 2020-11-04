@@ -48,7 +48,7 @@ const CommentBox = styled.div`
   }
 `;
 
-export default function CommentListItem() {
+export default function CommentListItem({setOpen, setCommentId}) {
   return (
     <CommentBox>
       <CommentImgBox>
@@ -59,7 +59,12 @@ export default function CommentListItem() {
         <p>첫번째 댓글입니다.</p>
       </CommentSummary>
       <Remove>
-        <i>
+        <i
+          onClick={() => {
+            setCommentId(1);
+            setOpen(true);
+          }}
+        >
           <CgPlayListRemove />
         </i>
       </Remove>

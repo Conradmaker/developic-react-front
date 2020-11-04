@@ -58,11 +58,19 @@ const ItemBox = styled.div`
   }
 `;
 
-const PicstoryItem = ({ v }) => {
+const PicstoryItem = ({v}) => {
+  console.log(v);
   return (
     <ItemBox>
       <ImgWrapper>
-        <img src={v.src} alt={v.id} />
+        {v.Photos[0] ? (
+          <img
+            src={`http://localhost:3030/${v.Photos[0].image_src}`}
+            alt={v.id}
+          />
+        ) : (
+          <h1>빈 픽스토리 입니다.</h1>
+        )}
       </ImgWrapper>
       <Summary>
         <h1>{v.name}</h1>

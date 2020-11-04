@@ -43,6 +43,7 @@ export default function Allpost({match}) {
   const {profile} = useSelector((state) => state.user);
   const {id} = match.params;
   const [link, setLink] = useState("allpost");
+  console.log(profile);
   useEffect(() => {
     dispatch({type: LOAD_PROFILE_REQUEST, data: {userId: id}});
   }, [dispatch, id]);
@@ -60,8 +61,10 @@ export default function Allpost({match}) {
           <span onClick={() => setLink("picstory")}>PICSTORY</span>
         </Catagory>
       </ProfileContainer>
-      {link === "allpost" && <Feed />}
-      {link === "picstory" && <PicstoryList />}
+      {link === "allpost" && <Feed feed={profile && profile.userPhotos} />}
+      {link === "picstory" && (
+        <PicstoryList picstory={profile && profile.picstory} />
+      )}
     </Layout>
   );
 }
