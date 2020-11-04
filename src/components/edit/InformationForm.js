@@ -75,6 +75,7 @@ export default function InformationForm() {
       },
     });
   };
+  const [picstoryName, onChangePicstoryName, setName] = useInput("");
   return (
     <InformationFormBox>
       <Label>INFORMATION</Label>
@@ -124,6 +125,7 @@ export default function InformationForm() {
           type="text"
           disabled
           placeholder="등록을 원하시면 선택해주세요"
+          value={picstory}
         />
         <Buttons
           type="button"
@@ -133,7 +135,16 @@ export default function InformationForm() {
         >
           SELECT
         </Buttons>
-        {modalOpen && <AddPicstory setPicstory={setPicstory} close={onClose} />}
+        {modalOpen && (
+          <AddPicstory
+            setPicstory={setPicstory}
+            picstory={picstory}
+            close={onClose}
+            picstoryName={picstoryName}
+            onChangePicstoryName={onChangePicstoryName}
+            setName={setName}
+          />
+        )}
       </PicstoryBox>
       <Positioner />
       <Positioner>

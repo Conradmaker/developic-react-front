@@ -25,14 +25,33 @@ const PicList = styled.ul`
     font-size: 20px;
     cursor: pointer;
     &::before {
-      content: "☛ ";
+      content: "- ";
     }
   }
 `;
-export default function AddPicstory({close, setPicstory}) {
+
+export default function AddPicstory({
+  close,
+  picstory,
+  setPicstory,
+  picstoryName,
+  onChangePicstoryName,
+  setName,
+}) {
   const dispatch = useDispatch();
   const {PicstoryList} = useSelector((state) => state.photo);
-  const [picstoryName, onChangePicstoryName, setName] = useInput("");
+  const onCancel = () => {
+    setPicstory("");
+    setName("");
+    close();
+  };
+  const underline = (pid) => {
+    const result =
+      picstory === pid
+        ? {fontWeight: "bold", fontSize: "20px"}
+        : {textDecoration: "none"};
+    return result;
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch({type: ADD_PICSTORY_REQUEST, data: {name: picstoryName}});
@@ -46,7 +65,11 @@ export default function AddPicstory({close, setPicstory}) {
       <Label>PICSTORY</Label>
       <PicList>
         {PicstoryList.map((v) => (
-          <li onClick={() => setPicstory(v.id)} key={v.id}>
+          <li
+            onClick={() => setPicstory(v.id)}
+            key={v.id}
+            style={underline(v.id)}
+          >
             {v.name}
           </li>
         ))}
@@ -70,10 +93,10 @@ export default function AddPicstory({close, setPicstory}) {
       </NewPicstoryForm>
       <Gap />
       <ModalBtnBox>
-        <Buttons color="black" onClick={close}>
+        <Buttons color="black" onClick={onCancel}>
           뒤로
         </Buttons>
-        <Buttons type="button" font="black">
+        <Buttons type="button" onClick={close} font="black">
           확인
         </Buttons>
       </ModalBtnBox>

@@ -10,9 +10,9 @@ export default function DeleteLike({open, close}) {
       <Gap />
       <ModalBtnBox>
         <Buttons color="black" onClick={close}>
-          취소
+          닫기
         </Buttons>
-        <Buttons>삭제</Buttons>
+        <Buttons>확인</Buttons>
       </ModalBtnBox>
     </ModalLayout>
   );
