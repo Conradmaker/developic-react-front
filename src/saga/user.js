@@ -1,6 +1,9 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 import {
+  CHANGE_USER_INFO_ERROR,
+  CHANGE_USER_INFO_REQUEST,
+  CHANGE_USER_INFO_SUCCESS,
   LOAD_MY_INFO_ERROR,
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
@@ -107,6 +110,24 @@ function* loadProfile(action) {
 function* watchLoadProfile() {
   yield takeEvery(LOAD_PROFILE_REQUEST, loadProfile);
 }
+
+//개인정보 수정
+async function changeMyInfoAPI(data) {
+  const response = await axios.post("user/change", data);
+  return response.data;
+}
+function* changeMyInfo(action) {
+  try {
+    const data = yield call(changeMyInfoAPI, action.data);
+    yield put({type: CHANGE_USER_INFO_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: CHANGE_USER_INFO_ERROR, error: e.response.data});
+  }
+}
+function* watchChangeMyInfo() {
+  yield takeEvery(CHANGE_USER_INFO_REQUEST, changeMyInfo);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
@@ -114,5 +135,6 @@ export default function* userSaga() {
     fork(watchLogOut),
     fork(watchLoadMyInfo),
     fork(watchLoadProfile),
+    fork(watchChangeMyInfo),
   ]);
 }

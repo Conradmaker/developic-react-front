@@ -19,10 +19,10 @@ const ImgBox = styled.div`
     `}
 `;
 
-export default function Avatar({...rest}) {
+export default function Avatar({src, ...rest}) {
   return (
     <ImgBox {...rest}>
-      <img src={IMG} alt="avatar" />
+      <img src={`http://localhost:3030/${src}`} alt="avatar" />
     </ImgBox>
   );
 }
