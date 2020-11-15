@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import Buttons from "../../components/common/Buttons";
@@ -28,10 +28,13 @@ export const InfoContainer = styled.div``;
 const boxStyle = {
   marginLeft: "300px",
 };
-export default function UserInfo() {
+export default function UserInfo({history}) {
   const dispatch = useDispatch();
+  const {changeUserInfoSuccess} = useSelector((state) => state.user);
   const {uploadImgSuccess: src} = useSelector((state) => state.photo);
+
   const [nickname, onChangeNickname] = useInput("");
+  console.log(nickname);
   const [phone, onChangePhone] = useInput("");
   const [sns, onChangeSns] = useInput("");
   const [address, onChangeAddress] = useInput("");
@@ -42,7 +45,12 @@ export default function UserInfo() {
       data: {nickname, phone, sns, address, info, src},
     });
   };
-
+  useEffect(() => {
+    if (changeUserInfoSuccess) {
+      alert("성공적으로 수정되었습니다.");
+      return history.push("/");
+    }
+  });
   return (
     <InfoContainer>
       <form>

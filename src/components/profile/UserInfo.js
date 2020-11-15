@@ -30,7 +30,7 @@ export default function UserInfo({profile, photos}) {
   return (
     <ProfileBox>
       <LeftInfo>
-        <Avatar />
+        <Avatar src={profile && profile.avatar} />
         <h1>{profile && profile.nickname}</h1>
         <p>{profile && profile.email}</p>
         <SnsBtn />
