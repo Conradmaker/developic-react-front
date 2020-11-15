@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const NavBox = styled.ul`
   width: 30%;
@@ -25,19 +25,13 @@ const NavBox = styled.ul`
 export default function Navigation() {
   return (
     <NavBox>
-      <NavLink
-        to="/picfeed"
-        activeStyle={{ borderBottom: "2px solid #ffca3e" }}
-      >
+      <NavLink to="/picfeed" activeStyle={{borderBottom: "2px solid #ffca3e"}}>
         <li>PICFEED</li>
       </NavLink>
-      <NavLink
-        to="/picshop"
-        activeStyle={{ borderBottom: "2px solid #ffca3e" }}
-      >
+      <NavLink to="/picshop" activeStyle={{borderBottom: "2px solid #ffca3e"}}>
         <li>PICSHOP</li>
       </NavLink>
-      <NavLink to="/about" activeStyle={{ borderBottom: "2px solid #ffca3e" }}>
+      <NavLink to="/about" activeStyle={{borderBottom: "2px solid #ffca3e"}}>
         <li>ABOUT</li>
       </NavLink>
     </NavBox>

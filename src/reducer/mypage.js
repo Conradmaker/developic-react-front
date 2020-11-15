@@ -9,6 +9,9 @@ export const DELETE_LIKE_LIST_ERROR = "mypage/DELETE_LIKE_LIST_ERROR";
 export const LOAD_COMMENT_LIST_REQUEST = "mypage/LOAD_COMMENT_LIST_REQUEST";
 export const LOAD_COMMENT_LIST_SUCCESS = "mypage/LOAD_COMMENT_LIST_SUCCESS";
 export const LOAD_COMMENT_LIST_ERROR = "mypage/LOAD_COMMENT_LIST_ERROR";
+export const LOAD_QNA_LIST_REQUEST = "mypage/LOAD_QNA_LIST_REQUEST";
+export const LOAD_QNA_LIST_SUCCESS = "mypage/LOAD_QNA_LIST_SUCCESS";
+export const LOAD_QNA_LIST_ERROR = "mypage/LOAD_QNA_LIST_ERROR";
 
 const initialState = {
   loadLikeListLoading: false,
@@ -20,6 +23,9 @@ const initialState = {
   loadCommentListLoading: false,
   loadCommentListSuccess: false,
   loadCommentListError: false,
+  loadQnaListLoading: false,
+  loadQnaListSuccess: false,
+  loadQnaListError: false,
 };
 
 export default function mypage(state = initialState, action) {
@@ -96,6 +102,27 @@ export default function mypage(state = initialState, action) {
         loadCommentListSuccess: state.loadCommentListSuccess.filter(
           (v) => v.id !== action.payload.id
         ),
+      };
+    case LOAD_QNA_LIST_REQUEST:
+      return {
+        ...state,
+        loadQnaListLoading: false,
+        loadQnaListSuccess: false,
+        loadQnaListError: false,
+      };
+    case LOAD_QNA_LIST_SUCCESS:
+      return {
+        ...state,
+        loadQnaListLoading: false,
+        loadQnaListSuccess: action.payload,
+        loadQnaListError: false,
+      };
+    case LOAD_QNA_LIST_ERROR:
+      return {
+        ...state,
+        loadQnaListLoading: false,
+        loadQnaListSuccess: false,
+        loadQnaListError: action.error,
       };
     default:
       return state;

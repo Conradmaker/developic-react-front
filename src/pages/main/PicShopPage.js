@@ -89,7 +89,7 @@ export default function PicShopPage() {
           <ShopImageBox image={v} key={v.id} />
         ))}
       </ShopCardContainer>
-      <a href="#top">
+      <a href="#">
         <Topbtn>TOP</Topbtn>
       </a>
     </Layout>

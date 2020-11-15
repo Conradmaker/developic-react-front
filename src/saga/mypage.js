@@ -10,6 +10,9 @@ import {
   LOAD_LIKE_LIST_ERROR,
   LOAD_LIKE_LIST_REQUEST,
   LOAD_LIKE_LIST_SUCCESS,
+  LOAD_QNA_LIST_ERROR,
+  LOAD_QNA_LIST_REQUEST,
+  LOAD_QNA_LIST_SUCCESS,
 } from "../reducer/mypage";
 
 //좋아요목록
@@ -50,7 +53,7 @@ function* watchDeleteLike() {
 
 //댓글목록 조회
 async function loadCommentAPI() {
-  const response = await axios.get("/mypage/Comment");
+  const response = await axios.get("/mypage/comment");
   return response.data;
 }
 function* loadComment() {
@@ -65,10 +68,29 @@ function* loadComment() {
 function* watchLoadComment() {
   yield takeEvery(LOAD_COMMENT_LIST_REQUEST, loadComment);
 }
+
+//Qna목록 조회
+async function loadQnaAPI() {
+  const response = await axios.get("/mypage/qna");
+  return response.data;
+}
+function* loadQna() {
+  try {
+    const data = yield call(loadQnaAPI);
+    yield put({type: LOAD_QNA_LIST_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_QNA_LIST_ERROR, error: e.response.data});
+  }
+}
+function* watchLoadQna() {
+  yield takeEvery(LOAD_QNA_LIST_REQUEST, loadQna);
+}
 export default function* mypageSaga() {
   yield all([
     fork(watchLoadLike),
     fork(watchDeleteLike),
     fork(watchLoadComment),
+    fork(watchLoadQna),
   ]);
 }

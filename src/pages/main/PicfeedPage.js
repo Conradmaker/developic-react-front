@@ -228,7 +228,7 @@ export default function PicfeedPage() {
             </Link>
           ))}
         </ImagesContainer>
-        <a href="#top">
+        <a href="#">
           <Topbtn>TOP</Topbtn>
         </a>
       </Layout>

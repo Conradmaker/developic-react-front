@@ -24,6 +24,7 @@ export default function QnAModal({close, me}) {
   );
   const onAdd = () => {
     dispatch({type: ADD_QUESTION_REQUEST, data: {id: me.id, title, content}});
+    close();
   };
   useEffect(() => {
     if (addQuestionSuccess) {

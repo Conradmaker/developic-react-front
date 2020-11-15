@@ -39,6 +39,12 @@ export const ModalInput = styled.input`
 `;
 export const Gap = styled.div`
   height: 30px;
+  span {
+    font-weight: bold;
+    font-size: 17px !important;
+    display: block;
+    margin: 5 0px;
+  }
 `;
 export const ModalBtnBox = styled.div`
   display: flex;

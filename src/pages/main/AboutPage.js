@@ -11,6 +11,7 @@ import {useState} from "react";
 import ApplyModal from "../../components/modal/ApplyModal";
 import QnAModal from "../../components/modal/QnAModal";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 export const Qna = styled.div`
   flex: 1.1;
@@ -30,6 +31,9 @@ export const Qna = styled.div`
   }
   div {
     display: flex;
+    a {
+      margin-left: 20px;
+    }
   }
 `;
 export const Faq = styled.div`
@@ -119,9 +123,17 @@ export default function AboutPage() {
                       1:1문의 작성
                     </Buttons>
                     {qnaOpen && <QnAModal me={me} close={closeQna} />}
-                    <Buttons color="black" small>
-                      작성 목록
-                    </Buttons>
+                    {me ? (
+                      <Link to="/mypage/qna">
+                        <Buttons color="black" small>
+                          작성 목록
+                        </Buttons>
+                      </Link>
+                    ) : (
+                      <Buttons color="black" small>
+                        로그인 필요
+                      </Buttons>
+                    )}
                   </div>
                 </span>
               </Qna>
