@@ -8,7 +8,9 @@ export default function Delete({open, close, userId, commentId}) {
   const dispatch = useDispatch();
   const onDelete = () => {
     dispatch({type: DELETE_COMMENT_REQUEST, data: {userId, commentId}});
+    close();
   };
+  console.log(userId, commentId);
   return (
     <ModalLayout open={open}>
       <h1>삭제하시겠습니까?</h1>

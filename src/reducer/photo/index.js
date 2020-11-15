@@ -297,9 +297,9 @@ export default function photo(state = initialState, action) {
         ...state,
         Detail: {
           ...state.Detail,
-          Comments: state.Detail.Comments.filter(
-            (v) => v.id !== action.payload.id
-          ),
+          Comments:
+            state.Detail.Comments &&
+            state.Detail.Comments.filter((v) => v.id !== action.payload.id),
         },
       };
     case CHANGE_COMMENT_SUCCESS:

@@ -4,6 +4,9 @@ import {
   DELETE_LIKE_LIST_ERROR,
   DELETE_LIKE_LIST_REQUEST,
   DELETE_LIKE_LIST_SUCCESS,
+  LOAD_COMMENT_LIST_ERROR,
+  LOAD_COMMENT_LIST_REQUEST,
+  LOAD_COMMENT_LIST_SUCCESS,
   LOAD_LIKE_LIST_ERROR,
   LOAD_LIKE_LIST_REQUEST,
   LOAD_LIKE_LIST_SUCCESS,
@@ -14,7 +17,7 @@ async function loadLikeAPI() {
   const response = await axios.get("/mypage/like");
   return response.data;
 }
-function* loadLike(action) {
+function* loadLike() {
   try {
     const data = yield call(loadLikeAPI);
     yield put({type: LOAD_LIKE_LIST_SUCCESS, payload: data});
@@ -45,6 +48,27 @@ function* watchDeleteLike() {
   yield takeEvery(DELETE_LIKE_LIST_REQUEST, deleteLike);
 }
 
+//댓글목록 조회
+async function loadCommentAPI() {
+  const response = await axios.get("/mypage/Comment");
+  return response.data;
+}
+function* loadComment() {
+  try {
+    const data = yield call(loadCommentAPI);
+    yield put({type: LOAD_COMMENT_LIST_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_COMMENT_LIST_ERROR, error: e.response.data});
+  }
+}
+function* watchLoadComment() {
+  yield takeEvery(LOAD_COMMENT_LIST_REQUEST, loadComment);
+}
 export default function* mypageSaga() {
-  yield all([fork(watchLoadLike), fork(watchDeleteLike)]);
+  yield all([
+    fork(watchLoadLike),
+    fork(watchDeleteLike),
+    fork(watchLoadComment),
+  ]);
 }

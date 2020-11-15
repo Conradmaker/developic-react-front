@@ -48,20 +48,23 @@ const CommentBox = styled.div`
   }
 `;
 
-export default function CommentListItem({setOpen, setCommentId}) {
+export default function CommentListItem({setOpen, setCommentId, item}) {
   return (
     <CommentBox>
       <CommentImgBox>
-        <img src={IMG} alt="" />
+        <img
+          src={`http://localhost:3030/${item.Photo.image_src}`}
+          alt={item.Photo.image_src}
+        />
       </CommentImgBox>
       <CommentSummary>
-        <h2>STEELHEAD AND SPINES IN ALASKA</h2>
-        <p>첫번째 댓글입니다.</p>
+        <h2>{item.Photo.name}</h2>
+        <p>{item.content}</p>
       </CommentSummary>
       <Remove>
         <i
           onClick={() => {
-            setCommentId(1);
+            setCommentId(item.id);
             setOpen(true);
           }}
         >
