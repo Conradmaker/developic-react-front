@@ -4,7 +4,6 @@ import ModalLayout, {Gap, ModalBtnBox} from "./ModalLayout";
 import styled from "styled-components";
 import {PicstoryBox, SubTitle} from "../edit/InformationForm";
 import Buttons from "../common/Buttons";
-import useInput from "../../hooks/useInput";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {

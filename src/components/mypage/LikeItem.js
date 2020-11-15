@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useCallback} from "react";
 import styled from "styled-components";
 import IMG from "../../assets/img/avatarsample.png";
 import {FaRegTimesCircle} from "react-icons/fa";
 import {useState} from "react";
 import DeleteLike from "../modal/mypage/DeleteLike";
+import {useDispatch} from "react-redux";
+import {DELETE_LIKE_LIST_REQUEST} from "../../reducer/mypage";
 const Summary = styled.div`
   flex: 1;
   padding: 10px 0;
@@ -16,11 +18,15 @@ const Summary = styled.div`
     span {
       font-size: 14px;
       color: #999;
+      height: 20px;
       &::before {
         content: "BY ";
       }
     }
     i {
+      height: 20px;
+      width: 20px;
+      display: none;
       font-size: 19px;
       color: orangered;
       cursor: pointer;
@@ -52,6 +58,11 @@ const ItemBox = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
+  &:hover {
+    i {
+      display: flex;
+    }
+  }
 `;
 export const ItemContainer = styled.div`
   width: 100%;
@@ -60,8 +71,13 @@ export const ItemContainer = styled.div`
   justify-content: space-between;
 `;
 
-export default function LikeItem() {
+export default function LikeItem({item}) {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const onLikeDelete = useCallback(() => {
+    dispatch({type: DELETE_LIKE_LIST_REQUEST, data: item.id});
+    setOpen(false);
+  }, [dispatch, item.id]);
   const close = () => {
     setOpen(false);
   };
@@ -69,19 +85,24 @@ export default function LikeItem() {
     <>
       <ItemBox>
         <ImgBox>
-          <img src={IMG} alt="" />
+          <img
+            src={`http://localhost:3030/${item.image_src}`}
+            alt={item.image_src}
+          />
         </ImgBox>
         <Summary>
-          <h2>STEELHEAD AND SPINES IN</h2>
+          <h2>{item.name}</h2>
           <div>
-            <span>CONRAD</span>
+            <span>{item.User.nickname}</span>
             <i onClick={() => setOpen(true)}>
               <FaRegTimesCircle />
             </i>
           </div>
         </Summary>
       </ItemBox>
-      {open && <DeleteLike close={close} open={open} />}
+      {open && (
+        <DeleteLike close={close} open={open} onLikeDelete={onLikeDelete} />
+      )}
     </>
   );
 }

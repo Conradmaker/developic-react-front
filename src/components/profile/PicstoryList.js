@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import PicstoryItem from "./PicstoryItem";
-import {useSelector} from "react-redux";
 import {IoIosArrowBack} from "react-icons/io";
 import Feed from "../main/Feed";
 const ListMenu = styled.div`

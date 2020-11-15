@@ -1,5 +1,4 @@
 import React from "react";
-import IMG from "../../assets/img/avatarsample.png";
 import styled, {css} from "styled-components";
 
 const ImgBox = styled.div`

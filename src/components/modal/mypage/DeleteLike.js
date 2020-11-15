@@ -2,7 +2,7 @@ import React from "react";
 import Buttons from "../../common/Buttons";
 import ModalLayout, {Gap, ModalBtnBox} from "../ModalLayout";
 
-export default function DeleteLike({open, close}) {
+export default function DeleteLike({open, close, onLikeDelete}) {
   return (
     <ModalLayout open={open}>
       <h1>좋아요를 취소 하시겠습니까?</h1>
@@ -12,7 +12,7 @@ export default function DeleteLike({open, close}) {
         <Buttons color="black" onClick={close}>
           닫기
         </Buttons>
-        <Buttons>확인</Buttons>
+        <Buttons onClick={onLikeDelete || null}>확인</Buttons>
       </ModalBtnBox>
     </ModalLayout>
   );

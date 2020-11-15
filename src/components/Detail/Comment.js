@@ -113,7 +113,7 @@ export default function Comment({comment, me}) {
       <TopSection>
         <Link to={`/profile/${comment.UserId}`}>
           <div>
-            <Avatar small />
+            <Avatar small src={comment.User.avatar} />
             <span>
               {comment.User.nickname} <small>{comment.updatedAt}</small>
             </span>
