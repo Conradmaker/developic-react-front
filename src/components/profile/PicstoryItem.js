@@ -59,7 +59,6 @@ const ItemBox = styled.div`
 `;
 
 const PicstoryItem = ({v}) => {
-  console.log(v);
   return (
     <ItemBox>
       <ImgWrapper>

@@ -7,6 +7,7 @@ import {
   MdClose,
 } from "react-icons/md";
 import useInput from "../../hooks/useInput";
+import {withRouter} from "react-router-dom";
 
 const SearchContainer = styled.div`
   position: fixed;
@@ -72,9 +73,18 @@ const SaleCheck = styled.div`
   }
 `;
 
-export default function SearchForm({open, toggle}) {
+function SearchForm({open, toggle, history}) {
   const [text, onChangeText] = useInput("");
   const [check, setCheck] = useState(false);
+  const onSearch = () => {
+    if (!check) {
+      history.push(`/picfeed/${text}`);
+      toggle(false);
+    } else {
+      history.push(`/picshop/${text}`);
+      toggle(false);
+    }
+  };
   return (
     <SearchContainer open={open}>
       <SearchBox>
@@ -90,7 +100,7 @@ export default function SearchForm({open, toggle}) {
           value={text}
           onChange={onChangeText}
         />
-        <i>
+        <i onClick={onSearch}>
           <MdSearch />
         </i>
         <i onClick={() => toggle(false)}>
@@ -101,3 +111,4 @@ export default function SearchForm({open, toggle}) {
     </SearchContainer>
   );
 }
+export default withRouter(SearchForm);

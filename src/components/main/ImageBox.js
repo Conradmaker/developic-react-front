@@ -81,11 +81,11 @@ export default function ImageBox({image, me}) {
           ) : (
             <AiOutlineHeart />
           )}
-          <small>{image.Likers.length}</small>
+          <small>{image && image.Likers.length}</small>
         </span>
         <Description>
-          <h3>{image.name}</h3>
-          <p>{image.User.nickname}</p>
+          <h3>{image && image.name}</h3>
+          <p>{image && image.User.nickname}</p>
         </Description>
       </ImageCover>
     </Image>

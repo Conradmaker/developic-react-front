@@ -97,12 +97,15 @@ export default function mypage(state = initialState, action) {
         loadCommentListError: action.error,
       };
     case DELETE_COMMENT_SUCCESS:
-      return {
-        ...state,
-        loadCommentListSuccess: state.loadCommentListSuccess.filter(
-          (v) => v.id !== action.payload.id
-        ),
-      };
+      if (state.loadCommentListSuccess) {
+        return {
+          ...state,
+          loadCommentListSuccess: state.loadCommentListSuccess.filter(
+            (v) => v.id !== action.payload.id
+          ),
+        };
+      }
+      return null;
     case LOAD_QNA_LIST_REQUEST:
       return {
         ...state,

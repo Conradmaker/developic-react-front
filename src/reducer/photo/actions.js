@@ -42,4 +42,8 @@ export const UNLIKE_PHOTO_REQUEST = "photo/UNLIKE_PHOTO_REQUEST";
 export const UNLIKE_PHOTO_SUCCESS = "photo/UNLIKE_PHOTO_SUCCESS";
 export const UNLIKE_PHOTO_ERROR = "photo/UNLIKE_PHOTO_ERROR";
 
+export const LOAD_SEARCH_REQUEST = "photo/LOAD_SEARCH_REQUEST";
+export const LOAD_SEARCH_SUCCESS = "photo/LOAD_SEARCH_SUCCESS";
+export const LOAD_SEARCH_ERROR = "photo/LOAD_SEARCH_ERROR";
+
 export const DELETE_LIST = "photo/DELETE_LIST";

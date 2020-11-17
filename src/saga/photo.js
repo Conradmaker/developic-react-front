@@ -25,6 +25,9 @@ import {
   LOAD_PICSTORY_ERROR,
   LOAD_PICSTORY_REQUEST,
   LOAD_PICSTORY_SUCCESS,
+  LOAD_SEARCH_ERROR,
+  LOAD_SEARCH_REQUEST,
+  LOAD_SEARCH_SUCCESS,
   LOAD_SHOPS_ERROR,
   LOAD_SHOPS_REQUEST,
   LOAD_SHOPS_SUCCESS,
@@ -228,6 +231,25 @@ function* unlikePhoto(action) {
 function* watchunLikePhoto() {
   yield takeEvery(UNLIKE_PHOTO_REQUEST, unlikePhoto);
 }
+//검색기능
+async function loadSearchAPI(data) {
+  const response = await axios.get(
+    `/load/search/${encodeURIComponent(data.text)}?sale=${data.sale}`
+  );
+  return response.data;
+}
+function* loadSearch(action) {
+  try {
+    const data = yield call(loadSearchAPI, action.data);
+    yield put({type: LOAD_SEARCH_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_SEARCH_ERROR, error: e.response.data});
+  }
+}
+function* watchLoadSearch() {
+  yield takeEvery(LOAD_SEARCH_REQUEST, loadSearch);
+}
 export default function* photoSaga() {
   yield all([
     fork(watchLoadFeeds),
@@ -241,5 +263,6 @@ export default function* photoSaga() {
     fork(watchDeclarePhoto),
     fork(watchLikePhoto),
     fork(watchunLikePhoto),
+    fork(watchLoadSearch),
   ]);
 }

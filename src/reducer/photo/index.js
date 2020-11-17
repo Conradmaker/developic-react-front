@@ -29,6 +29,9 @@ import {
   LOAD_PICSTORY_ERROR,
   LOAD_PICSTORY_REQUEST,
   LOAD_PICSTORY_SUCCESS,
+  LOAD_SEARCH_ERROR,
+  LOAD_SEARCH_REQUEST,
+  LOAD_SEARCH_SUCCESS,
   LOAD_SHOPS_ERROR,
   LOAD_SHOPS_REQUEST,
   LOAD_SHOPS_SUCCESS,
@@ -71,10 +74,12 @@ const initialState = {
   FeedList: [],
   ShopList: [],
   PicstoryList: [],
+  SearchList: [],
 };
 
 export default function photo(state = initialState, action) {
   switch (action.type) {
+    case LOAD_SEARCH_REQUEST:
     case LOAD_SHOPS_REQUEST:
     case LOAD_MAINS_REQUEST:
     case LOAD_FEEDS_REQUEST:
@@ -108,6 +113,15 @@ export default function photo(state = initialState, action) {
         loadPhotoListError: false,
         ShopList: action.payload.concat(state.ShopList),
       };
+    case LOAD_SEARCH_SUCCESS:
+      return {
+        ...state,
+        loadPhotoListLoading: false,
+        loadPhotoListSuccess: true,
+        loadPhotoListError: false,
+        SearchList: action.payload.concat(state.SearchList),
+      };
+    case LOAD_SEARCH_ERROR:
     case LOAD_SHOPS_ERROR:
     case LOAD_MAINS_ERROR:
     case LOAD_FEEDS_ERROR:
@@ -325,6 +339,7 @@ export default function photo(state = initialState, action) {
         FeedList: [],
         ShopList: [],
         Detail: {},
+        SearchList: [],
       };
     default:
       return state;

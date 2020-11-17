@@ -11,6 +11,8 @@ import DetailPage from "./pages/photo/DetailPage";
 import EditPage from "./pages/profile/EditPage.js";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import MyPage from "./pages/mypage/Mypage.js";
+import SearchFeedPage from "./pages/main/SearchFeedPage.js";
+import SearchShopPage from "./pages/main/SearchShopPage.js";
 
 const GlobalStyle = createGlobalStyle`
 html{
@@ -45,7 +47,9 @@ function App() {
       <GlobalStyle />
       <Route path="/" component={MainPage} exact />
       <Route path="/picfeed" component={PicfeedPage} exact />
+      <Route path="/picfeed/:text" component={SearchFeedPage} exact />
       <Route path="/picshop" component={PicShopPage} exact />
+      <Route path="/picshop/:text" component={SearchShopPage} exact />
       <Route path="/about" component={AboutPage} exact />
       <Route path="/login/:sl" component={LoginPage} exact />
       <Route path="/profile/:id" component={Allpost} exact />
