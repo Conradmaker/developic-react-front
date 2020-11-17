@@ -22,6 +22,14 @@ export const CHANGE_USER_INFO_REQUEST = "user/CHANGE_USER_INFO_REQUEST";
 export const CHANGE_USER_INFO_SUCCESS = "user/CHANGE_USER_INFO_SUCCESS";
 export const CHANGE_USER_INFO_ERROR = "user/CHANGE_USER_INFO_ERROR";
 
+export const ADD_CART_REQUEST = "photo/ADD_CART_REQUEST";
+export const ADD_CART_SUCCESS = "photo/ADD_CART_SUCCESS";
+export const ADD_CART_ERROR = "photo/ADD_CART_ERROR";
+
+export const REMOVE_CART_REQUEST = "photo/REMOVE_CART_REQUEST";
+export const REMOVE_CART_SUCCESS = "photo/REMOVE_CART_SUCCESS";
+export const REMOVE_CART_ERROR = "photo/REMOVE_CART_ERROR";
+
 const initialState = {
   signUpLoading: false,
   signUpSuccess: false,
@@ -38,6 +46,9 @@ const initialState = {
   changeUserInfoLoading: false,
   changeUserInfoSuccess: false,
   changeUserInfoError: false,
+  addCartRequest: false,
+  addCartSuccess: false,
+  addCartError: false,
 
   me: null,
   Profile: {},
@@ -157,6 +168,46 @@ export default function user(state = initialState, action) {
         changeUserInfoLoading: false,
         changeUserInfoSuccess: false,
         changeUserInfoError: action.error,
+      };
+    case REMOVE_CART_REQUEST:
+    case ADD_CART_REQUEST:
+      return {
+        ...state,
+        addCartLoading: true,
+        addCartSuccess: false,
+        addCartError: false,
+      };
+    case REMOVE_CART_ERROR:
+    case ADD_CART_ERROR:
+      return {
+        ...state,
+        addCartLoading: false,
+        addCartSuccess: false,
+        addCartError: action.error,
+      };
+    case ADD_CART_SUCCESS:
+      return {
+        ...state,
+        addCartLoading: false,
+        addCartSuccess: true,
+        addCartError: false,
+        me: {
+          ...state.me,
+          CartIn: state.me.CartIn.concat({id: action.payload.photoId}),
+        },
+      };
+    case REMOVE_CART_SUCCESS:
+      return {
+        ...state,
+        addCartLoading: false,
+        addCartSuccess: true,
+        addCartError: false,
+        me: {
+          ...state.me,
+          CartIn: state.me.CartIn.filter(
+            (v) => v.id !== action.payload.photoId
+          ),
+        },
       };
     default:
       return state;

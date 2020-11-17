@@ -1,6 +1,9 @@
 import axios from "axios";
 import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 import {
+  ADD_CART_ERROR,
+  ADD_CART_REQUEST,
+  ADD_CART_SUCCESS,
   CHANGE_USER_INFO_ERROR,
   CHANGE_USER_INFO_REQUEST,
   CHANGE_USER_INFO_SUCCESS,
@@ -16,6 +19,9 @@ import {
   LOG_OUT_ERROR,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
+  REMOVE_CART_ERROR,
+  REMOVE_CART_REQUEST,
+  REMOVE_CART_SUCCESS,
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -128,6 +134,42 @@ function* changeMyInfo(action) {
 function* watchChangeMyInfo() {
   yield takeEvery(CHANGE_USER_INFO_REQUEST, changeMyInfo);
 }
+
+//카트인
+async function addCartAPI(data) {
+  const response = await axios.post("user/cart", data);
+  return response.data;
+}
+function* addCart(action) {
+  try {
+    const data = yield call(addCartAPI, action.data);
+    yield put({type: ADD_CART_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: ADD_CART_ERROR, error: e.response.data});
+  }
+}
+function* watchAddCart() {
+  yield takeEvery(ADD_CART_REQUEST, addCart);
+}
+
+//카트아웃
+async function removeCartAPI(data) {
+  const response = await axios.delete(`user/cart/${data.id}`);
+  return response.data;
+}
+function* removeCart(action) {
+  try {
+    const data = yield call(removeCartAPI, action.data);
+    yield put({type: REMOVE_CART_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: REMOVE_CART_ERROR, error: e.response.data});
+  }
+}
+function* watchRemoveCart() {
+  yield takeEvery(REMOVE_CART_REQUEST, removeCart);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
@@ -136,5 +178,7 @@ export default function* userSaga() {
     fork(watchLoadMyInfo),
     fork(watchLoadProfile),
     fork(watchChangeMyInfo),
+    fork(watchRemoveCart),
+    fork(watchAddCart),
   ]);
 }

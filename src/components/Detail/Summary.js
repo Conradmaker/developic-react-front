@@ -4,6 +4,8 @@ import {BiCart} from "react-icons/bi";
 import Label from "../common/Label";
 import Buttons from "../common/Buttons";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {ADD_CART_REQUEST, REMOVE_CART_REQUEST} from "../../reducer/user";
 
 export const ButtonBox = styled.div`
   display: flex;
@@ -42,9 +44,17 @@ const SummaryBox = styled.div`
 `;
 
 export default function Summary({open, detail}) {
-  console.log(detail);
+  const {me} = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const {User} = detail;
-
+  const onAddCart = () => {
+    dispatch({type: ADD_CART_REQUEST, data: {id: detail.id}});
+    open(true);
+  };
+  const onRemoveCart = () => {
+    dispatch({type: REMOVE_CART_REQUEST, data: {id: detail.id}});
+  };
+  const Carted = me && me.CartIn.findIndex((v) => v.id === detail.id);
   return (
     <SummaryBox>
       <Label>{detail.name}</Label>
@@ -59,10 +69,27 @@ export default function Summary({open, detail}) {
       {!detail.sale ? (
         <ButtonBox>
           <Buttons small>BUY NOW</Buttons>
-          <Buttons small outline font="black" onClick={() => open(true)}>
-            ADD CART&nbsp;
-            <BiCart />
-          </Buttons>
+          {!me ? (
+            <Buttons
+              small
+              outline
+              font="black"
+              onClick={() => alert("로그인 해주세요")}
+            >
+              ADD CART&nbsp;
+              <BiCart />
+            </Buttons>
+          ) : Carted ? (
+            <Buttons small outline font="black" onClick={onAddCart}>
+              ADD CART&nbsp;
+              <BiCart />
+            </Buttons>
+          ) : (
+            <Buttons small outline color="pink" onClick={onRemoveCart}>
+              REMOVE CART&nbsp;
+              <BiCart />
+            </Buttons>
+          )}
         </ButtonBox>
       ) : (
         <ButtonBox>
