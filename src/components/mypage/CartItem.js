@@ -61,21 +61,24 @@ const CartItemBox = styled.div`
   border-bottom: 1px solid #eee;
 `;
 
-export default function CartItem() {
+export default function CartItem({item, onChangeCheck}) {
   return (
     <CartItemBox>
       <CheckBox>
-        <i>
-          <FiCheckCircle />
-        </i>
+        <input
+          type="checkbox"
+          value={item.id}
+          name="check"
+          onChange={onChangeCheck}
+        />
       </CheckBox>
       <ImgBox>
-        <img src={IMG} alt="" />
+        <img src={`http://localhost:3030/${item.image_src}`} alt="" />
       </ImgBox>
       <SummaryBox>
-        <h2>STELLHEAD AND SPINES IN ALASKA</h2>
-        <span>conrad</span>
-        <p>9,000,000</p>
+        <h2>{item.name}</h2>
+        <span>{item.User.nickname}</span>
+        <p>{item.price}</p>
       </SummaryBox>
     </CartItemBox>
   );

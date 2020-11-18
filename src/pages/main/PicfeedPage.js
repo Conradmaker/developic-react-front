@@ -15,6 +15,7 @@ import {BsArrowRight} from "react-icons/bs";
 import {darken} from "polished";
 import Topbtn from "../../components/common/Topbtn";
 import {useState} from "react";
+import {Helmet} from "react-helmet";
 const wave = keyframes`
  0%{
   transform: translate(00px, 0px) scale(1);
@@ -178,6 +179,9 @@ export default function PicfeedPage() {
 
   return (
     <>
+      <Helmet>
+        <title>asdasd</title>
+      </Helmet>
       <Layout>
         <Banner>
           <BannerContents>

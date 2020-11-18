@@ -13,6 +13,7 @@ import Topbtn from "../../components/common/Topbtn";
 import {BannerContents, Button, SmallBtn} from "./PicfeedPage";
 import ShopImageBox from "../../components/main/ShopImageBox";
 import {Link} from "react-router-dom";
+import {Helmet} from "react-helmet";
 const Banner = styled(BannerBox)`
   background-image: url(${BANNERIMG});
   background-size: cover;
@@ -47,51 +48,56 @@ export default function PicShopPage() {
     };
   }, [catagoryState, dispatch, lastId, loadPhotoListLoading]);
   return (
-    <Layout>
-      <Banner>
-        <BannerContents>
-          <section>
-            <h1>PICSHOP</h1>
-            <p>Welcome to PICTURE forest</p>
-          </section>
-          <section>
-            <Button style={{opacity: "0"}}>
-              <span></span>
-            </Button>
-            {me ? (
-              <div>
-                <Link to={`/profile/${me.id}`}>
-                  <SmallBtn outline>PROFILE</SmallBtn>
-                </Link>
-                <Link to={``}>
-                  <SmallBtn>MYPAGE</SmallBtn>
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link to={`/login/1`}>
-                  <SmallBtn outline>SIGNUP</SmallBtn>
-                </Link>
-                <Link to={`/login/2`}>
-                  <SmallBtn>LOGIN</SmallBtn>
-                </Link>
-              </div>
-            )}
-          </section>
-        </BannerContents>
-      </Banner>
-      <CenterPositioner>
-        <h3>PICSHOP</h3>
-      </CenterPositioner>
-      <Catagory changeCata={setCatagoryState} state={catagoryState} />
-      <ShopCardContainer>
-        {ShopList.map((v) => (
-          <ShopImageBox image={v} key={v.id} />
-        ))}
-      </ShopCardContainer>
-      <a href="#">
-        <Topbtn>TOP</Topbtn>
-      </a>
-    </Layout>
+    <>
+      <Helmet>
+        <title>asdasd222</title>
+      </Helmet>
+      <Layout>
+        <Banner>
+          <BannerContents>
+            <section>
+              <h1>PICSHOP</h1>
+              <p>Welcome to PICTURE forest</p>
+            </section>
+            <section>
+              <Button style={{opacity: "0"}}>
+                <span></span>
+              </Button>
+              {me ? (
+                <div>
+                  <Link to={`/profile/${me.id}`}>
+                    <SmallBtn outline>PROFILE</SmallBtn>
+                  </Link>
+                  <Link to={``}>
+                    <SmallBtn>MYPAGE</SmallBtn>
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <Link to={`/login/1`}>
+                    <SmallBtn outline>SIGNUP</SmallBtn>
+                  </Link>
+                  <Link to={`/login/2`}>
+                    <SmallBtn>LOGIN</SmallBtn>
+                  </Link>
+                </div>
+              )}
+            </section>
+          </BannerContents>
+        </Banner>
+        <CenterPositioner>
+          <h3>PICSHOP</h3>
+        </CenterPositioner>
+        <Catagory changeCata={setCatagoryState} state={catagoryState} />
+        <ShopCardContainer>
+          {ShopList.map((v) => (
+            <ShopImageBox image={v} key={v.id} />
+          ))}
+        </ShopCardContainer>
+        <a href="#">
+          <Topbtn>TOP</Topbtn>
+        </a>
+      </Layout>
+    </>
   );
 }

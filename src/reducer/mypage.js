@@ -1,4 +1,5 @@
 import {DELETE_COMMENT_SUCCESS} from "./comment";
+import {REMOVE_CART_SUCCESS} from "./user";
 
 export const LOAD_LIKE_LIST_REQUEST = "mypage/LOAD_LIKE_LIST_REQUEST";
 export const LOAD_LIKE_LIST_SUCCESS = "mypage/LOAD_LIKE_LIST_SUCCESS";
@@ -12,6 +13,12 @@ export const LOAD_COMMENT_LIST_ERROR = "mypage/LOAD_COMMENT_LIST_ERROR";
 export const LOAD_QNA_LIST_REQUEST = "mypage/LOAD_QNA_LIST_REQUEST";
 export const LOAD_QNA_LIST_SUCCESS = "mypage/LOAD_QNA_LIST_SUCCESS";
 export const LOAD_QNA_LIST_ERROR = "mypage/LOAD_QNA_LIST_ERROR";
+export const LOAD_CART_REQUEST = "mypage/LOAD_CART_REQUEST";
+export const LOAD_CART_SUCCESS = "mypage/LOAD_CART_SUCCESS";
+export const LOAD_CART_ERROR = "mypage/LOAD_CART_ERROR";
+export const REMOVE_CARTS_REQUEST = "mypage/REMOVE_CARTS_REQUEST";
+export const REMOVE_CARTS_SUCCESS = "mypage/REMOVE_CARTS_SUCCESS";
+export const REMOVE_CARTS_ERROR = "mypage/REMOVE_CARTS_ERROR";
 
 const initialState = {
   loadLikeListLoading: false,
@@ -26,6 +33,9 @@ const initialState = {
   loadQnaListLoading: false,
   loadQnaListSuccess: false,
   loadQnaListError: false,
+  loadCartLoading: false,
+  loadCartSuccess: false,
+  loadCartError: false,
 };
 
 export default function mypage(state = initialState, action) {
@@ -126,6 +136,54 @@ export default function mypage(state = initialState, action) {
         loadQnaListLoading: false,
         loadQnaListSuccess: false,
         loadQnaListError: action.error,
+      };
+    case LOAD_CART_REQUEST:
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartSuccess: false,
+        loadCartError: false,
+      };
+    case LOAD_CART_SUCCESS:
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartSuccess: action.payload,
+        loadCartError: false,
+      };
+    case LOAD_CART_ERROR:
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartSuccess: false,
+        loadCartError: action.error,
+      };
+    case REMOVE_CARTS_REQUEST:
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartError: action.error,
+      };
+    case REMOVE_CARTS_SUCCESS:
+      let result = [...state.loadCartSuccess];
+      action.payload.forEach((i) => {
+        // result = result.splice(result.indexOf(v), 1);
+        result = result.filter((v) => v.id !== i);
+      });
+
+      console.log(result);
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartError: false,
+        loadCartSuccess: result,
+      };
+    case REMOVE_CARTS_ERROR:
+      return {
+        ...state,
+        loadCartLoading: false,
+        loadCartSuccess: false,
+        loadCartError: action.error,
       };
     default:
       return state;
