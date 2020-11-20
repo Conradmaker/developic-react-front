@@ -51,6 +51,7 @@ const initialState = {
   addCartError: false,
 
   me: null,
+  PostLength: false,
   Profile: {},
 };
 
@@ -92,7 +93,8 @@ export default function user(state = initialState, action) {
         logInLoading: false,
         logInSuccess: true,
         logInError: false,
-        me: action.payload,
+        me: action.payload.user,
+        PostLength: action.payload.postLength.length,
       };
     case LOAD_MY_INFO_ERROR:
     case LOG_IN_ERROR:

@@ -69,7 +69,7 @@ export const LeftSection = styled.div`
 `;
 
 export default function AboutPage() {
-  const {me} = useSelector((state) => state.user);
+  const {me, PostLength} = useSelector((state) => state.user);
   const [qnaOpen, setQnaOpen] = useState(false);
   const closeQna = () => setQnaOpen(false);
 
@@ -85,7 +85,9 @@ export default function AboutPage() {
             <SectionGap id="about-service" />
             <Label>SERVICE</Label>
             {me ? <Apply open={toggleApply} /> : <Apply open={onBlock} />}
-            {applyOpen && <ApplyModal me={me} close={toggleApply} />}
+            {applyOpen && (
+              <ApplyModal me={me} length={PostLength} close={toggleApply} />
+            )}
             <SectionGap id="about-notice" />
             <Label>NOTICE</Label>
             <List></List>

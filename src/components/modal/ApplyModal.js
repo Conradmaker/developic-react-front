@@ -37,7 +37,7 @@ const Notice = styled.div`
       }
     `}
 `;
-export default function ApplyModal({open, close, me}) {
+export default function ApplyModal({open, close, me, length}) {
   const {applyWritterError, applyWritterSuccess} = useSelector(
     (state) => state.about
   );
@@ -65,20 +65,23 @@ export default function ApplyModal({open, close, me}) {
         {/*  eslint-disable-next-line jsx-a11y/accessible-emoji */}
         <strong>🕺🏼</strong> 잠깐!
       </h1>
-      <Notice>
-        <i>
-          <FiCheckCircle />
-        </i>
-        <span>10개 이상의 게시글을 등록하셨나요?</span>
-        <p>10/10</p>
-      </Notice>
-      <Notice done>
-        <i>
-          <FiCircle />
-        </i>
-        <span>10개 이상의 게시글을 등록하셨나요?</span>
-        <p>7/10</p>
-      </Notice>
+      {length > 9 ? (
+        <Notice>
+          <i>
+            <FiCheckCircle />
+          </i>
+          <span>10개 이상의 게시글을 등록하셨나요?</span>
+          <p>{length}/10</p>
+        </Notice>
+      ) : (
+        <Notice done>
+          <i>
+            <FiCircle />
+          </i>
+          <span>10개 이상의 게시글을 등록하셨나요?</span>
+          <p>{length}/10</p>
+        </Notice>
+      )}
       <Gap />
       <h1>이용약관</h1>
       <Term>

@@ -19,6 +19,9 @@ export const LOAD_CART_ERROR = "mypage/LOAD_CART_ERROR";
 export const REMOVE_CARTS_REQUEST = "mypage/REMOVE_CARTS_REQUEST";
 export const REMOVE_CARTS_SUCCESS = "mypage/REMOVE_CARTS_SUCCESS";
 export const REMOVE_CARTS_ERROR = "mypage/REMOVE_CARTS_ERROR";
+export const LOAD_APPLY_REQUEST = "mypage/LOAD_APPLY_REQUEST";
+export const LOAD_APPLY_SUCCESS = "mypage/LOAD_APPLY_SUCCESS";
+export const LOAD_APPLY_ERROR = "mypage/LOAD_APPLY_ERROR";
 
 const initialState = {
   loadLikeListLoading: false,
@@ -36,6 +39,9 @@ const initialState = {
   loadCartLoading: false,
   loadCartSuccess: false,
   loadCartError: false,
+  loadApplyLoading: false,
+  loadApplySuccess: false,
+  loadApplyError: false,
 };
 
 export default function mypage(state = initialState, action) {
@@ -184,6 +190,27 @@ export default function mypage(state = initialState, action) {
         loadCartLoading: false,
         loadCartSuccess: false,
         loadCartError: action.error,
+      };
+    case LOAD_APPLY_REQUEST:
+      return {
+        ...state,
+        loadApplyLoading: false,
+        loadApplySuccess: false,
+        loadApplyError: false,
+      };
+    case LOAD_APPLY_SUCCESS:
+      return {
+        ...state,
+        loadApplyLoading: false,
+        loadApplySuccess: action.payload,
+        loadApplyError: false,
+      };
+    case LOAD_APPLY_ERROR:
+      return {
+        ...state,
+        loadApplyLoading: false,
+        loadApplySuccess: false,
+        loadApplyError: action.error,
       };
     default:
       return state;

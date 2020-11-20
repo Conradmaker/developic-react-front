@@ -4,6 +4,9 @@ import {
   DELETE_LIKE_LIST_ERROR,
   DELETE_LIKE_LIST_REQUEST,
   DELETE_LIKE_LIST_SUCCESS,
+  LOAD_APPLY_ERROR,
+  LOAD_APPLY_REQUEST,
+  LOAD_APPLY_SUCCESS,
   LOAD_CART_ERROR,
   LOAD_CART_REQUEST,
   LOAD_CART_SUCCESS,
@@ -128,6 +131,24 @@ function* removeCarts(action) {
 function* watchRemoveCarts() {
   yield takeEvery(REMOVE_CARTS_REQUEST, removeCarts);
 }
+
+//작가신청조회
+async function loadApplyAPI(data) {
+  const response = await axios.get("/mypage/apply");
+  return response.data;
+}
+function* loadApply() {
+  try {
+    const data = yield call(loadApplyAPI);
+    yield put({type: LOAD_APPLY_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: LOAD_APPLY_ERROR, error: e.response.data});
+  }
+}
+function* watchLoadApply() {
+  yield takeEvery(LOAD_APPLY_REQUEST, loadApply);
+}
 export default function* mypageSaga() {
   yield all([
     fork(watchLoadLike),
@@ -136,5 +157,6 @@ export default function* mypageSaga() {
     fork(watchLoadQna),
     fork(watchLoadCart),
     fork(watchRemoveCarts),
+    fork(watchLoadApply),
   ]);
 }
