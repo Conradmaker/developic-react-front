@@ -1,7 +1,4 @@
-import React from "react";
-import {useRef} from "react";
-import {useState} from "react";
-import {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import Buttons from "../../components/common/Buttons";
 import Label from "../../components/common/Label";

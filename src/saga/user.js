@@ -1,5 +1,5 @@
 import axios from "axios";
-import {all, call, fork, put, takeEvery} from "redux-saga/effects";
+import {all, call, delay, fork, put, takeEvery} from "redux-saga/effects";
 import {
   ADD_CART_ERROR,
   ADD_CART_REQUEST,
@@ -22,6 +22,9 @@ import {
   REMOVE_CART_ERROR,
   REMOVE_CART_REQUEST,
   REMOVE_CART_SUCCESS,
+  SHAKEPIC_ERROR,
+  SHAKEPIC_REQUEST,
+  SHAKEPIC_SUCCESS,
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
@@ -170,6 +173,25 @@ function* removeCart(action) {
 function* watchRemoveCart() {
   yield takeEvery(REMOVE_CART_REQUEST, removeCart);
 }
+
+//셰이크픽
+async function shakePicAPI() {
+  const response = await axios.get(`user/shakeuser`);
+  return response.data;
+}
+function* shakePic(action) {
+  try {
+    const data = yield call(shakePicAPI);
+    yield delay(500);
+    yield put({type: SHAKEPIC_SUCCESS, payload: data});
+  } catch (e) {
+    console.error(e);
+    yield put({type: SHAKEPIC_ERROR, error: e.response.data});
+  }
+}
+function* watchShakePic() {
+  yield takeEvery(SHAKEPIC_REQUEST, shakePic);
+}
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
@@ -180,5 +202,6 @@ export default function* userSaga() {
     fork(watchChangeMyInfo),
     fork(watchRemoveCart),
     fork(watchAddCart),
+    fork(watchShakePic),
   ]);
 }

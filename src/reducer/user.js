@@ -30,6 +30,10 @@ export const REMOVE_CART_REQUEST = "photo/REMOVE_CART_REQUEST";
 export const REMOVE_CART_SUCCESS = "photo/REMOVE_CART_SUCCESS";
 export const REMOVE_CART_ERROR = "photo/REMOVE_CART_ERROR";
 
+export const SHAKEPIC_REQUEST = "photo/SHAKEPIC_REQUEST";
+export const SHAKEPIC_SUCCESS = "photo/SHAKEPIC_SUCCESS";
+export const SHAKEPIC_ERROR = "photo/SHAKEPIC_ERROR";
+
 const initialState = {
   signUpLoading: false,
   signUpSuccess: false,
@@ -49,6 +53,9 @@ const initialState = {
   addCartRequest: false,
   addCartSuccess: false,
   addCartError: false,
+  shakePicLoading: false,
+  shakePicSuccess: false,
+  shakePicError: false,
 
   me: null,
   PostLength: false,
@@ -132,6 +139,7 @@ export default function user(state = initialState, action) {
         loadProfileLoading: true,
         loadProdileSuccess: false,
         loadProdileError: false,
+        shakePicSuccess: false,
         profile: {},
       };
     case LOAD_PROFILE_SUCCESS:
@@ -210,6 +218,27 @@ export default function user(state = initialState, action) {
             (v) => v.id !== action.payload.photoId
           ),
         },
+      };
+    case SHAKEPIC_REQUEST:
+      return {
+        ...state,
+        shakePicLoading: false,
+        shakePicSuccess: false,
+        shakePicError: false,
+      };
+    case SHAKEPIC_SUCCESS:
+      return {
+        ...state,
+        shakePicLoading: false,
+        shakePicSuccess: action.payload,
+        shakePicError: false,
+      };
+    case SHAKEPIC_ERROR:
+      return {
+        ...state,
+        shakePicLoading: false,
+        shakePicSuccess: false,
+        shakePicError: false,
       };
     default:
       return state;

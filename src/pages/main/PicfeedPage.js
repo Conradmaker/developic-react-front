@@ -16,6 +16,8 @@ import {darken} from "polished";
 import Topbtn from "../../components/common/Topbtn";
 import {useState} from "react";
 import {Helmet} from "react-helmet";
+import {SHAKEPIC_REQUEST} from "../../reducer/user";
+import Loading from "../../components/common/Loading";
 const wave = keyframes`
  0%{
   transform: translate(00px, 0px) scale(1);
@@ -147,12 +149,22 @@ const Banner = styled(BannerBox)`
   background-size: cover;
   background-position: 0 0;
 `;
-export default function PicfeedPage() {
+export default function PicfeedPage({history}) {
   const [catagoryState, setCatagoryState] = useState(5);
   const dispatch = useDispatch();
-  const {me} = useSelector((state) => state.user);
+  const {me, shakePicSuccess} = useSelector((state) => state.user);
   const {FeedList, loadPhotoListLoading} = useSelector((state) => state.photo);
   const lastId = FeedList[FeedList.length - 1]?.id;
+  const onShake = () => {
+    dispatch({type: SHAKEPIC_REQUEST});
+  };
+  useEffect(() => {
+    if (shakePicSuccess) {
+      setTimeout(() => {
+        history.push(`/profile/${shakePicSuccess.id}`);
+      }, 3000);
+    }
+  }, [history, shakePicSuccess]);
   useEffect(() => {
     dispatch({type: DELETE_LIST});
     dispatch({type: LOAD_FEEDS_REQUEST, data: {cata: catagoryState}});
@@ -176,7 +188,7 @@ export default function PicfeedPage() {
       window.removeEventListener("scroll", onScroll);
     };
   }, [catagoryState, dispatch, lastId, loadPhotoListLoading]);
-
+  if (shakePicSuccess) return <Loading text="사람을 찾고 있어요 !" />;
   return (
     <>
       <Helmet>
@@ -195,7 +207,7 @@ export default function PicfeedPage() {
               <p>랜덤한 작가의 페이지로 이동합니다.</p>
             </section>
             <section>
-              <Button>
+              <Button onClick={onShake}>
                 {/* eslint-disable-next-line */}
                 <span role="img">🏄🏻‍♀️</span>SHAKE PIC
               </Button>

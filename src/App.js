@@ -13,6 +13,7 @@ import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import MyPage from "./pages/mypage/Mypage.js";
 import SearchFeedPage from "./pages/main/SearchFeedPage.js";
 import SearchShopPage from "./pages/main/SearchShopPage.js";
+import Loading from "./components/common/Loading.js";
 
 const GlobalStyle = createGlobalStyle`
 html{
